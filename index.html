@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruth Eunice Collection</title>
+    <style>
+        :root {
+            --primary: #d4af37; /* Dorado elegante boutique */
+            --dark: #111111;
+            --light: #f9f9f9;
+            --gray: #777777;
+            --border: #e5e5e5;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--dark);
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #b3922d;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .categories-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .product-img {
+            height: 250px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-cat {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1ebd5a;
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        footer p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Ruth Eunice <span>Collection</span></div>
+            <a href="https://wa.me/" class="whatsapp-btn" target="_blank">Contacto Directo</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Elegancia y Exclusividad</h1>
+        <p>Descubre nuestra colección boutique diseñada para realzar tu estilo.</p>
+        <a href="#catalogo" class="btn">Ver Catálogo</a>
+    </section>
+
+    <div class="container" id="catalogo">
+        <h2 class="section-title">Nuestro Catálogo</h2>
+
+        <div class="categories-filter">
+            <button class="filter-btn active" onclick="filterProducts('all')">Todos</button>
+            <button class="filter-btn" onclick="filterProducts('tangas')">Tangas Personalizadas</button>
+            <button class="filter-btn" onclick="filterProducts('conjuntos')">Conjuntos</button>
+            <button class="filter-btn" onclick="filterProducts('comestibles')">Comestibles</button>
+            <button class="filter-btn" onclick="filterProducts('juguetes')">Juguetes</button>
+        </div>
+
+        <div class="products-grid" id="grid">
+            <!-- Producto 1 -->
+            <div class="product-card" data-category="tangas">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80')"></div>
+                <div class="product-info">
+                    <span class="product-cat">Tangas Personalizadas</span>
+                    <h3 class="product-name">Tanga con Inicial Grabada</h3>
+                    <p class="product-desc">Diseño exclusivo personalizado con el texto o inicial que elijas en detalles dorados.</p>
+                    <div class="product-footer">
+                        <span class="product-price">Bs. 85</span>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20la%20Tanga%20con%20Inicial%20Grabada%20(Bs.%2085)" class="whatsapp-btn" target="_blank">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card" data-category="conjuntos">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')"></div>
+                <div class="product-info">
+                    <span class="product-cat">Conjuntos</span>
+                    <h3 class="product-name">Conjunto Boutique de Encaje</h3>
+                    <p class="product-desc">Sensual conjunto de dos piezas confeccionado en encaje italiano de alta calidad.</p>
+                    <div class="product-footer">
+                        <span class="product-price">Bs. 220</span>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20Conjunto%20Boutique%20de%20Encaje%20(Bs.%20220)" class="whatsapp-btn" target="_blank">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card" data-category="comestibles">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')"></div>
+                <div class="product-info">
+                    <span class="product-cat">Comestibles</span>
+                    <h3 class="product-name/item">Chocolate Fino Artesanal</h3>
+                    <p class="product-desc">Deliciosa selección de chocolates finos ideales para regalar o consentir los sentidos.</p>
+                    <div class="product-footer">
+                        <span class="product-price">Bs. 95</span>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20Chocolate%20Fino%20Artesanal%20(Bs.%2095)" class="whatsapp-btn" target="_blank">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="product-card" data-category="juguetes">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80')"></div>
+                <div class="product-info">
+                    <span class="product-cat">Juguetes</span>
+                    <h3 class="product-name">Dispositivo Íntimo Deluxe</h3>
+                    <p class="product-desc">Diseño ergonómico y discreto con múltiples velocidades para máxima experiencia.</p>
+                    <div class="product-footer">
+                        <span class="product-price">Bs. 350</span>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20Dispositivo%20Íntimo%20Deluxe%20(Bs.%20350)" class="whatsapp-btn" target="_blank">Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function filterProducts(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
