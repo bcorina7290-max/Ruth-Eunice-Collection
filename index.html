@@ -139,14 +139,14 @@
         }
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 30px;
         }
         .product-card {
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            border: 1px solid var(--border);
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
@@ -155,11 +155,18 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
+        .product-img-container {
+            position: relative;
+            height: 320px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f4f0ea;
+        }
         .product-img {
-            height: 280px;
+            height: 100%;
             width: 100%;
             object-fit: cover;
-            background-color: #f4f0ea;
+            transition: opacity 0.3s ease;
         }
         .product-info {
             padding: 20px;
@@ -167,25 +174,33 @@
             flex-direction: column;
             flex-grow: 1;
         }
-        .product-category {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
         .product-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
             color: var(--dark);
+            font-weight: 600;
         }
         .product-price {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 12px;
+        }
+        .product-tags {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 0.7rem;
+            background: #f4f0ea;
+            color: var(--dark);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         .btn-whatsapp-buy {
             margin-top: auto;
@@ -196,6 +211,7 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -223,7 +239,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="#"><img src="logoruth.png.png?v=2" alt="Ruth Eunice Collection"></a>
+                <a href="#"><img src="logoruth.png.png?v=3" alt="Ruth Eunice Collection"></a>
             </div>
             <a href="https://wa.me/59176247163?text=Hola%2C%20vengo%20de%20la%20web%20y%20quiero%20hacer%20un%20pedido." class="btn-whatsapp-top" target="_blank">
                 <i class="fab fa-whatsapp"></i> Contacto Directo
@@ -251,52 +267,73 @@
         <div class="products-grid" id="grid">
             <!-- Producto 1 -->
             <div class="product-card" data-category="tangas">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Tanga Personalizada" class="product-img">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Tanga Personalizada" class="product-img">
+                </div>
                 <div class="product-info">
-                    <span class="product-category">Tangas Personalizadas</span>
                     <h3 class="product-title">Tanga con Inicial Grabada</h3>
-                    <div class="product-price">Bs. 85</div>
-                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20la%20Tanga%20con%20Inicial%20Grabada%20(Bs.%2085)" class="btn-whatsapp-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                    <div class="product-price">Desde 85 Bs</div>
+                    <div class="product-tags">
+                        <span class="tag">ROJO / NEGRO</span>
+                        <span class="tag">S</span>
+                        <span class="tag">M</span>
+                        <span class="tag">L</span>
+                    </div>
+                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20la%20Tanga%20con%20Inicial%20Grabada%20(85%20Bs)" class="btn-whatsapp-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Ver Detalles / Pedir
                     </a>
                 </div>
             </div>
 
             <!-- Producto 2 -->
             <div class="product-card" data-category="conjuntos">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto Elegante" class="product-img">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto Elegante" class="product-img">
+                </div>
                 <div class="product-info">
-                    <span class="product-category">Conjuntos</span>
                     <h3 class="product-title">Conjunto Encaje Deluxe</h3>
-                    <div class="product-price">Bs. 180</div>
-                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20el%20Conjunto%20Encaje%20Deluxe%20(Bs.%20180)" class="btn-whatsapp-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                    <div class="product-price">Desde 180 Bs</div>
+                    <div class="product-tags">
+                        <span class="tag">BLANCO</span>
+                        <span class="tag">S</span>
+                        <span class="tag">M</span>
+                    </div>
+                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20el%20Conjunto%20Encaje%20Deluxe%20(180%20Bs)" class="btn-whatsapp-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Ver Detalles / Pedir
                     </a>
                 </div>
             </div>
 
             <!-- Producto 3 -->
             <div class="product-card" data-category="comestibles">
-                <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Comestibles Finos" class="product-img">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Comestibles Finos" class="product-img">
+                </div>
                 <div class="product-info">
-                    <span class="product-category">Comestibles</span>
                     <h3 class="product-title">Selección Fina Artesanal</h3>
-                    <div class="product-price">Bs. 120</div>
-                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20la%20Selección%20Fina%20Artesanal%20(Bs.%20120)" class="btn-whatsapp-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                    <div class="product-price">Desde 120 Bs</div>
+                    <div class="product-tags">
+                        <span class="tag">EXCLUSIVO</span>
+                    </div>
+                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20la%20Selección%20Fina%20Artesanal%20(120%20Bs)" class="btn-whatsapp-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Ver Detalles / Pedir
                     </a>
                 </div>
             </div>
 
             <!-- Producto 4 -->
             <div class="product-card" data-category="juguetes">
-                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" alt="Juguetes Exclusivos" class="product-img">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" alt="Juguetes Exclusivos" class="product-img">
+                </div>
                 <div class="product-info">
-                    <span class="product-category">Juguetes</span>
                     <h3 class="product-title">Línea Exclusiva Wellness</h3>
-                    <div class="product-price">Bs. 250</div>
-                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20la%20Línea%20Exclusiva%20Wellness%20(Bs.%20250)" class="btn-whatsapp-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                    <div class="product-price">Desde 250 Bs</div>
+                    <div class="product-tags">
+                        <span class="tag">PREMIUM</span>
+                    </div>
+                    <a href="https://wa.me/59176247163?text=Hola,%20estoy%20interesada%20en%20la%20Línea%20Exclusiva%20Wellness%20(250%20Bs)" class="btn-whatsapp-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Ver Detalles / Pedir
                     </a>
                 </div>
             </div>
