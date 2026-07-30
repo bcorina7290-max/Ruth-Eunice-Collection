@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruth Eunice Collection - Catálogo</title>
+    <title>Raquel Boutique</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6b1424;
-            --primary-dark: #4a0d18;
+            --primary: #5c1d35;
+            --primary-dark: #3a1121;
             --accent: #d4af37;
             --dark: #222222;
-            --light: #fdfbf7;
+            --light: #fffdfd;
             --gray: #777777;
             --border: #e6dfd5;
         }
@@ -28,8 +28,8 @@
             line-height: 1.6;
         }
         header {
-            background: #4a0d18;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -42,11 +42,18 @@
             justify-content: space-between;
             align-items: center;
         }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
         .logo img {
-            height: 75px;
+            height: 45px;
             width: auto;
-            object-fit: contain;
-            display: block;
         }
         .nav-links {
             display: flex;
@@ -54,64 +61,146 @@
             align-items: center;
         }
         .nav-links a {
-            color: white;
+            color: var(--dark);
             text-decoration: none;
             font-weight: 400;
             font-size: 0.95rem;
+            cursor: pointer;
             transition: color 0.3s;
         }
         .nav-links a:hover, .nav-links a.active {
-            color: var(--accent);
+            color: #d47a96;
             font-weight: 500;
         }
-        .btn-whatsapp-top {
-            background-color: #25d366;
+        .cart-icon {
+            font-size: 1.1rem;
+            color: var(--dark);
+            position: relative;
+            cursor: pointer;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ffb6c1;
+            color: #333;
+            font-size: 0.65rem;
+            padding: 2px 5px;
+            border-radius: 50%;
+            font-weight: 600;
+        }
+
+        /* VISTAS (PÁGINAS) */
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* --- VISTA INICIO --- */
+        .hero-section {
+            background: linear-gradient(180deg, rgba(255,240,245,0.6) 0%, rgba(255,255,255,1) 100%);
+            padding: 50px 20px 70px;
+            text-align: center;
+        }
+        .location-tag {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .hero-section p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .btn-main {
+            background-color: var(--primary);
             color: white;
-            padding: 8px 18px;
+            border: none;
+            padding: 12px 35px;
             border-radius: 30px;
-            text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 500;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             transition: background 0.3s;
         }
-        .btn-whatsapp-top:hover {
-            background-color: #1ebe57;
+        .btn-main:hover {
+            background-color: var(--primary-dark);
         }
-        
+
+        .category-pills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0 20px;
+            flex-wrap: wrap;
+        }
+        .pill {
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: white;
+            font-size: 0.85rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .pill:hover, .pill.active {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        /* --- VISTA CATÁLOGO CON SIDEBAR --- */
         .main-layout {
             max-width: 1300px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
         }
         .catalog-header {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+        .catalog-header span {
+            color: #d47a96;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .catalog-header h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
-            color: var(--primary-dark);
+            color: var(--dark);
             margin-bottom: 5px;
         }
         .catalog-header p {
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        /* Buscador superior */
         .search-bar-container {
             display: flex;
             gap: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
         .search-input {
             flex-grow: 1;
             padding: 12px 20px;
             border: 1px solid var(--border);
             border-radius: 30px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             outline: none;
             background: white;
         }
@@ -129,37 +218,36 @@
             background-color: #f5d0e2;
         }
 
-        /* Contenido con Sidebar y Grid */
         .content-grid {
             display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 40px;
+            grid-template-columns: 240px 1fr;
+            gap: 35px;
             align-items: start;
         }
 
         /* Sidebar de filtros */
         .sidebar {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             border: 1px solid var(--border);
         }
         .filter-group {
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
         .filter-group h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--dark);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 600;
         }
         .filter-select {
             width: 100%;
-            padding: 10px;
+            padding: 8px 10px;
             border: 1px solid var(--border);
             border-radius: 8px;
             background: white;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             outline: none;
             color: var(--dark);
         }
@@ -167,24 +255,24 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gray);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             cursor: pointer;
         }
         .checkbox-label input {
             accent-color: var(--primary);
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
         }
         .color-dots {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
         .color-dot {
-            width: 25px;
-            height: 25px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 1px solid #ddd;
             cursor: pointer;
@@ -198,20 +286,20 @@
         .products-area {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
         .products-count {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gray);
         }
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
         .product-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--border);
             transition: transform 0.3s, box-shadow 0.3s;
@@ -219,14 +307,13 @@
             flex-direction: column;
         }
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
         .product-img-container {
-            height: 320px;
+            height: 310px;
             width: 100%;
-            background-color: #f4f0ea;
-            position: relative;
+            background-color: #f9f9f9;
         }
         .product-img {
             height: 100%;
@@ -234,52 +321,52 @@
             object-fit: cover;
         }
         .product-info {
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
         .product-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            margin-bottom: 6px;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
             color: var(--dark);
             font-weight: 600;
         }
         .product-price {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 10px;
+            color: var(--gray);
+            margin-bottom: 8px;
         }
         .product-tags {
             display: flex;
-            gap: 6px;
-            margin-bottom: 15px;
+            gap: 5px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
         .tag {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             background: #f4f0ea;
             color: var(--dark);
-            padding: 2px 7px;
+            padding: 2px 6px;
             border-radius: 4px;
             font-weight: 500;
         }
         .btn-whatsapp-buy {
             margin-top: auto;
-            background-color: var(--primary-dark);
+            background-color: var(--dark);
             color: white;
             text-align: center;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 9px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             transition: background 0.3s;
         }
         .btn-whatsapp-buy:hover {
@@ -287,15 +374,12 @@
         }
 
         footer {
-            background-color: var(--primary-dark);
-            color: white;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-        footer p {
-            font-weight: 300;
-            font-size: 0.95rem;
+            padding: 30px;
+            margin-top: 50px;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
@@ -304,129 +388,182 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="#"><img src="logoruth.png.png?v=4" alt="Ruth Eunice Collection"></a>
+                <a href="#" onclick="switchView('home')">Raquel Boutique</a>
             </div>
             <nav class="nav-links">
-                <a href="#">Inicio</a>
-                <a href="#" class="active">Catálogo</a>
-                <a href="#">Contacto</a>
+                <a onclick="switchView('home')" id="link-home" class="active">Inicio</a>
+                <a onclick="switchView('catalog')" id="link-catalog">Catálogo</a>
+                <a onclick="switchView('home')">Contacto</a>
             </nav>
-            <a href="https://wa.me/59176247163?text=Hola%2C%20vengo%20de%20la%20web%20y%20quiero%20hacer%20un%20pedido." class="btn-whatsapp-top" target="_blank">
-                <i class="fab fa-whatsapp"></i> Contacto Directo
-            </a>
+            <div class="cart-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge">1</span>
+            </div>
         </div>
     </header>
 
-    <div class="main-layout">
-        <div class="catalog-header">
-            <p>Ruth Eunice Collection</p>
-            <h1>Catálogo</h1>
-            <p>Explora nuestra colección completa</p>
+    <!-- ================= VISTA 1: INICIO ================= -->
+    <div id="view-home" class="view-section active">
+        <section class="hero-section">
+            <div class="location-tag">Santa Cruz · Bolivia</div>
+            <h1>Moda que te hace brillar</h1>
+            <p>Vestidos, conjuntos, lencería femenina y más. Modelos exclusivos para que te veas y sientas distinta. Pide por WhatsApp y recibe en todo el país.</p>
+            <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo</button>
+
+            <div class="category-pills">
+                <div class="pill" onclick="switchView('catalog')">Ver todo</div>
+                <div class="pill" onclick="switchView('catalog')">Blusas</div>
+                <div class="pill" onclick="switchView('catalog')">Conjuntos Cortos</div>
+                <div class="pill" onclick="switchView('catalog')">Conjuntos Largos</div>
+                <div class="pill" onclick="switchView('catalog')">Lenceria</div>
+                <div class="pill" onclick="switchView('catalog')">Vestidos</div>
+            </div>
+        </section>
+
+        <div class="main-layout" style="margin-top: 20px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span style="font-size: 0.75rem; color: #d47a96; font-weight: 600; letter-spacing: 1px;">TEMPORADA ACTUAL</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 5px;">Nuestros Productos</h2>
+                <p style="color: var(--gray); font-size: 0.9rem;">Lo mejor de la temporada seleccionado para ti</p>
+            </div>
+            <!-- Vista previa simple de productos en el inicio -->
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Conjunto Chenoa</h3>
+                        <div class="product-price">Desde 320 Bs</div>
+                        <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
+                        <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chenoa" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Conjunto Chantal</h3>
+                        <div class="product-price">Desde 280 Bs</div>
+                        <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span></div>
+                        <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chantal" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Conjunto Cameron</h3>
+                        <div class="product-price">Desde 300 Bs</div>
+                        <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
+                        <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Cameron" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Barra de búsqueda -->
-        <div class="search-bar-container">
-            <input type="text" class="search-input" placeholder="Buscar por nombre...">
-            <button class="search-btn">Buscar</button>
-        </div>
+    <!-- ================= VISTA 2: CATÁLOGO CON FILTROS (IZQUIERDA) ================= -->
+    <div id="view-catalog" class="view-section">
+        <div class="main-layout">
+            <div class="catalog-header">
+                <span>RAQUEL BOUTIQUE</span>
+                <h1>Catálogo</h1>
+                <p>Explora nuestra colección completa</p>
+            </div>
 
-        <div class="content-grid">
-            <!-- Sidebar izquierdo de filtros -->
-            <aside class="sidebar">
-                <div class="filter-group">
-                    <h3>Ordenar por</h3>
-                    <select class="filter-select">
-                        <option value="">Seleccionar</option>
-                        <option value="price-asc">Precio: Menor a Mayor</option>
-                        <option value="price-desc">Precio: Mayor a Menor</option>
-                        <option value="name-asc">Nombre: A-Z</option>
-                    </select>
-                </div>
+            <!-- Buscador superior -->
+            <div class="search-bar-container">
+                <input type="text" class="search-input" placeholder="Buscar por nombre...">
+                <button class="search-btn">Buscar</button>
+            </div>
 
-                <div class="filter-group">
-                    <h3>Categorías</h3>
-                    <label class="checkbox-label"><input type="checkbox"> Tangas Personalizadas</label>
-                    <label class="checkbox-label"><input type="checkbox"> Conjuntos</label>
-                    <label class="checkbox-label"><input type="checkbox"> Comestibles</label>
-                    <label class="checkbox-label"><input type="checkbox"> Juguetes</label>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Colores</h3>
-                    <div class="color-dots">
-                        <div class="color-dot" style="background: #ffd700;" title="Amarillo"></div>
-                        <div class="color-dot" style="background: #d2b48c;" title="Arena"></div>
-                        <div class="color-dot" style="background: #0000ff;" title="Azul"></div>
-                        <div class="color-dot" style="background: #f5f5dc;" title="Beige"></div>
-                        <div class="color-dot" style="background: #ffffff;" title="Blanco"></div>
-                        <div class="color-dot" style="background: #734a36;" title="Café"></div>
-                        <div class="color-dot" style="background: #87ceeb;" title="Celeste"></div>
-                        <div class="color-dot" style="background: #ff7f50;" title="Coral"></div>
-                        <div class="color-dot" style="background: #ff00ff;" title="Fucsia"></div>
-                        <div class="color-dot" style="background: #581845;" title="Guindo"></div>
-                        <div class="color-dot" style="background: #000000;" title="Negro"></div>
-                        <div class="color-dot" style="background: #ff0000;" title="Rojo"></div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Zona de Productos -->
-            <div class="products-area">
-                <div class="products-count">Mostrando productos exclusivos</div>
-
-                <div class="products-grid">
-                    <!-- Producto 1 -->
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Tanga" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Tanga con Inicial Grabada</h3>
-                            <div class="product-price">Desde 85 Bs</div>
-                            <div class="product-tags">
-                                <span class="tag">GUINDO</span>
-                                <span class="tag">S</span>
-                                <span class="tag">M</span>
-                            </div>
-                            <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20de%20la%20Tanga%20con%20Inicial%20Grabada" class="btn-whatsapp-buy" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Ver Detalles
-                            </a>
-                        </div>
+            <div class="content-grid">
+                <!-- Sidebar izquierdo de filtros (tal cual la segunda foto) -->
+                <aside class="sidebar">
+                    <div class="filter-group">
+                        <h3>Ordenar por</h3>
+                        <select class="filter-select">
+                            <option value="">Seleccionar</option>
+                            <option value="asc">Precio: Menor a Mayor</option>
+                            <option value="desc">Precio: Mayor a Menor</option>
+                        </select>
                     </div>
 
-                    <!-- Producto 2 -->
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Conjunto Encaje Deluxe</h3>
-                            <div class="product-price">Desde 180 Bs</div>
-                            <div class="product-tags">
-                                <span class="tag">NEGRO</span>
-                                <span class="tag">M</span>
-                                <span class="tag">L</span>
-                            </div>
-                            <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Encaje%20Deluxe" class="btn-whatsapp-buy" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Ver Detalles
-                            </a>
-                        </div>
+                    <div class="filter-group">
+                        <h3>Categorías</h3>
+                        <label class="checkbox-label"><input type="checkbox"> Blusas</label>
+                        <label class="checkbox-label"><input type="checkbox"> Conjuntos Cortos</label>
+                        <label class="checkbox-label"><input type="checkbox"> Conjuntos Largos</label>
+                        <label class="checkbox-label"><input type="checkbox"> Lenceria</label>
+                        <label class="checkbox-label"><input type="checkbox"> Vestidos</label>
                     </div>
 
-                    <!-- Producto 3 -->
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Comestibles" class="product-img">
+                    <div class="filter-group">
+                        <h3>Colores</h3>
+                        <div class="color-dots">
+                            <div class="color-dot" style="background: #ffd700;" title="Amarillo"></div>
+                            <div class="color-dot" style="background: #d2b48c;" title="Arena"></div>
+                            <div class="color-dot" style="background: #0000ff;" title="Azul"></div>
+                            <div class="color-dot" style="background: #f5f5dc;" title="Beige"></div>
+                            <div class="color-dot" style="background: #ffffff;" title="Blanco"></div>
+                            <div class="color-dot" style="background: #734a36;" title="Café"></div>
+                            <div class="color-dot" style="background: #87ceeb;" title="Celeste"></div>
+                            <div class="color-dot" style="background: #ff7f50;" title="Coral"></div>
+                            <div class="color-dot" style="background: #ffc0cb;" title="Crema"></div>
+                            <div class="color-dot" style="background: #ff00ff;" title="Fucsia"></div>
+                            <div class="color-dot" style="background: #581845;" title="Guindo"></div>
+                            <div class="color-dot" style="background: #b19cd9;" title="Lila"></div>
+                            <div class="color-dot" style="background: #800080;" title="Morado"></div>
+                            <div class="color-dot" style="background: #ffa500;" title="Naranja"></div>
+                            <div class="color-dot" style="background: #000000;" title="Negro"></div>
+                            <div class="color-dot" style="background: #808080;" title="Plomo"></div>
+                            <div class="color-dot" style="background: #ff0000;" title="Rojo"></div>
+                            <div class="color-dot" style="background: #ff69b4;" title="Rosa"></div>
+                            <div class="color-dot" style="background: #008000;" title="Verde"></div>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Selección Fina Artesanal</h3>
-                            <div class="product-price">Desde 120 Bs</div>
-                            <div class="product-tags">
-                                <span class="tag">PREMIUM</span>
+                    </div>
+                </aside>
+
+                <!-- Zona de Productos del Catálogo -->
+                <div class="products-area">
+                    <div class="products-count">Mostrando 12 de 241 productos</div>
+
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
                             </div>
-                            <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20de%20la%20Selección%20Fina%20Artesanal" class="btn-whatsapp-buy" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Ver Detalles
-                            </a>
+                            <div class="product-info">
+                                <h3 class="product-title">Conjunto Chenoa</h3>
+                                <div class="product-price">Desde 320 Bs</div>
+                                <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
+                                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chenoa" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Conjunto Chantal</h3>
+                                <div class="product-price">Desde 280 Bs</div>
+                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span><span class="tag">S</span><span class="tag">M</span></div>
+                                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chantal" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Conjunto Cameron</h3>
+                                <div class="product-price">Desde 300 Bs</div>
+                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
+                                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Cameron" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -435,8 +572,29 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Raquel Boutique. Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        function switchView(viewName) {
+            // Ocultar todas las vistas
+            document.getElementById('view-home').classList.remove('active');
+            document.getElementById('view-catalog').classList.remove('active');
+            
+            // Quitar clase active del menú
+            document.getElementById('link-home').classList.remove('active');
+            document.getElementById('link-catalog').classList.remove('active');
+
+            // Mostrar la vista seleccionada
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.add('active');
+                document.getElementById('link-home').classList.add('active');
+            } else if (viewName === 'catalog') {
+                document.getElementById('view-catalog').classList.add('active');
+                document.getElementById('link-catalog').classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
