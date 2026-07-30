@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raquel Boutique</title>
+    <title>Ruth Eunice Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -37,23 +37,17 @@
         .nav-container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 12px 20px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--dark);
-            font-weight: 700;
-        }
         .logo img {
-            height: 45px;
+            height: 55px;
             width: auto;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -90,7 +84,7 @@
             font-weight: 600;
         }
 
-        /* VISTAS (PÁGINAS) */
+        /* VISTAS */
         .view-section {
             display: none;
         }
@@ -125,7 +119,7 @@
             font-size: 0.95rem;
         }
         .btn-main {
-            background-color: var(--primary);
+            background-color: #4a0d18;
             color: white;
             border: none;
             padding: 12px 35px;
@@ -138,7 +132,7 @@
             transition: background 0.3s;
         }
         .btn-main:hover {
-            background-color: var(--primary-dark);
+            background-color: var(--primary);
         }
 
         .category-pills {
@@ -388,7 +382,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="#" onclick="switchView('home')">Raquel Boutique</a>
+                <img src="logoruth.png.png" alt="Logo" onclick="switchView('home')">
             </div>
             <nav class="nav-links">
                 <a onclick="switchView('home')" id="link-home" class="active">Inicio</a>
@@ -426,7 +420,7 @@
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 5px;">Nuestros Productos</h2>
                 <p style="color: var(--gray); font-size: 0.9rem;">Lo mejor de la temporada seleccionado para ti</p>
             </div>
-            <!-- Vista previa simple de productos en el inicio -->
+            
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-img-container">
@@ -469,19 +463,18 @@
     <div id="view-catalog" class="view-section">
         <div class="main-layout">
             <div class="catalog-header">
-                <span>RAQUEL BOUTIQUE</span>
+                <span>RUTH EUNICE COLLECTION</span>
                 <h1>Catálogo</h1>
                 <p>Explora nuestra colección completa</p>
             </div>
 
-            <!-- Buscador superior -->
             <div class="search-bar-container">
                 <input type="text" class="search-input" placeholder="Buscar por nombre...">
                 <button class="search-btn">Buscar</button>
             </div>
 
             <div class="content-grid">
-                <!-- Sidebar izquierdo de filtros (tal cual la segunda foto) -->
+                <!-- Sidebar izquierdo de filtros -->
                 <aside class="sidebar">
                     <div class="filter-group">
                         <h3>Ordenar por</h3>
@@ -527,7 +520,7 @@
                     </div>
                 </aside>
 
-                <!-- Zona de Productos del Catálogo -->
+                <!-- Zona de Productos -->
                 <div class="products-area">
                     <div class="products-count">Mostrando 12 de 241 productos</div>
 
@@ -572,20 +565,17 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Raquel Boutique. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.</p>
     </footer>
 
     <script>
         function switchView(viewName) {
-            // Ocultar todas las vistas
             document.getElementById('view-home').classList.remove('active');
             document.getElementById('view-catalog').classList.remove('active');
             
-            // Quitar clase active del menú
             document.getElementById('link-home').classList.remove('active');
             document.getElementById('link-catalog').classList.remove('active');
 
-            // Mostrar la vista seleccionada
             if (viewName === 'home') {
                 document.getElementById('view-home').classList.add('active');
                 document.getElementById('link-home').classList.add('active');
