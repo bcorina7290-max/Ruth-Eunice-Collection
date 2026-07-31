@@ -964,7 +964,7 @@
     </footer>
 
     <script>
-        // Array global del carrito de compras
+        // Array global del carrito de compras (vacío al inicio)
         let cart = [];
 
         // Objeto temporal del producto seleccionado en detalle
@@ -1120,16 +1120,14 @@
             }, 700);
         }
 
+        // Botón "Comprar Ahora" añade y abre el carrito inmediatamente
         function buyNowFromDetail() {
             addCurrentProductToCart();
-            toggleCart(); // Abre directamente el carrito
+            toggleCart(); 
         }
 
-        // Inicializar carrito precargado con ejemplo inicial para que luzca exactamente como tu captura al cargar
-        currentProduct = { name: 'Conjunto Bruna', price: 320, color: 'AZUL', size: 'M', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80' };
-        addCurrentProductToCart();
-        // Cerrar carrito inicialmente para que cargue limpio
-        toggleCart();
+        // Inicializamos la interfaz del carrito vacía al arrancar
+        updateCartUI();
     </script>
 </body>
 </html>
