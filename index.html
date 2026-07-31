@@ -254,6 +254,7 @@
             overflow: hidden;
             border: 1px solid var(--border);
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -331,6 +332,342 @@
             background-color: var(--primary-dark);
         }
 
+        /* Vista de Detalle de Producto */
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .detail-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-preview-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #f9f9f9;
+        }
+
+        .thumbnail-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumb-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.2s;
+        }
+
+        .thumb-img.active-thumb {
+            border-color: var(--primary-dark);
+        }
+
+        .detail-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .detail-brand {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .detail-price-tag {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .detail-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .option-label {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .color-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .color-badge {
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            background: white;
+            cursor: pointer;
+        }
+
+        .color-badge.selected {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 1px var(--primary-dark);
+        }
+
+        .size-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .size-btn {
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-btn.selected {
+            border-color: var(--text-dark);
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: white;
+            border: 1.5px solid var(--text-dark);
+            color: var(--text-dark);
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background: #f5f5f5;
+        }
+
+        .btn-buy-now {
+            width: 100%;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-buy-now:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Panel Lateral del Carrito */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 200;
+            display: none;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 201;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .cart-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: fit-content;
+            padding: 2px 8px;
+            font-size: 13px;
+        }
+
+        .cart-item-qty button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            background: #fafafa;
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .cart-note {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .btn-whatsapp-checkout {
+            width: 100%;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-whatsapp-checkout:hover {
+            background-color: #20ba5a;
+        }
+
+        .btn-continue-shopping {
+            width: 100%;
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
         /* Botón flotante de WhatsApp */
         .whatsapp-float {
             position: fixed;
@@ -346,7 +683,7 @@
             justify-content: center;
             font-size: 30px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
+            z-index: 100;
             text-decoration: none;
             transition: transform 0.3s;
         }
@@ -355,14 +692,11 @@
             transform: scale(1.1);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                display: none;
-            }
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .detail-container { grid-template-columns: 1fr; }
+            .cart-drawer { width: 100%; right: -100%; }
         }
     </style>
 </head>
@@ -379,9 +713,9 @@
                 <li><a onclick="switchView('catalog')" id="link-catalog" class="active">Catálogo</a></li>
                 <li><a onclick="switchView('contact')" id="link-contact">Contacto</a></li>
                 <li>
-                    <div class="cart-icon" onclick="switchView('catalog')">
+                    <div class="cart-icon" onclick="toggleCart()">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="cart-badge">3</span>
+                        <span class="cart-badge" id="cart-count">0</span>
                     </div>
                 </li>
             </ul>
@@ -392,7 +726,7 @@
     <div id="view-home" class="view-section">
         <div class="main-layout hero-section">
             <h1>Bienvenidos a Ruth Eunice Collection</h1>
-            <p>Descubre la elegancia y las últimas tendencias en moda femenina pensadas para ti.</p>
+            <p>Descubre la elegancia y las últimas tendencias en moda íntima pensadas para ti.</p>
             <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo Exclusivo</button>
         </div>
     </div>
@@ -412,7 +746,6 @@
             </div>
 
             <div class="content-grid">
-                <!-- Sidebar -->
                 <aside class="sidebar">
                     <div class="filter-group">
                         <h3>Categorías</h3>
@@ -423,72 +756,54 @@
                             <option>Lencería para Varones</option>
                         </select>
                     </div>
-                    <div class="filter-group">
-                        <h3>Ordenar por</h3>
-                        <select class="filter-select">
-                            <option>Más recientes</option>
-                            <option>Precio: Menor a Mayor</option>
-                            <option>Precio: Mayor a Menor</option>
-                        </select>
-                    </div>
                 </aside>
 
-                <!-- Grid de Productos -->
                 <div class="products-area">
                     <div class="products-count">Mostrando productos disponibles</div>
-                    <div class="products-grid">
-                        
-                        <!-- Producto 1: Lencería personalizada -->
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="foto(4).jpeg" alt="Lencería Personalizada" class="product-img">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Lencería Personalizada</h3>
-                                <div class="product-price">130 Bs</div>
-                                <div class="product-tags"><span class="tag">PERSONALIZADO</span></div>
-                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Lencería Personalizada', 130)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Producto 2: Lencería comestible -->
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="foto(5).jpeg" alt="Lencería Comestible" class="product-img">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Lencería Comestible</h3>
-                                <div class="product-price">80 Bs</div>
-                                <div class="product-tags"><span class="tag">COMESTIBLE</span></div>
-                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Lencería Comestible', 80)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Producto 3: Lencería para varones -->
-                        <div class="product-card">
-                            <div class="product-img-container">
-                                <img src="foto(9).jpeg" alt="Lencería para Varones" class="product-img">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Lencería para Varones</h3>
-                                <div class="product-price">150 Bs</div>
-                                <div class="product-tags"><span class="tag">VARONES</span></div>
-                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Lencería para Varones', 150)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-
+                    <div class="products-grid" id="product-grid">
+                        <!-- Generado por JS -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= VISTA 3: CONTACTO ================= -->
+    <!-- ================= VISTA 3: DETALLE DE PRODUCTO ================= -->
+    <div id="view-detail" class="view-section">
+        <div class="main-layout" id="detail-content">
+            <!-- Rellenado Dinámicamente -->
+        </div>
+    </div>
+
+    <!-- ================= VISTA 4: CONTACTO ================= -->
     <div id="view-contact" class="view-section">
         <div class="main-layout hero-section">
             <h1>Contacto</h1>
             <p>¿Tienes dudas o necesitas asesoría con tu pedido? Escríbenos directamente a nuestro WhatsApp.</p>
             <a href="https://wa.me/" target="_blank" class="btn-main"><i class="fa-brands fa-whatsapp"></i> Chatear por WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Panel Lateral del Carrito -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cart-items-container">
+            <!-- Items del carrito -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-subtotal-price">0 Bs</span>
+            </div>
+            <div class="cart-note">Envío no incluido — coordinamos la entrega por WhatsApp.</div>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
+            </button>
+            <button class="btn-continue-shopping" onclick="toggleCart()">Continuar comprando</button>
         </div>
     </div>
 
@@ -498,23 +813,241 @@
     </a>
 
     <script>
-        function switchView(viewName) {
-            document.getElementById('view-home').classList.remove('active');
-            document.getElementById('view-catalog').classList.remove('active');
-            document.getElementById('view-contact').classList.remove('active');
+        const products = [
+            {
+                id: 1,
+                name: "Lencería Personalizada",
+                price: 130,
+                category: "Lencería Personalizada",
+                brand: "RUTH EUNICE",
+                desc: "Diseño exclusivo hecho a la medida con detalles únicos para sorprender en cualquier ocasión especial.",
+                images: ["foto(4).jpeg", "foto(5).jpeg", "foto(9).jpeg"],
+                color: "PERSONALIZADO",
+                sizes: ["S", "M", "L"]
+            },
+            {
+                id: 2,
+                name: "Lencería Comestible",
+                price: 80,
+                category: "Lencería Comestible",
+                brand: "RUTH EUNICE",
+                desc: "Innovador y divertido conjunto con elementos de sabores exquisitos. Ideal para momentos inolvidables.",
+                images: ["foto(5).jpeg", "foto(4).jpeg", "foto(9).jpeg"],
+                color: "COMESTIBLE",
+                sizes: ["Única", "S", "M"]
+            },
+            {
+                id: 3,
+                name: "Lencería para Varones",
+                price: 150,
+                category: "Lencería para Varones",
+                brand: "RUTH EUNICE",
+                desc: "Colección exclusiva y atrevida diseñada especialmente para hombres que buscan originalidad y comodidad.",
+                images: ["foto(9).jpeg", "foto(4).jpeg", "foto(5).jpeg"],
+                color: "VARONES",
+                sizes: ["S", "M", "L", "XL"]
+            }
+        ];
 
-            document.getElementById('link-home').classList.remove('active');
-            document.getElementById('link-catalog').classList.remove('active');
-            document.getElementById('link-contact').classList.remove('active');
+        let cart = [];
+        let currentProduct = null;
+        let selectedSize = '';
+
+        function renderCatalog() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card" onclick="openDetail(${p.id})">
+                    <div class="product-img-container">
+                        <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <div class="product-price">${p.price} Bs</div>
+                        <div class="product-tags"><span class="tag">${p.color}</span></div>
+                        <button class="btn-whatsapp-buy" onclick="event.stopPropagation(); openDetail(${p.id})">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchView(viewName) {
+            ['home', 'catalog', 'detail', 'contact'].forEach(v => {
+                document.getElementById('view-' + v).classList.remove('active');
+            });
+            ['home', 'catalog', 'contact'].forEach(l => {
+                const el = document.getElementById('link-' + l);
+                if(el) el.classList.remove('active');
+            });
 
             document.getElementById('view-' + viewName).classList.add('active');
-            document.getElementById('link-' + viewName).classList.add('active');
+            if(document.getElementById('link-' + viewName)) {
+                document.getElementById('link-' + viewName).classList.add('active');
+            }
+            window.scrollTo(0, 0);
         }
 
-        function buyOnWhatsApp(productName, price) {
-            const message = `Hola, me interesa el producto *${productName}* de ${price} Bs. ¿Está disponible?`;
+        function openDetail(id) {
+            currentProduct = products.find(p => p.id === id);
+            selectedSize = currentProduct.sizes[0];
+
+            const container = document.getElementById('detail-content');
+            container.innerHTML = `
+                <div class="breadcrumb">
+                    <a onclick="switchView('catalog')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span>${currentProduct.name}</span>
+                </div>
+                <div class="detail-container">
+                    <div class="detail-gallery">
+                        <img src="${currentProduct.images[0]}" class="main-preview-img" id="main-preview">
+                        <div class="thumbnail-row">
+                            ${currentProduct.images.map((img, idx) => `
+                                <img src="${img}" class="thumb-img ${idx === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="detail-info">
+                        <h1>${currentProduct.name}</h1>
+                        <div class="detail-brand">${currentProduct.brand}</div>
+                        <div class="detail-price-tag">${currentProduct.price} Bs</div>
+                        <div class="detail-desc">${currentProduct.desc}</div>
+                        
+                        <span class="option-label">Color</span>
+                        <div class="color-selector">
+                            <div class="color-badge selected">${currentProduct.color}</div>
+                        </div>
+
+                        <span class="option-label">Talla</span>
+                        <div class="size-selector" id="size-selector-container">
+                            ${currentProduct.sizes.map((s, idx) => `
+                                <button class="size-btn ${idx === 0 ? 'selected' : ''}" onclick="selectSize('${s}', this)">${s}</button>
+                            `).join('')}
+                        </div>
+
+                        <button class="btn-add-cart" id="btn-add-cart-action" onclick="addToCart()">Añadir al Carrito</button>
+                        <button class="btn-buy-now" onclick="buyNowDirect()">Comprar Ahora</button>
+                    </div>
+                </div>
+            `;
+            switchView('detail');
+        }
+
+        function changeMainImage(src, thumbElement) {
+            document.getElementById('main-preview').src = src;
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
+            thumbElement.classList.add('active-thumb');
+        }
+
+        function selectSize(size, btnElement) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btnElement.classList.add('selected');
+        }
+
+        function addToCart() {
+            const existing = cart.find(item => item.id === currentProduct.id && item.size === selectedSize);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    image: currentProduct.images[0],
+                    color: currentProduct.color,
+                    size: selectedSize,
+                    qty: 1
+                });
+            }
+            updateCartUI();
+
+            // Efecto temporal "¡Añadido!"
+            const btn = document.getElementById('btn-add-cart-action');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "¡Añadido al Carrito!";
+            btn.style.background = "#e8a5b2";
+            btn.style.color = "white";
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = "white";
+                btn.style.color = "var(--text-dark)";
+            }, 1200);
+        }
+
+        function buyNowDirect() {
+            addToCart();
+            toggleCart();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            const isOpen = drawer.classList.contains('open');
+            if (isOpen) {
+                drawer.classList.remove('open');
+                overlay.style.display = 'none';
+            } else {
+                drawer.classList.add('open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        function updateCartUI() {
+            const countBadge = document.getElementById('cart-count');
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            countBadge.innerText = totalQty;
+
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-light); text-align: center; margin-top: 40px;">Tu carrito está vacío.</p>';
+            } else {
+                container.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-meta">${item.color} | Talla: ${item.size}</div>
+                            <div class="cart-item-price">${item.price} Bs</div>
+                            <div class="cart-item-qty">
+                                <button onclick="changeQty(${index}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeItem(${index})" style="background:none; border:none; cursor:pointer; color:#999;"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-subtotal-price').innerText = subtotal + ' Bs';
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            let message = "Hola, me interesa realizar el siguiente pedido:\n\n";
+            cart.forEach(item => {
+                message += `• *${item.name}* (${item.color}, Talla: ${item.size}) x${item.qty} - ${item.price * item.qty} Bs\n`;
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            message += `\n*Subtotal Total:* ${total} Bs\n¿Me confirman disponibilidad y envío?`;
+            
             window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
         }
+
+        // Inicializar catálogo al cargar
+        renderCatalog();
     </script>
 </body>
 </html>
