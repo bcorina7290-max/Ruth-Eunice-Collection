@@ -390,36 +390,6 @@
             outline: none;
             color: var(--dark);
         }
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-bottom: 6px;
-            cursor: pointer;
-        }
-        .checkbox-label input {
-            accent-color: var(--primary);
-            width: 15px;
-            height: 15px;
-        }
-        .color-dots {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-        .color-dot {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .color-dot:hover {
-            transform: scale(1.1);
-        }
 
         /* Productos Grid */
         .products-area {
@@ -549,22 +519,6 @@
             border-radius: 10px;
             background: #f9f9f9;
             border: 1px solid var(--border);
-        }
-        .thumbnail-row {
-            display: flex;
-            gap: 10px;
-        }
-        .thumb-img {
-            width: 80px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s;
-        }
-        .thumb-img.active, .thumb-img:hover {
-            border-color: var(--primary);
         }
         .detail-info h1 {
             font-family: 'Playfair Display', serif;
@@ -1148,11 +1102,11 @@
                 <span>Subtotal:</span>
                 <span id="cart-subtotal">0 Bs</span>
             </div>
-            <div class="cart-shipping-note">Envío calculado al coordinar por WhatsApp.</div>
+            <div class="cart-shipping-note">Envío no incluido — coordinamos la entrega por WhatsApp.</div>
             <a href="#" id="whatsapp-checkout-btn" target="_blank" class="btn-whatsapp-checkout">
-                <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+                <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
             </a>
-            <button class="btn-continue-shopping" onclick="toggleCart()">Seguir comprando</button>
+            <button class="btn-continue-shopping" onclick="toggleCart()">Continuar comprando</button>
         </div>
     </div>
 
@@ -1201,7 +1155,6 @@
 
     <!-- ================= SCRIPTS ================= -->
     <script>
-        // Base de datos de productos ampliada para el catálogo
         const productsDB = [
             { id: 1, name: "Conjunto Bruna", price: 320, category: "Conjuntos Largos", color: "AZUL", size: "M", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" },
             { id: 2, name: "Conjunto Chenoa", price: 320, category: "Conjuntos Cortos", color: "BEIGE", size: "S", img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" },
@@ -1216,7 +1169,6 @@
         let cart = [];
         let currentProductDetail = null;
 
-        // Cambiar Vistas
         function switchView(viewName) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.getElementById('view-' + viewName).classList.add('active');
@@ -1230,7 +1182,6 @@
             window.scrollTo(0, 0);
         }
 
-        // Mostrar Detalle de Producto
         function showProductDetail(name, price, color, size, img) {
             currentProductDetail = { name, price, color, size, img, qty: 1 };
             document.getElementById('detail-title').innerText = name;
@@ -1242,7 +1193,6 @@
             switchView('detail');
         }
 
-        // Filtrar Catálogo
         function filterCatalog() {
             const query = document.getElementById('search-box').value.toLowerCase();
             const category = document.getElementById('filter-category').value;
@@ -1284,7 +1234,6 @@
             });
         }
 
-        // Funciones del Carrito
         function toggleCart() {
             document.getElementById('cart-overlay').classList.toggle('active');
             document.getElementById('cart-drawer').classList.toggle('active');
@@ -1298,12 +1247,34 @@
                 cart.push({ ...product, qty: product.qty || 1 });
             }
             updateCartUI();
-            toggleCart();
         }
 
         function addToCartFromDetail() {
             if(currentProductDetail) {
                 addToCart(currentProductDetail);
+                toggleCart();
+            }
+        }
+
+        // --- ACCIÓN "COMPRAR AHORA" ---
+        // Al hacer click en "Comprar Ahora", añade el producto y abre el carrito lateral (drawer) de inmediato tal como lo pediste.
+        function buyNowFromDetail() {
+            if(currentProductDetail) {
+                // Verificamos si ya está en el carrito para no duplicarlo exactamente igual, o sumarlo
+                const existing = cart.find(item => item.name === currentProductDetail.name && item.color === currentProductDetail.color && item.size === currentProductDetail.size);
+                if(existing) {
+                    existing.qty += 1;
+                } else {
+                    cart.push({ ...currentProductDetail });
+                }
+                updateCartUI();
+                
+                // Abre el panel lateral del carrito exactamente como en tu referencia visual
+                const overlay = document.getElementById('cart-overlay');
+                const drawer = document.getElementById('cart-drawer');
+                if(!drawer.classList.contains('active')) {
+                    toggleCart();
+                }
             }
         }
 
@@ -1322,7 +1293,7 @@
                         <img src="${item.img}" alt="${item.name}" class="cart-item-img">
                         <div class="cart-item-info">
                             <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-sub">Color: ${item.color} | Talla: ${item.size}</div>
+                            <div class="cart-item-sub">ROJO | Talla: ${item.size}</div>
                             <div class="cart-item-price">${item.price} Bs</div>
                             <div class="qty-controls">
                                 <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
@@ -1339,12 +1310,11 @@
             document.getElementById('cart-drawer-count').innerText = totalCount;
             document.getElementById('cart-subtotal').innerText = subtotal + ' Bs';
 
-            // Generar enlace de WhatsApp para el pedido
             let waText = "Hola,%20quiero%20realizar%20el%20siguiente%20pedido:%0A";
             cart.forEach(i => {
                 waText += `-%20${i.qty}x%20${i.name}%20(${i.color},%20Talla%20${i.size})%20-%20${i.price * i.qty}%20Bs%0A`;
             });
-            waText += `%0ASubtotal%20total:%20${subtotal}%20Bs`;
+            waText += `%0ASubtotal%2520total:%20${subtotal}%20Bs`;
             document.getElementById('whatsapp-checkout-btn').href = `https://wa.me/59170000000?text=${waText}`;
         }
 
@@ -1361,14 +1331,6 @@
             updateCartUI();
         }
 
-        function buyNowFromDetail() {
-            if(currentProductDetail) {
-                let waText = `Hola,%20quiero%20comprar%20directo:%201x%20${currentProductDetail.name}%20(Color:%20${currentProductDetail.color},%20Talla:%20${currentProductDetail.size})%20-%20${currentProductDetail.price}%20Bs`;
-                window.open(`https://wa.me/59170000000?text=${waText}`, '_blank');
-            }
-        }
-
-        // Inicializar al cargar
         filterCatalog();
     </script>
 </body>
