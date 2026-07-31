@@ -158,6 +158,151 @@
             border-color: var(--dark);
         }
 
+        /* --- SECCIONES INFERIORES NUEVAS (HOME) --- */
+        .features-section {
+            padding: 60px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-subtitle {
+            font-size: 0.75rem;
+            color: #d47a96;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-top: 5px;
+            margin-bottom: 8px;
+        }
+        .section-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+        .feature-icon-box {
+            width: 60px;
+            height: 60px;
+            background: #fff5f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Sección de Testimonios */
+        .testimonials-section {
+            background: #faf7f2;
+            padding: 60px 20px;
+            margin-top: 20px;
+        }
+        .testimonials-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .stars {
+            color: #ffb800;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        .testimonial-text {
+            font-size: 0.85rem;
+            color: var(--dark);
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .testimonial-author {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        /* Banner de WhatsApp Atencion Personalizada */
+        .whatsapp-banner {
+            background: linear-gradient(135deg, #fff0f3 0%, #fae1e8 100%);
+            padding: 50px 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .whatsapp-banner h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .whatsapp-banner p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        .btn-wa-action {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        .btn-wa-action:hover {
+            background-color: #20ba5a;
+        }
+
         /* --- VISTA CATÁLOGO CON SIDEBAR --- */
         .main-layout {
             max-width: 1300px;
@@ -687,13 +832,55 @@
             background: #f2f2f2;
         }
 
+        /* Footer general */
         footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-            color: var(--gray);
+            background-color: #1a1e24;
+            color: #b0b4bc;
+            padding: 50px 20px 20px;
+            margin-top: 0px;
+        }
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-col h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .footer-col p {
             font-size: 0.85rem;
-            border-top: 1px solid var(--border);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        .footer-col ul li a {
+            color: #b0b4bc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 20px auto 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #888;
         }
     </style>
 </head>
@@ -734,7 +921,8 @@
             </div>
         </section>
 
-        <div class="main-layout" style="margin-top: 20px;">
+        <!-- Productos Destacados -->
+        <div class="main-layout" style="margin-top: 20px; margin-bottom: 40px;">
             <div style="text-align: center; margin-bottom: 30px;">
                 <span style="font-size: 0.75rem; color: #d47a96; font-weight: 600; letter-spacing: 1px;">TEMPORADA ACTUAL</span>
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 5px;">Nuestros Productos</h2>
@@ -776,7 +964,78 @@
                     </div>
                 </div>
             </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo Completo</button>
+            </div>
         </div>
+
+        <!-- SECCIÓN 1: ¿CÓMO TRABAJAMOS? -->
+        <section class="features-section">
+            <div class="section-header-center">
+                <span class="section-subtitle">NUESTRO COMPROMISO</span>
+                <h2 class="section-title">¿Cómo Trabajamos?</h2>
+                <p class="section-desc">Tu satisfacción es nuestra prioridad</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-box"></i></div>
+                    <h3>Envíos Express</h3>
+                    <p>Envíos a todo Bolivia. Los pedidos se despachan el mismo día de la compra por la flota de tu preferencia.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3>Delivery en Santa Cruz</h3>
+                    <p>Entregas a domicilio las 24 horas dentro de la ciudad de Santa Cruz por Yango.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-credit-card"></i></div>
+                    <h3>Pagos Seguros</h3>
+                    <p>Paga por QR, transferencia bancaria o en efectivo. Rápido y sin complicaciones.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: TESTIMONIOS -->
+        <section class="testimonials-section">
+            <div class="section-header-center" style="margin-bottom: 30px;">
+                <span class="section-subtitle">CLIENTAS FELICES</span>
+                <h2 class="section-title">Lo que dicen nuestras clientas</h2>
+                <p class="section-desc">Compras reales de nuestras clientas</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"Me encantó la calidad y el empaque. ¡100% recomendado, volvería a comprar sin dudarlo!"</p>
+                    <div class="testimonial-author">— María G.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"Me ayudaron a elegir la talla perfecta con mucha paciencia. Se nota que les importa cada clienta."</p>
+                    <div class="testimonial-author">— Lucía M.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"El delivery por Yango fue rapidísimo. El vestido quedó perfecto."</p>
+                    <div class="testimonial-author">— Amanda M.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"Super fácil hacer el pedido por WhatsApp. Me mandaron fotos de todo antes de confirmar, muy profesional."</p>
+                    <div class="testimonial-author">— Valeria T.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: ATENCIÓN PERSONALIZADA WHATSAPP -->
+        <section class="whatsapp-banner">
+            <span class="section-subtitle">ATENCIÓN PERSONALIZADA</span>
+            <h3>¿Tienes dudas sobre tallas o colores?</h3>
+            <p>Escríbenos por WhatsApp y te asesoramos al instante. También puedes hacer tu pedido directamente desde el chat.</p>
+            <a href="https://wa.me/59176247163?text=Hola,%20tengo%20dudas%20sobre%20una%20prenda%20y%20necesito%20asesoramiento" class="btn-wa-action" target="_blank">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Escribirnos por WhatsApp
+            </a>
+        </section>
     </div>
 
     <!-- ================= VISTA 2: CATÁLOGO CON FILTROS ================= -->
@@ -959,15 +1218,36 @@
         </div>
     </div>
 
+    <!-- ================= FOOTER PROFESIONAL ================= -->
     <footer>
-        <p>&copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.</p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: white;">Ruth Eunice</h4>
+                <p>Moda femenina en Santa Cruz, Bolivia. Envíos a todo el país y delivery a domicilio por Yango.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a onclick="switchView('home')">Inicio</a></li>
+                    <li><a onclick="switchView('catalog')">Catálogo</a></li>
+                    <li><a onclick="switchView('home')">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contáctanos</h4>
+                <p>Hacemos pedidos por WhatsApp. Escríbenos y te asesoramos con tu talla y estilo.</p>
+                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20información%20sobre%20sus%20prendas" class="btn-wa-action" style="padding: 8px 20px; font-size: 0.85rem;" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script>
-        // Array global del carrito de compras (vacío al inicio)
         let cart = [];
-
-        // Objeto temporal del producto seleccionado en detalle
         let currentProduct = {
             name: 'Conjunto Bruna',
             price: 320,
@@ -1022,7 +1302,6 @@
             document.getElementById('cart-overlay').classList.toggle('active');
         }
 
-        // Agregar o incrementar producto al carrito
         function addCurrentProductToCart() {
             const existingIndex = cart.findIndex(item => 
                 item.name === currentProduct.name && 
@@ -1041,7 +1320,6 @@
             updateCartUI();
         }
 
-        // Cambiar cantidad desde los botones + / - en el carrito
         function changeQuantity(index, delta) {
             cart[index].quantity += delta;
             if (cart[index].quantity <= 0) {
@@ -1050,7 +1328,6 @@
             updateCartUI();
         }
 
-        // Eliminar producto específico del carrito
         function removeItem(index) {
             cart.splice(index, 1);
             updateCartUI();
@@ -1091,7 +1368,6 @@
             document.getElementById('cart-subtotal-price').innerText = subtotal + ' Bs';
             document.getElementById('cart-counter').innerText = totalItems;
 
-            // Construir mensaje de WhatsApp con todos los productos del carrito
             let textMsg = `Hola, quiero realizar el siguiente pedido por WhatsApp:\n`;
             cart.forEach((item, idx) => {
                 textMsg += `\n${idx + 1}. *${item.name}*\n- Cantidad: ${item.quantity}\n- Precio Unitario: ${item.price} Bs\n- Color: ${item.color} | Talla: ${item.size}\n`;
@@ -1101,7 +1377,6 @@
             document.getElementById('whatsapp-checkout-btn').href = `https://wa.me/59176247163?text=${encodeURIComponent(textMsg)}`;
         }
 
-        // Efecto temporal en el botón "Añadir al Carrito"
         function addToCartFromDetail() {
             addCurrentProductToCart();
 
@@ -1116,17 +1391,15 @@
                 btn.innerHTML = originalHTML;
                 btn.style.borderColor = 'var(--dark)';
                 btn.style.color = 'var(--dark)';
-                toggleCart(); // Abre el panel lateral tras un momento
+                toggleCart();
             }, 700);
         }
 
-        // Botón "Comprar Ahora" añade y abre el carrito inmediatamente
         function buyNowFromDetail() {
             addCurrentProductToCart();
             toggleCart(); 
         }
 
-        // Inicializamos la interfaz del carrito vacía al arrancar
         updateCartUI();
     </script>
 </body>
