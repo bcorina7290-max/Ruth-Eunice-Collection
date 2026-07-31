@@ -362,9 +362,157 @@
             justify-content: center;
             gap: 6px;
             transition: background 0.3s;
+            border: none;
+            cursor: pointer;
         }
         .btn-whatsapp-buy:hover {
             background-color: var(--primary);
+        }
+
+        /* --- VISTA 3: DETALLE DE PRODUCTO --- */
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .breadcrumb a {
+            color: var(--dark);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .detail-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .main-detail-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #f9f9f9;
+            border: 1px solid var(--border);
+        }
+        .thumbnail-row {
+            display: flex;
+            gap: 10px;
+        }
+        .thumb-img {
+            width: 80px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .thumb-img.active, .thumb-img:hover {
+            border-color: var(--primary);
+        }
+        .detail-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .detail-brand {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .detail-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .detail-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .option-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .option-box {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 1px solid #ffb6c1;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--dark);
+            background: white;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .stock-badge {
+            display: inline-block;
+            background: #e6f9ed;
+            color: #10b981;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn-add-cart {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--dark);
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-add-cart:hover {
+            background: #f4f0ea;
+        }
+        .btn-buy-now {
+            background: #ffb6c1;
+            color: var(--dark);
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn-buy-now:hover {
+            background: #ff9fb0;
         }
 
         footer {
@@ -430,7 +578,7 @@
                         <h3 class="product-title">Conjunto Chenoa</h3>
                         <div class="product-price">Desde 320 Bs</div>
                         <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
-                        <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chenoa" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', '320 Bs', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
@@ -441,7 +589,7 @@
                         <h3 class="product-title">Conjunto Chantal</h3>
                         <div class="product-price">Desde 280 Bs</div>
                         <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span></div>
-                        <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chantal" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chantal', '280 Bs', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
@@ -452,14 +600,14 @@
                         <h3 class="product-title">Conjunto Cameron</h3>
                         <div class="product-price">Desde 300 Bs</div>
                         <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                        <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Cameron" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', '300 Bs', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= VISTA 2: CATÁLOGO CON FILTROS (IZQUIERDA) ================= -->
+    <!-- ================= VISTA 2: CATÁLOGO CON FILTROS ================= -->
     <div id="view-catalog" class="view-section">
         <div class="main-layout">
             <div class="catalog-header">
@@ -522,7 +670,7 @@
 
                 <!-- Zona de Productos -->
                 <div class="products-area">
-                    <div class="products-count">Mostrando 12 de 241 productos</div>
+                    <div class="products-count">Mostrando 3 de 241 productos</div>
 
                     <div class="products-grid">
                         <div class="product-card">
@@ -533,7 +681,7 @@
                                 <h3 class="product-title">Conjunto Chenoa</h3>
                                 <div class="product-price">Desde 320 Bs</div>
                                 <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
-                                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chenoa" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', '320 Bs', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                         <div class="product-card">
@@ -543,8 +691,8 @@
                             <div class="product-info">
                                 <h3 class="product-title">Conjunto Chantal</h3>
                                 <div class="product-price">Desde 280 Bs</div>
-                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span><span class="tag">S</span><span class="tag">M</span></div>
-                                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Chantal" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chantal', '280 Bs', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                         <div class="product-card">
@@ -554,10 +702,62 @@
                             <div class="product-info">
                                 <h3 class="product-title">Conjunto Cameron</h3>
                                 <div class="product-price">Desde 300 Bs</div>
-                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
-                                <a href="https://wa.me/59176247163?text=Hola,%20quiero%20ver%20detalles%20del%20Conjunto%20Cameron" class="btn-whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> Ver Detalles</a>
+                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', '300 Bs', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= VISTA 3: DETALLE DEL PRODUCTO ================= -->
+    <div id="view-detail" class="view-section">
+        <div class="main-layout">
+            <div class="breadcrumb">
+                <a onclick="switchView('home')">Inicio</a> / 
+                <a onclick="switchView('catalog')">Catálogo</a> / 
+                <span id="breadcrumb-title" style="color: var(--dark); font-weight: 500;">Detalle</span>
+            </div>
+
+            <div class="product-detail-container">
+                <!-- Galería de imágenes -->
+                <div class="detail-gallery">
+                    <img id="detail-main-img" src="" alt="Producto" class="main-detail-img">
+                    <div class="thumbnail-row">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80" alt="thumb" class="thumb-img active" onclick="changeImage(this)">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=300&q=80" alt="thumb" class="thumb-img" onclick="changeImage(this)">
+                        <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=300&q=80" alt="thumb" class="thumb-img" onclick="changeImage(this)">
+                    </div>
+                </div>
+
+                <!-- Información del producto y botones -->
+                <div class="detail-info">
+                    <div class="detail-brand">Ruth Eunice Collection</div>
+                    <h1 id="detail-title-text">Nombre del Producto</h1>
+                    <div class="detail-price" id="detail-price-text">000 Bs</div>
+                    <div class="detail-desc">Sin descripción disponible. Prenda exclusiva de alta calidad para destacar en cualquier ocasión.</div>
+
+                    <span class="option-label">Color</span>
+                    <div class="option-box">
+                        <i class="fa-solid fa-circle" style="color: var(--primary); font-size: 0.6rem; margin-right: 5px;"></i> EXCLUSIVO
+                    </div>
+
+                    <span class="option-label">Talla</span>
+                    <div class="option-box" style="border-color: var(--dark); font-weight: 500;">M</div>
+
+                    <div>
+                        <span class="stock-badge">En stock</span>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#" id="btn-cart-action" class="btn-add-cart" target="_blank">
+                            <i class="fa-solid fa-bag-shopping"></i> Añadir al Carrito
+                        </a>
+                        <a href="#" id="btn-buy-action" class="btn-buy-now" target="_blank">
+                            Comprar Ahora
+                        </a>
                     </div>
                 </div>
             </div>
@@ -572,6 +772,7 @@
         function switchView(viewName) {
             document.getElementById('view-home').classList.remove('active');
             document.getElementById('view-catalog').classList.remove('active');
+            document.getElementById('view-detail').classList.remove('active');
             
             document.getElementById('link-home').classList.remove('active');
             document.getElementById('link-catalog').classList.remove('active');
@@ -584,6 +785,33 @@
                 document.getElementById('link-catalog').classList.add('active');
             }
             window.scrollTo(0, 0);
+        }
+
+        function showProductDetail(name, price, imgUrl) {
+            document.getElementById('view-home').classList.remove('active');
+            document.getElementById('view-catalog').classList.remove('active');
+            document.getElementById('view-detail').classList.add('active');
+
+            // Rellenar datos
+            document.getElementById('detail-title-text').innerText = name;
+            document.getElementById('breadcrumb-title').innerText = name;
+            document.getElementById('detail-price-text').innerText = price;
+            document.getElementById('detail-main-img').src = imgUrl;
+
+            // Enlaces dinámicos a WhatsApp
+            const messageCart = encodeURIComponent(`Hola, quiero añadir al carrito y consultar sobre el producto: ${name} (${price})`);
+            const messageBuy = encodeURIComponent(`Hola, quiero comprar ahora el producto: ${name} (${price})`);
+            
+            document.getElementById('btn-cart-action').href = `https://wa.me/59176247163?text=${messageCart}`;
+            document.getElementById('btn-buy-action').href = `https://wa.me/59176247163?text=${messageBuy}`;
+
+            window.scrollTo(0, 0);
+        }
+
+        function changeImage(element) {
+            document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('detail-main-img').src = element.src;
         }
     </script>
 </body>
