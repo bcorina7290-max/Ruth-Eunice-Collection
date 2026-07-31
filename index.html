@@ -158,7 +158,7 @@
             border-color: var(--dark);
         }
 
-        /* --- SECCIONES INFERIORES NUEVAS (HOME) --- */
+        /* SECCIONES INFERIORES NUEVAS (HOME) */
         .features-section {
             padding: 60px 20px;
             max-width: 1300px;
@@ -484,7 +484,17 @@
             background-color: var(--primary);
         }
 
+        /* --- VISTA 2: CATÁLOGO VIEW CONTAINER --- */
+        #view-catalog {
+            padding: 20px 0;
+        }
+
         /* --- VISTA 3: DETALLE DEL PRODUCTO --- */
+        #view-detail {
+            padding: 30px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
         .breadcrumb {
             font-size: 0.85rem;
             color: var(--gray);
@@ -977,18 +987,18 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="testimonial-text">"Los vestidos son hermosos y exclusivos. ¡Me encantó la atención y la calidad de las prendas!"</p>
-                    <div class="testimonial-author">— Carola M., La Paz</div>
+                    <p class="testimonial-text">"Los vestidos son hermosos y exclusivos. Definitivamente volveré a comprar para la próxima temporada."</p>
+                    <div class="testimonial-author">— Andrea M., La Paz</div>
                 </div>
             </div>
         </section>
 
-        <!-- Banner WhatsApp -->
+        <!-- BANNER DE WHATSAPP -->
         <div class="whatsapp-banner">
             <h3>¿Necesitas asesoría personalizada?</h3>
-            <p>Escríbenos directamente por WhatsApp y te ayudamos a elegir la talla y modelo ideal para ti.</p>
-            <a href="https://wa.me/59170000000?text=Hola,%20deseo%20asesor%C3%ada%20personalizada%20para%20comprar" target="_blank" class="btn-wa-action">
-                <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
+            <p>Escríbenos directamente por WhatsApp y te ayudamos a armar tu outfit ideal o resolver dudas sobre tallas y envíos.</p>
+            <a href="https://wa.me/59170000000?text=Hola,%20deseo%20asesoría%20personalizada%20con%20mis%20compras" target="_blank" class="btn-wa-action">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chatear por WhatsApp
             </a>
         </div>
     </div>
@@ -997,112 +1007,142 @@
     <div id="view-catalog" class="view-section">
         <div class="main-layout">
             <div class="catalog-header">
-                <span>CATÁLOGO EXCLUSIVO</span>
-                <h1>Colección Completa</h1>
-                <p>Explora todos nuestros modelos disponibles para entrega inmediata</p>
+                <span>EXPLORA NUESTRA TIENDA</span>
+                <h1>Catálogo Exclusivo</h1>
+                <p>Encuentra las últimas tendencias en moda femenina</p>
             </div>
 
             <div class="search-bar-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nombre, color o estilo..." onkeyup="filterProducts()">
-                <button class="search-btn" onclick="filterProducts()">Buscar</button>
+                <input type="text" class="search-input" placeholder="Buscar prendas, conjuntos, vestidos..." id="search-box">
+                <button class="search-btn">Buscar</button>
             </div>
 
             <div class="content-grid">
                 <!-- Sidebar -->
                 <aside class="sidebar">
                     <div class="filter-group">
-                        <h3>Categoría</h3>
-                        <select id="filterCategory" class="filter-select" onchange="filterProducts()">
-                            <option value="all">Todas las categorías</option>
-                            <option value="conjuntos">Conjuntos</option>
-                            <option value="vestidos">Vestidos</option>
-                            <option value="blusas">Blusas</option>
-                            <option value="lenceria">Lencería</option>
+                        <h3>Categorías</h3>
+                        <select class="filter-select">
+                            <option>Todas</option>
+                            <option>Blusas</option>
+                            <option>Conjuntos Cortos</option>
+                            <option>Conjuntos Largos</option>
+                            <option>Lencería</option>
+                            <option>Vestidos</option>
                         </select>
                     </div>
                     <div class="filter-group">
                         <h3>Ordenar por</h3>
-                        <select id="filterSort" class="filter-select" onchange="filterProducts()">
-                            <option value="default">Recomendados</option>
-                            <option value="asc">Precio: Menor a Mayor</option>
-                            <option value="desc">Precio: Mayor a Menor</option>
+                        <select class="filter-select">
+                            <option>Más recientes</option>
+                            <option>Precio: Menor a Mayor</option>
+                            <option>Precio: Mayor a Menor</option>
                         </select>
                     </div>
                 </aside>
 
-                <!-- Products Area -->
+                <!-- Grid de Productos -->
                 <div class="products-area">
-                    <div class="products-count" id="productsCount">Mostrando productos</div>
-                    <div class="products-grid" id="catalogGrid">
-                        <!-- Products will be populated by JS -->
+                    <div class="products-count">Mostrando productos disponibles</div>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto Bruna" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Conjunto Bruna</h3>
+                                <div class="product-price">320 Bs</div>
+                                <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto Chenoa" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Conjunto Chenoa</h3>
+                                <div class="product-price">320 Bs</div>
+                                <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Conjunto Cameron" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Conjunto Cameron</h3>
+                                <div class="product-price">300 Bs</div>
+                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= VISTA 3: DETALLE DE PRODUCTO ================= -->
+    <!-- ================= VISTA 3: DETALLE DEL PRODUCTO ================= -->
     <div id="view-detail" class="view-section">
-        <div class="main-layout">
-            <div class="breadcrumb">
-                <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span id="detailBreadcrumbTitle">Detalle</span>
+        <div class="breadcrumb">
+            <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span id="breadcrumb-title">Detalle</span>
+        </div>
+        <div class="product-detail-container">
+            <div class="detail-gallery">
+                <img src="" alt="Producto" class="main-detail-img" id="detail-img">
             </div>
-            <div class="product-detail-container">
-                <div class="detail-gallery">
-                    <img id="detailImg" src="" alt="Producto" class="main-detail-img">
+            <div class="detail-info">
+                <div class="detail-brand">Ruth Eunice Collection</div>
+                <h1 id="detail-title">Nombre del Producto</h1>
+                <div class="detail-price" id="detail-price">0 Bs</div>
+                <div class="detail-desc">
+                    Prenda exclusiva confeccionada con materiales de alta calidad para garantizar comodidad, elegancia y un ajuste perfecto en cualquier ocasión.
                 </div>
-                <div class="detail-info">
-                    <div class="detail-brand">Ruth Eunice Collection</div>
-                    <h1 id="detailTitle">Nombre del Producto</h1>
-                    <div class="detail-price" id="detailPrice">0 Bs</div>
-                    <div class="stock-badge"><i class="fa-solid fa-check"></i> Stock Disponible en Santa Cruz</div>
-                    <div class="detail-desc" id="detailDesc">
-                        Prenda confeccionada con materiales de alta calidad, diseñada exclusivamente para resaltar tu elegancia y comodidad en cualquier ocasión.
-                    </div>
+                <span class="option-label">Color disponible:</span>
+                <div class="option-box" id="detail-color">Único</div>
+                
+                <span class="option-label">Talla disponible:</span>
+                <div class="option-box" id="detail-size">Estándar</div>
 
-                    <div style="margin-bottom: 15px;">
-                        <span class="option-label">Color seleccionado:</span>
-                        <span class="option-box" id="detailColor">Único</span>
-                    </div>
+                <div>
+                    <span class="stock-badge"><i class="fa-solid fa-check"></i> Stock disponible para entrega inmediata</span>
+                </div>
 
-                    <div style="margin-bottom: 25px;">
-                        <span class="option-label">Talla seleccionada:</span>
-                        <span class="option-box" id="detailSize">M</span>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="btn-add-cart" onclick="addToCartFromDetail()">
-                            <i class="fa-solid fa-bag-shopping"></i> Añadir al Carrito
-                        </button>
-                        <button class="btn-buy-now" onclick="buyViaWhatsApp()">
-                            <i class="fa-brands fa-whatsapp"></i> Comprar directo por WhatsApp
-                        </button>
-                    </div>
+                <div class="action-buttons">
+                    <button class="btn-add-cart" onclick="addToCartFromDetail()">
+                        <i class="fa-solid fa-bag-shopping"></i> Agregar al Carrito
+                    </button>
+                    <button class="btn-buy-now" onclick="buyViaWhatsAppDirect()">
+                        <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= CARRITO DRAWER ================= -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    <div class="cart-drawer" id="cartDrawer">
+    <!-- ================= CARRITO LATERAL (DRAWER) ================= -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
-            <h3>Tu Carrito de Compras</h3>
+            <h3>Tu Carrito (<span id="drawer-item-count">0</span>)</h3>
             <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="cart-body" id="cartBody">
-            <p style="text-align: center; color: var(--gray); margin-top: 40px; font-size: 0.9rem;">Tu carrito está vacío</p>
+        <div class="cart-body" id="cart-items-container">
+            <!-- Items del carrito cargados dinámicamente -->
+            <p style="color: var(--gray); text-align: center; margin-top: 40px; font-size: 0.85rem;">Tu carrito está vacío</p>
         </div>
         <div class="cart-footer">
             <div class="cart-subtotal-row">
                 <span>Subtotal:</span>
-                <span id="cartSubtotal">0 Bs</span>
+                <span id="cart-subtotal-price">0 Bs</span>
             </div>
-            <div class="cart-shipping-note">Envío calculado al coordinar por WhatsApp o delivery.</div>
-            <a href="#" id="whatsappCheckoutBtn" class="btn-whatsapp-checkout" onclick="checkoutWhatsApp(event)">
-                <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+            <div class="cart-shipping-note">Envío calculado al coordinar por WhatsApp</div>
+            <a href="#" class="btn-whatsapp-checkout" id="whatsapp-checkout-btn" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> Finalizar Pedido por WhatsApp
             </a>
-            <button class="btn-continue-shopping" onclick="toggleCart()">Seguir comprando</button>
+            <button class="btn-continue-shopping" onclick="toggleCart()">Seguir Comprando</button>
         </div>
     </div>
 
@@ -1111,25 +1151,21 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h4>Ruth Eunice Collection</h4>
-                <p>Moda femenina exclusiva en Santa Cruz, Bolivia. Realizamos envíos seguros a todo el país y delivery local.</p>
+                <p>Moda femenina exclusiva desde Santa Cruz para toda Bolivia. Calidad, diseño y distinción en cada prenda.</p>
                 <p><i class="fa-solid fa-location-dot"></i> Santa Cruz de la Sierra, Bolivia</p>
             </div>
             <div class="footer-col">
                 <h4>Enlaces Rápidos</h4>
                 <ul>
                     <li><a onclick="switchView('home')">Inicio</a></li>
-                    <li><a onclick="switchView('catalog')">Catálogo Completo</a></li>
-                    <li><a onclick="switchView('home')">Preguntas Frecuentes</a></li>
+                    <li><a onclick="switchView('catalog')">Catálogo</a></li>
                     <li><a onclick="switchView('home')">Contacto</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Atención al Cliente</h4>
-                <ul>
-                    <li><a href="https://wa.me/59170000000" target="_blank">WhatsApp Directo</a></li>
-                    <li><a onclick="switchView('home')">Seguimiento de Envíos</a></li>
-                    <li><a onclick="switchView('home')">Políticas de Cambio</a></li>
-                </ul>
+                <p>Lunes a Sábado: 09:00 - 20:00</p>
+                <p>Envíos diarios a través de flotas nacionales y delivery express local.</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1137,191 +1173,119 @@
         </div>
     </footer>
 
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        // Data base de productos completa
-        const products = [
-            { id: 1, name: "Conjunto Bruna", price: 320, category: "conjuntos", color: "Azul", size: "M", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80", tags: ["AZUL", "M"] },
-            { id: 2, name: "Conjunto Chenoa", price: 320, category: "conjuntos", color: "Beige", size: "S", img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80", tags: ["BEIGE", "S"] },
-            { id: 3, name: "Conjunto Cameron", price: 300, category: "conjuntos", color: "Guindo", size: "M", img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80", tags: ["GUINDO", "BEIGE"] },
-            { id: 4, name: "Vestido Elegance", price: 380, category: "vestidos", color: "Negro", size: "S/M", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80", tags: ["NEGRO", "VESTIDO"] },
-            { id: 5, name: "Blusa Satinada Silk", price: 180, category: "blusas", color: "Rosa", size: "S", img: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80", tags: ["ROSA", "BLUSA"] },
-            { id: 6, name: "Lencería Fine Rose", price: 150, category: "lenceria", color: "Rojo", size: "Única", img: "https://images.unsplash.com/photo-1516762689617-e16ffcef449d?auto=format&fit=crop&w=600&q=80", tags: ["ROJO", "LENCERIA"] }
-        ];
-
         let cart = [];
-        let currentProduct = null;
+        let currentProduct = { name: '', price: 0, color: '', size: '', img: '' };
 
-        // Cambiar Vistas
-        function switchView(viewName) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            document.getElementById('view-' + viewName).classList.add('active');
-            
-            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
-            if(viewName === 'home') document.getElementById('link-home').classList.add('active');
-            if(viewName === 'catalog') {
-                document.getElementById('link-catalog').classList.add('active');
-                renderCatalog(products);
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('view-' + viewId).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if(viewId === 'home') document.getElementById('link-home').classList.add('active');
+            if(viewId === 'catalog') document.getElementById('link-catalog').classList.add('active');
+
+            window.scrollTo(0, 0);
         }
 
-        // Renderizar Catálogo
-        function renderCatalog(items) {
-            const grid = document.getElementById('catalogGrid');
-            const count = document.getElementById('productsCount');
-            count.innerText = `Mostrando ${items.length} productos`;
-            
-            if(items.length === 0) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--gray); padding: 40px;">No se encontraron productos con esos filtros.</p>';
-                return;
-            }
-
-            grid.innerHTML = items.map(p => `
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="${p.img}" alt="${p.name}" class="product-img">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">${p.name}</h3>
-                        <div class="product-price">${p.price} Bs</div>
-                        <div class="product-tags">
-                            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-                        </div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('${p.name}', ${p.price}, '${p.color}', '${p.size}', '${p.img}')">
-                            Ver Detalles <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Filtrar Productos
-        function filterProducts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('filterCategory').value;
-            const sort = document.getElementById('filterSort').value;
-
-            let filtered = products.filter(p => {
-                const matchQuery = p.name.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query));
-                const matchCategory = category === 'all' || p.category === category;
-                return matchQuery && matchCategory;
-            });
-
-            if(sort === 'asc') {
-                filtered.sort((a, b) => a.price - b.price);
-            } else if(sort === 'desc') {
-                filtered.sort((a, b) => b.price - a.price);
-            }
-
-            renderCatalog(filtered);
-        }
-
-        // Mostrar Detalle de Producto
         function showProductDetail(name, price, color, size, img) {
-            currentProduct = { name, price, color, size, img, qty: 1 };
-            document.getElementById('detailTitle').innerText = name;
-            document.getElementById('detailBreadcrumbTitle').innerText = name;
-            document.getElementById('detailPrice').innerText = price + ' Bs';
-            document.getElementById('detailColor').innerText = color;
-            document.getElementById('detailSize').innerText = size;
-            document.getElementById('detailImg').src = img;
+            currentProduct = { name, price, color, size, img };
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('breadcrumb-title').innerText = name;
+            document.getElementById('detail-price').innerText = price + ' Bs';
+            document.getElementById('detail-color').innerText = color;
+            document.getElementById('detail-size').innerText = size;
+            document.getElementById('detail-img').src = img;
             switchView('detail');
         }
 
-        // Carrito Drawer Toggle
         function toggleCart() {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('cartOverlay');
-            drawer.classList.toggle('active');
-            overlay.classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+            document.getElementById('cart-drawer').classList.toggle('active');
         }
 
-        // Añadir desde Detalle
         function addToCartFromDetail() {
-            if(!currentProduct) return;
-            const existing = cart.find(item => item.name === currentProduct.name && item.color === currentProduct.color && item.size === currentProduct.size);
+            let existing = cart.find(item => item.name === currentProduct.name && item.color === currentProduct.color && item.size === currentProduct.size);
             if(existing) {
                 existing.qty += 1;
             } else {
-                cart.push({...currentProduct});
+                cart.push({ ...currentProduct, qty: 1 });
             }
             updateCartUI();
             toggleCart();
         }
 
-        function updateCartUI() {
-            const counter = document.getElementById('cart-counter');
-            const body = document.getElementById('cartBody');
-            const subtotalEl = document.getElementById('cartSubtotal');
-            
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            counter.innerText = totalItems;
-
-            if(cart.length === 0) {
-                body.innerHTML = '<p style="text-align: center; color: var(--gray); margin-top: 40px; font-size: 0.9rem;">Tu carrito está vacío</p>';
-                subtotalEl.innerText = '0 Bs';
-                return;
-            }
-
-            let subtotal = 0;
-            body.innerHTML = cart.map((item, index) => {
-                subtotal += item.price * item.qty;
-                return `
-                    <div class="cart-item">
-                        <img src="${item.img}" class="cart-item-img" alt="${item.name}">
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-sub">Color: ${item.color} | Talla: ${item.size}</div>
-                            <div class="cart-item-price">${item.price} Bs</div>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                <span class="qty-num">${item.qty}</span>
-                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item-btn" onclick="removeItem(${index})"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                `;
-            }).join('');
-
-            subtotalEl.innerText = subtotal + ' Bs';
-        }
-
-        function changeQty(index, delta) {
-            cart[index].qty += delta;
+        function updateQuantity(index, change) {
+            cart[index].qty += change;
             if(cart[index].qty <= 0) {
                 cart.splice(index, 1);
             }
             updateCartUI();
         }
 
-        function removeItem(index) {
+        function removeFromCart(index) {
             cart.splice(index, 1);
             updateCartUI();
         }
 
-        function buyViaWhatsApp() {
-            if(!currentProduct) return;
-            const phone = "59170000000";
-            const text = `Hola, deseo comprar el siguiente producto:%0A*${currentProduct.name}*%0APrecio: ${currentProduct.price} Bs%0AColor: ${currentProduct.color}%0ATalla: ${currentProduct.size}`;
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-        }
+        function updateCartUI() {
+            let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-        function checkoutWhatsApp(e) {
-            e.preventDefault();
+            document.getElementById('cart-counter').innerText = totalCount;
+            document.getElementById('drawer-item-count').innerText = totalCount;
+            document.getElementById('cart-subtotal-price').innerText = totalPrice + ' Bs';
+
+            let container = document.getElementById('cart-items-container');
             if(cart.length === 0) {
-                alert("Tu carrito está vacío");
+                container.innerHTML = '<p style="color: var(--gray); text-align: center; margin-top: 40px; font-size: 0.85rem;">Tu carrito está vacío</p>';
                 return;
             }
-            const phone = "59170000000";
-            let subtotal = 0;
-            let itemsText = cart.map(i => {
-                subtotal += i.price * i.qty;
-                return `- ${i.name} (${i.color}, Talla: ${i.size}) x${i.qty} - ${i.price * i.qty} Bs`;
-            }).join('%0A');
 
-            const text = `Hola, deseo realizar el siguiente pedido:%0A${itemsText}%0A%0A*Total: ${subtotal} Bs*%0A%0ACordinar entrega y pago por favor.`;
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+            let html = '';
+            cart.forEach((item, index) => {
+                html += `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-sub">Color: ${item.color} | Talla: ${item.size}</div>
+                            <div class="cart-item-price">${item.price} Bs</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                                <span class="qty-num">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function checkoutWhatsApp() {
+            if(cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            let text = "Hola, deseo realizar el siguiente pedido de Ruth Eunice Collection:%0A%0A";
+            let subtotal = 0;
+            cart.forEach(item => {
+                text += `- ${item.qty}x ${item.name} (${item.color}, Talla ${item.size}) - ${item.price * item.qty} Bs%0A`;
+                subtotal += item.price * item.qty;
+            });
+            text += `%0A*Subtotal Total: ${subtotal} Bs*%0A¿Me confirman disponibilidad y detalles de pago?`;
+            
+            let url = `https://wa.me/59170000000?text=${text}`;
+            window.open(url, '_blank');
+        }
+
+        function buyViaWhatsAppDirect() {
+            let text = `Hola, estoy interesada en comprar el siguiente producto:%0A%0A*${currentProduct.name}*%0APrecio: ${currentProduct.price} Bs%0AColor: ${currentProduct.color}%0ATalla: ${currentProduct.size}%0A%0A¿Me confirman stock?`;
+            let url = `https://wa.me/59170000000?text=${text}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
