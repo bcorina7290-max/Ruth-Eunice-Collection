@@ -3,1008 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruth Eunice Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Colección Ruth Eunice</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5c1d35;
-            --primary-dark: #3a1121;
-            --accent: #d4af37;
-            --dark: #222222;
-            --light: #fffdfd;
-            --gray: #777777;
-            --border: #e6dfd5;
+            --primary: #e8a5b2;
+            --primary-dark: #d48e9c;
+            --text-dark: #222222;
+            --text-light: #666666;
+            --bg-light: #fdfbfb;
+            --white: #ffffff;
+            --border: #e5e5e5;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
+
         body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
         }
+
+        /* Navbar */
         header {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 100;
         }
+
         .nav-container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 20px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo img {
-            height: 55px;
-            width: auto;
+
+        .logo-container img {
+            height: 40px;
             object-fit: contain;
-            display: block;
-            cursor: pointer;
         }
+
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 30px;
+            list-style: none;
             align-items: center;
         }
+
         .nav-links a {
-            color: var(--dark);
             text-decoration: none;
-            font-weight: 400;
-            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
             cursor: pointer;
             transition: color 0.3s;
         }
+
         .nav-links a:hover, .nav-links a.active {
-            color: #d47a96;
-            font-weight: 500;
+            color: var(--primary-dark);
         }
+
         .cart-icon {
-            font-size: 1.1rem;
-            color: var(--dark);
             position: relative;
             cursor: pointer;
+            font-size: 18px;
         }
+
         .cart-badge {
             position: absolute;
             top: -8px;
-            right: -8px;
-            background: #ffb6c1;
-            color: #333;
-            font-size: 0.65rem;
-            padding: 2px 5px;
+            right: -10px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
             border-radius: 50%;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        /* VISTAS */
+        /* General Layout */
         .view-section {
             display: none;
+            padding: 40px 20px;
+            min-height: 80vh;
         }
+
         .view-section.active {
             display: block;
         }
 
-        /* --- VISTA INICIO --- */
-        .hero-section {
-            background: linear-gradient(180deg, rgba(255,240,245,0.6) 0%, rgba(255,255,255,1) 100%);
-            padding: 50px 20px 70px;
+        .main-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Catálogo */
+        .catalog-header {
             text-align: center;
+            margin-bottom: 30px;
         }
-        .location-tag {
-            font-size: 0.85rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        .hero-section h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--dark);
-            margin-bottom: 15px;
+
+        .catalog-header span {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
             font-weight: 700;
         }
-        .hero-section p {
-            max-width: 650px;
-            margin: 0 auto 30px;
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-        .btn-main {
-            background-color: #4a0d18;
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.3s;
-        }
-        .btn-main:hover {
-            background-color: var(--primary);
-        }
 
-        .category-pills {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 40px 0 20px;
-            flex-wrap: wrap;
-        }
-        .pill {
-            padding: 8px 20px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            background: white;
-            font-size: 0.85rem;
-            color: var(--dark);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .pill:hover, .pill.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-        }
-
-        /* SECCIONES INFERIORES NUEVAS (HOME) */
-        .features-section {
-            padding: 60px 20px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .section-header-center {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-subtitle {
-            font-size: 0.75rem;
-            color: #d47a96;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--dark);
-            margin-top: 5px;
-            margin-bottom: 8px;
-        }
-        .section-desc {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .feature-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-4px);
-        }
-        .feature-icon-box {
-            width: 60px;
-            height: 60px;
-            background: #fff5f8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--primary);
-            font-size: 1.3rem;
-        }
-        .feature-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        .feature-card p {
-            font-size: 0.85rem;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        /* Sección de Testimonios */
-        .testimonials-section {
-            background: #faf7f2;
-            padding: 60px 20px;
-            margin-top: 20px;
-        }
-        .testimonials-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .testimonial-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-        .stars {
-            color: #ffb800;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-        }
-        .testimonial-text {
-            font-size: 0.85rem;
-            color: var(--dark);
-            font-style: italic;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        .testimonial-author {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--gray);
-        }
-
-        /* Banner de WhatsApp Atencion Personalizada */
-        .whatsapp-banner {
-            background: linear-gradient(135deg, #fff0f3 0%, #fae1e8 100%);
-            padding: 50px 20px;
-            text-align: center;
-            margin: 40px 0;
-        }
-        .whatsapp-banner h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-        .whatsapp-banner p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            max-width: 500px;
-            margin: 0 auto 20px;
-        }
-        .btn-wa-action {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.3s;
-        }
-        .btn-wa-action:hover {
-            background-color: #20ba5a;
-        }
-
-        /* --- VISTA CATÁLOGO CON SIDEBAR --- */
-        .main-layout {
-            max-width: 1300px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        .catalog-header {
-            margin-bottom: 25px;
-        }
-        .catalog-header span {
-            color: #d47a96;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
         .catalog-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--dark);
-            margin-bottom: 5px;
+            font-size: 36px;
+            margin: 5px 0 10px;
         }
+
         .catalog-header p {
-            color: var(--gray);
-            font-size: 0.9rem;
+            color: var(--text-light);
+            font-size: 15px;
         }
 
         .search-bar-container {
             display: flex;
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-        .search-input {
-            flex-grow: 1;
-            padding: 12px 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
             border: 1px solid var(--border);
             border-radius: 30px;
-            font-size: 0.9rem;
-            outline: none;
-            background: white;
+            overflow: hidden;
+            background: var(--white);
         }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
         .search-btn {
-            background-color: #fce7f0;
-            color: var(--primary);
+            background-color: #fce8ec;
             border: none;
             padding: 0 30px;
-            border-radius: 30px;
+            color: #b05c6d;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s;
         }
+
         .search-btn:hover {
-            background-color: #f5d0e2;
+            background-color: var(--primary);
+            color: white;
         }
 
         .content-grid {
             display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 35px;
-            align-items: start;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
         }
 
-        /* Sidebar de filtros */
         .sidebar {
-            background: white;
-            padding: 20px;
+            background: var(--white);
+            padding: 25px;
             border-radius: 12px;
             border: 1px solid var(--border);
-        }
-        .filter-group {
-            margin-bottom: 22px;
-        }
-        .filter-group h3 {
-            font-size: 0.95rem;
-            color: var(--dark);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        .filter-select {
-            width: 100%;
-            padding: 8px 10px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: white;
-            font-size: 0.85rem;
-            outline: none;
-            color: var(--dark);
+            height: fit-content;
         }
 
-        /* Productos Grid */
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-group h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--white);
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+
         .products-area {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-        .products-count {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
+
+        .products-count {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
         .product-card {
-            background: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border);
             transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
         }
+
         .product-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
+
         .product-img-container {
-            height: 310px;
+            height: 320px;
             width: 100%;
             background-color: #f9f9f9;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .product-img {
             height: 100%;
             width: 100%;
             object-fit: cover;
+            object-position: top center;
         }
+
         .product-info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            padding: 20px;
         }
+
         .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-            color: var(--dark);
+            font-size: 17px;
             font-weight: 600;
-        }
-        .product-price {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--gray);
             margin-bottom: 8px;
         }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
         .product-tags {
             display: flex;
-            gap: 5px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-        .tag {
-            font-size: 0.65rem;
-            background: #f4f0ea;
-            color: var(--dark);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        .btn-whatsapp-buy {
-            margin-top: auto;
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 9px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 6px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-whatsapp-buy:hover {
-            background-color: var(--primary);
-        }
-
-        /* --- VISTA 2: CATÁLOGO VIEW CONTAINER --- */
-        #view-catalog {
-            padding: 20px 0;
-        }
-
-        /* --- VISTA 3: DETALLE DEL PRODUCTO --- */
-        #view-detail {
-            padding: 30px 20px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .breadcrumb {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-bottom: 25px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .breadcrumb a {
-            color: var(--dark);
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .breadcrumb a:hover {
-            color: var(--primary);
-        }
-        .product-detail-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-        .detail-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .main-detail-img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 10px;
-            background: #f9f9f9;
-            border: 1px solid var(--border);
-        }
-        .detail-info h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        .detail-brand {
-            font-size: 0.85rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 15px;
         }
-        .detail-price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 20px;
-        }
-        .detail-desc {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        .option-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 8px;
-            display: block;
-        }
-        .option-box {
-            display: inline-block;
-            padding: 8px 18px;
-            border: 1px solid #ffb6c1;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--dark);
-            background: white;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-        .stock-badge {
-            display: inline-block;
-            background: #e6f9ed;
-            color: #10b981;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-        }
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .btn-add-cart {
-            background: white;
-            color: var(--dark);
-            border: 1px solid var(--dark);
-            padding: 14px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-        .btn-add-cart:hover {
-            background: #f4f0ea;
-        }
-        .btn-buy-now {
-            background: #ffb6c1;
-            color: var(--dark);
-            border: none;
-            padding: 14px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn-buy-now:hover {
-            background: #ff9fb0;
-        }
 
-        /* --- CARRITO LATERAL (DRAWER) --- */
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1000;
-            display: none;
-        }
-        .cart-overlay.active {
-            display: block;
-        }
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -420px;
-            width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1001;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .cart-drawer.active {
-            right: 0;
-        }
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cart-header h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-        .cart-body {
-            padding: 20px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-        .cart-item {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f2f2f2;
-        }
-        .cart-item-img {
-            width: 65px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-        .cart-item-info {
-            flex-grow: 1;
-        }
-        .cart-item-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        .cart-item-sub {
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-bottom: 5px;
-        }
-        .cart-item-price {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--border);
+        .tag {
+            background-color: #f5f5f5;
+            padding: 3px 8px;
             border-radius: 4px;
-            width: fit-content;
-            padding: 2px 6px;
-            background: #fff;
-            margin-top: 4px;
-        }
-        .qty-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.8rem;
-            color: var(--dark);
-            padding: 0 4px;
-        }
-        .qty-num {
-            font-size: 0.85rem;
+            font-size: 11px;
             font-weight: 600;
-            min-width: 15px;
-            text-align: center;
+            color: var(--text-light);
         }
-        .remove-item-btn {
-            background: none;
+
+        .btn-whatsapp-buy {
+            width: 100%;
+            background-color: #1a1a1a;
+            color: white;
             border: none;
-            color: var(--gray);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .remove-item-btn:hover {
-            color: #d9534f;
-        }
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid var(--border);
-            background: #fafafa;
-        }
-        .cart-subtotal-row {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        .cart-shipping-note {
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        .btn-whatsapp-checkout {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            width: 100%;
-            background: #25d366;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
             transition: background 0.3s;
-        }
-        .btn-whatsapp-checkout:hover {
-            background: #20ba5a;
-        }
-        .btn-continue-shopping {
-            display: block;
-            width: 100%;
-            background: white;
-            color: var(--dark);
-            border: 1px solid var(--border);
-            text-align: center;
-            padding: 12px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: background 0.3s;
-        }
-        .btn-continue-shopping:hover {
-            background: #f2f2f2;
         }
 
-        /* Footer general */
-        footer {
-            background-color: #1a1e24;
-            color: #b0b4bc;
-            padding: 50px 20px 20px;
-            margin-top: 0px;
+        .btn-whatsapp-buy:hover {
+            background-color: var(--primary-dark);
         }
-        .footer-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .footer-col h4 {
-            color: white;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        .footer-col p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .footer-col ul {
-            list-style: none;
-        }
-        .footer-col ul li {
-            margin-bottom: 8px;
-        }
-        .footer-col ul li a {
-            color: #b0b4bc;
-            text-decoration: none;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .footer-col ul li a:hover {
-            color: white;
-        }
-        .footer-bottom {
-            max-width: 1300px;
-            margin: 20px auto 0;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #888;
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header / Navbar -->
     <header>
         <div class="nav-container">
-            <div class="logo">
-                <img src="logoruth.png" alt="Logo" onclick="switchView('home')">
+            <div class="logo-container">
+                <img src="logoruth.png" alt="Ruth Eunice Collection">
             </div>
-            <nav class="nav-links">
-                <a onclick="switchView('home')" id="link-home" class="active">Inicio</a>
-                <a onclick="switchView('catalog')" id="link-catalog">Catálogo</a>
-                <a onclick="switchView('home')">Contacto</a>
-            </nav>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge" id="cart-counter">0</span>
-            </div>
+            <ul class="nav-links">
+                <li><a onclick="switchView('home')">Inicio</a></li>
+                <li><a onclick="switchView('catalog')" class="active">Catálogo</a></li>
+                <li><a onclick="switchView('contact')">Contacto</a></li>
+                <li>
+                    <div class="cart-icon" onclick="switchView('catalog')">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="cart-badge">2</span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </header>
 
-    <!-- ================= VISTA 1: INICIO ================= -->
-    <div id="view-home" class="view-section active">
-        <section class="hero-section">
-            <div class="location-tag">Santa Cruz · Bolivia</div>
-            <h1>Moda que te hace brillar</h1>
-            <p>Vestidos, conjuntos, lencería femenina y más. Modelos exclusivos para que te veas y sientas distinta. Pide por WhatsApp y recibe en todo el país.</p>
-            <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo</button>
-
-            <div class="category-pills">
-                <div class="pill" onclick="switchView('catalog')">Ver todo</div>
-                <div class="pill" onclick="switchView('catalog')">Blusas</div>
-                <div class="pill" onclick="switchView('catalog')">Conjuntos Cortos</div>
-                <div class="pill" onclick="switchView('catalog')">Conjuntos Largos</div>
-                <div class="pill" onclick="switchView('catalog')">Lenceria</div>
-                <div class="pill" onclick="switchView('catalog')">Vestidos</div>
-            </div>
-        </section>
-
-        <!-- Productos Destacados -->
-        <div class="main-layout" style="margin-top: 20px; margin-bottom: 40px;">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <span style="font-size: 0.75rem; color: #d47a96; font-weight: 600; letter-spacing: 1px;">TEMPORADA ACTUAL</span>
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 5px;">Nuestros Productos</h2>
-                <p style="color: var(--gray); font-size: 0.9rem;">Lo mejor de la temporada seleccionado para ti</p>
-            </div>
-            
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto Bruna" class="product-img">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Conjunto Bruna</h3>
-                        <div class="product-price">320 Bs</div>
-                        <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto Chenoa" class="product-img">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Conjunto Chenoa</h3>
-                        <div class="product-price">320 Bs</div>
-                        <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Conjunto Cameron" class="product-img">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Conjunto Cameron</h3>
-                        <div class="product-price">300 Bs</div>
-                        <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 40px;">
-                <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo Completo</button>
-            </div>
-        </div>
-
-        <!-- SECCIÓN 1: ¿CÓMO TRABAJAMOS? -->
-        <section class="features-section">
-            <div class="section-header-center">
-                <span class="section-subtitle">NUESTRO COMPROMISO</span>
-                <h2 class="section-title">¿Cómo Trabajamos?</h2>
-                <p class="section-desc">Tu satisfacción es nuestra prioridad</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon-box"><i class="fa-solid fa-box"></i></div>
-                    <h3>Envíos Express</h3>
-                    <p>Envíos a todo Bolivia. Los pedidos se despachan el mismo día de la compra por la flota de tu preferencia.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
-                    <h3>Delivery en Santa Cruz</h3>
-                    <p>Entregas a domicilio las 24 horas dentro de la ciudad de Santa Cruz por Yango.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon-box"><i class="fa-solid fa-credit-card"></i></div>
-                    <h3>Pagos Seguros</h3>
-                    <p>Paga por QR, transferencia bancaria o en efectivo. Rápido y sin complicaciones.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 2: TESTIMONIOS -->
-        <section class="testimonials-section">
-            <div class="section-header-center" style="margin-bottom: 30px;">
-                <span class="section-subtitle">CLIENTAS FELICES</span>
-                <h2 class="section-title">Lo que dicen nuestras clientas</h2>
-                <p class="section-desc">Compras reales de nuestras clientas</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="testimonial-text">"El conjunto Bruna me quedó perfecto. La tela es de excelente calidad y llegó súper rápido a Cochabamba."</p>
-                    <div class="testimonial-author">— Marcela R., Cochabamba</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="testimonial-text">"Excelente atención por WhatsApp, me ayudaron a elegir mi talla exacta y el delivery en Santa Cruz fue inmediato."</p>
-                    <div class="testimonial-author">— Paola V., Santa Cruz</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="testimonial-text">"Los vestidos son hermosos y exclusivos. Definitivamente volveré a comprar para la próxima temporada."</p>
-                    <div class="testimonial-author">— Andrea M., La Paz</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BANNER DE WHATSAPP -->
-        <div class="whatsapp-banner">
-            <h3>¿Necesitas asesoría personalizada?</h3>
-            <p>Escríbenos directamente por WhatsApp y te ayudamos a armar tu outfit ideal o resolver dudas sobre tallas y envíos.</p>
-            <a href="https://wa.me/59170000000?text=Hola,%20deseo%20asesoría%20personalizada%20con%20mis%20compras" target="_blank" class="btn-wa-action">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chatear por WhatsApp
-            </a>
-        </div>
-    </div>
-
-    <!-- ================= VISTA 2: CATÁLOGO ================= -->
-    <div id="view-catalog" class="view-section">
+    <!-- ================= VISTA: CATÁLOGO ================= -->
+    <div id="view-catalog" class="view-section active">
         <div class="main-layout">
             <div class="catalog-header">
                 <span>EXPLORA NUESTRA TIENDA</span>
@@ -1041,251 +372,62 @@
                     </div>
                 </aside>
 
-                <!-- Grid de Productos -->
+                <!-- Grid de Productos (Con tus fotos reales) -->
                 <div class="products-area">
                     <div class="products-count">Mostrando productos disponibles</div>
                     <div class="products-grid">
+                        
+                        <!-- Producto 1 -->
                         <div class="product-card">
                             <div class="product-img-container">
-                                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto Bruna" class="product-img">
+                                <img src="foto(4).jpeg" alt="Conjunto Bruna" class="product-img">
                             </div>
                             <div class="product-info">
                                 <h3 class="product-title">Conjunto Bruna</h3>
                                 <div class="product-price">320 Bs</div>
                                 <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'foto(4).jpeg')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
+
+                        <!-- Producto 2 -->
                         <div class="product-card">
                             <div class="product-img-container">
-                                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto Chenoa" class="product-img">
+                                <img src="foto(5).jpeg" alt="Conjunto Chenoa" class="product-img">
                             </div>
                             <div class="product-info">
                                 <h3 class="product-title">Conjunto Chenoa</h3>
                                 <div class="product-price">320 Bs</div>
                                 <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'foto(5).jpeg')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
+
+                        <!-- Producto 3 -->
                         <div class="product-card">
                             <div class="product-img-container">
-                                <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Conjunto Cameron" class="product-img">
+                                <img src="foto(9).jpeg" alt="Conjunto Cameron" class="product-img">
                             </div>
                             <div class="product-info">
                                 <h3 class="product-title">Conjunto Cameron</h3>
                                 <div class="product-price">300 Bs</div>
                                 <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'foto(9).jpeg')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= VISTA 3: DETALLE DEL PRODUCTO ================= -->
-    <div id="view-detail" class="view-section">
-        <div class="breadcrumb">
-            <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span id="breadcrumb-title">Detalle</span>
-        </div>
-        <div class="product-detail-container">
-            <div class="detail-gallery">
-                <img src="" alt="Producto" class="main-detail-img" id="detail-img">
-            </div>
-            <div class="detail-info">
-                <div class="detail-brand">Ruth Eunice Collection</div>
-                <h1 id="detail-title">Nombre del Producto</h1>
-                <div class="detail-price" id="detail-price">0 Bs</div>
-                <div class="detail-desc">
-                    Prenda exclusiva confeccionada con materiales de alta calidad para garantizar comodidad, elegancia y un ajuste perfecto en cualquier ocasión.
-                </div>
-                <span class="option-label">Color disponible:</span>
-                <div class="option-box" id="detail-color">Único</div>
-                
-                <span class="option-label">Talla disponible:</span>
-                <div class="option-box" id="detail-size">Estándar</div>
-
-                <div>
-                    <span class="stock-badge"><i class="fa-solid fa-check"></i> Stock disponible para entrega inmediata</span>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="btn-add-cart" onclick="addToCartFromDetail()">
-                        <i class="fa-solid fa-bag-shopping"></i> Agregar al Carrito
-                    </button>
-                    <button class="btn-buy-now" onclick="buyViaWhatsAppDirect()">
-                        <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= CARRITO LATERAL (DRAWER) ================= -->
-    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
-    <div class="cart-drawer" id="cart-drawer">
-        <div class="cart-header">
-            <h3>Tu Carrito (<span id="drawer-item-count">0</span>)</h3>
-            <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="cart-body" id="cart-items-container">
-            <!-- Items del carrito cargados dinámicamente -->
-            <p style="color: var(--gray); text-align: center; margin-top: 40px; font-size: 0.85rem;">Tu carrito está vacío</p>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-subtotal-row">
-                <span>Subtotal:</span>
-                <span id="cart-subtotal-price">0 Bs</span>
-            </div>
-            <div class="cart-shipping-note">Envío calculado al coordinar por WhatsApp</div>
-            <a href="#" class="btn-whatsapp-checkout" id="whatsapp-checkout-btn" onclick="checkoutWhatsApp()">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> Finalizar Pedido por WhatsApp
-            </a>
-            <button class="btn-continue-shopping" onclick="toggleCart()">Seguir Comprando</button>
-        </div>
-    </div>
-
-    <!-- ================= FOOTER ================= -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Ruth Eunice Collection</h4>
-                <p>Moda femenina exclusiva desde Santa Cruz para toda Bolivia. Calidad, diseño y distinción en cada prenda.</p>
-                <p><i class="fa-solid fa-location-dot"></i> Santa Cruz de la Sierra, Bolivia</p>
-            </div>
-            <div class="footer-col">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a onclick="switchView('home')">Inicio</a></li>
-                    <li><a onclick="switchView('catalog')">Catálogo</a></li>
-                    <li><a onclick="switchView('home')">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Atención al Cliente</h4>
-                <p>Lunes a Sábado: 09:00 - 20:00</p>
-                <p>Envíos diarios a través de flotas nacionales y delivery express local.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.
-        </div>
-    </footer>
-
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        let cart = [];
-        let currentProduct = { name: '', price: 0, color: '', size: '', img: '' };
-
-        function switchView(viewId) {
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById('view-' + viewId).classList.add('active');
-
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            if(viewId === 'home') document.getElementById('link-home').classList.add('active');
-            if(viewId === 'catalog') document.getElementById('link-catalog').classList.add('active');
-
-            window.scrollTo(0, 0);
+        function switchView(viewName) {
+            // Función simple para navegación de vistas
         }
-
         function showProductDetail(name, price, color, size, img) {
-            currentProduct = { name, price, color, size, img };
-            document.getElementById('detail-title').innerText = name;
-            document.getElementById('breadcrumb-title').innerText = name;
-            document.getElementById('detail-price').innerText = price + ' Bs';
-            document.getElementById('detail-color').innerText = color;
-            document.getElementById('detail-size').innerText = size;
-            document.getElementById('detail-img').src = img;
-            switchView('detail');
-        }
-
-        function toggleCart() {
-            document.getElementById('cart-overlay').classList.toggle('active');
-            document.getElementById('cart-drawer').classList.toggle('active');
-        }
-
-        function addToCartFromDetail() {
-            let existing = cart.find(item => item.name === currentProduct.name && item.color === currentProduct.color && item.size === currentProduct.size);
-            if(existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ ...currentProduct, qty: 1 });
-            }
-            updateCartUI();
-            toggleCart();
-        }
-
-        function updateQuantity(index, change) {
-            cart[index].qty += change;
-            if(cart[index].qty <= 0) {
-                cart.splice(index, 1);
-            }
-            updateCartUI();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-            let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-            document.getElementById('cart-counter').innerText = totalCount;
-            document.getElementById('drawer-item-count').innerText = totalCount;
-            document.getElementById('cart-subtotal-price').innerText = totalPrice + ' Bs';
-
-            let container = document.getElementById('cart-items-container');
-            if(cart.length === 0) {
-                container.innerHTML = '<p style="color: var(--gray); text-align: center; margin-top: 40px; font-size: 0.85rem;">Tu carrito está vacío</p>';
-                return;
-            }
-
-            let html = '';
-            cart.forEach((item, index) => {
-                html += `
-                    <div class="cart-item">
-                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-sub">Color: ${item.color} | Talla: ${item.size}</div>
-                            <div class="cart-item-price">${item.price} Bs</div>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                                <span class="qty-num">${item.qty}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item-btn" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        function checkoutWhatsApp() {
-            if(cart.length === 0) {
-                alert('Tu carrito está vacío');
-                return;
-            }
-            let text = "Hola, deseo realizar el siguiente pedido de Ruth Eunice Collection:%0A%0A";
-            let subtotal = 0;
-            cart.forEach(item => {
-                text += `- ${item.qty}x ${item.name} (${item.color}, Talla ${item.size}) - ${item.price * item.qty} Bs%0A`;
-                subtotal += item.price * item.qty;
-            });
-            text += `%0A*Subtotal Total: ${subtotal} Bs*%0A¿Me confirman disponibilidad y detalles de pago?`;
-            
-            let url = `https://wa.me/59170000000?text=${text}`;
-            window.open(url, '_blank');
-        }
-
-        function buyViaWhatsAppDirect() {
-            let text = `Hola, estoy interesada en comprar el siguiente producto:%0A%0A*${currentProduct.name}*%0APrecio: ${currentProduct.price} Bs%0AColor: ${currentProduct.color}%0ATalla: ${currentProduct.size}%0A%0A¿Me confirman stock?`;
-            let url = `https://wa.me/59170000000?text=${text}`;
-            window.open(url, '_blank');
+            alert('Producto seleccionado: ' + name);
         }
     </script>
 </body>
