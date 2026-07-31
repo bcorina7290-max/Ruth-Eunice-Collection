@@ -935,7 +935,7 @@
                 <span style="font-size: 11px; letter-spacing: 2px; color: var(--primary-dark); font-weight: 700; text-transform: uppercase;">Atención Personalizada</span>
                 <h3 style="margin-top: 5px;">¿Tienes dudas sobre tallas o colores?</h3>
                 <p>Escríbenos por WhatsApp y te asesoramos al instante. También puedes hacer tu pedido directamente desde el chat.</p>
-                <a href="https://wa.me/59176247163" target="_blank" class="btn-whatsapp-action"><i class="fa-brands fa-whatsapp"></i> Escribirnos por WhatsApp</a>
+                <a href="https://wa.me/" target="_blank" class="btn-whatsapp-action"><i class="fa-brands fa-whatsapp"></i> Escribirnos por WhatsApp</a>
             </div>
         </div>
 
@@ -1023,7 +1023,7 @@
         <div class="main-layout" style="text-align: center; padding: 80px 20px;">
             <h1 style="font-family: 'Playfair Display', serif; font-size: 38px; margin-bottom: 15px;">Contacto</h1>
             <p style="color: var(--text-light); font-size: 16px; margin-bottom: 30px;">¿Tienes dudas o necesitas asesoría con tu pedido? Escríbenos directamente a nuestro WhatsApp.</p>
-            <a href="https://wa.me/59176247163" target="_blank" class="btn-hero-catalog"><i class="fa-brands fa-whatsapp"></i> Chatear por WhatsApp</a>
+            <a href="https://wa.me/" target="_blank" class="btn-hero-catalog"><i class="fa-brands fa-whatsapp"></i> Chatear por WhatsApp</a>
         </div>
     </div>
 
@@ -1045,18 +1045,299 @@
             <div class="footer-col">
                 <h5>Contáctanos</h5>
                 <p style="font-size: 13px; color: #a0aec0; margin-bottom: 15px; line-height: 1.5;">Hacemos pedidos por WhatsApp. Escríbenos y te asesoramos con tu talla y estilo.</p>
-                <a href="https://wa.me/59176247163" target="_blank" class="btn-whatsapp-action" style="padding: 10px 20px; font-size: 13px;"><i class="fa-brands fa-whatsapp"></i> 76247163</a>
+                <a href="https://wa.me/" target="_blank" class="btn-whatsapp-action" style="font-size: 13px; padding: 10px 20px;"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Colección Ruth Eunice. Todos los derechos reservados.</p>
+            © 2026 Ruth Eunice Collection. Todos los derechos reservados.
         </div>
     </footer>
 
+    <!-- Panel Lateral del Carrito -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cart-items-container">
+            <!-- Items del carrito -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-subtotal-price">0 Bs</span>
+            </div>
+            <div class="cart-note">Envío no incluido — coordinamos la entrega por WhatsApp.</div>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
+            </button>
+            <button class="btn-continue-shopping" onclick="toggleCart()">Continuar comprando</button>
+        </div>
+    </div>
+
     <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/59176247163" target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Lencería Personalizada",
+                price: 130,
+                category: "Lencería Personalizada",
+                brand: "RUTH EUNICE",
+                desc: "Diseño exclusivo hecho a la medida con detalles únicos para sorprender en cualquier ocasión especial.",
+                images: ["foto(4).jpeg", "foto(5).jpeg", "foto(9).jpeg"],
+                color: "PERSONALIZADO",
+                sizes: ["S", "M", "L"]
+            },
+            {
+                id: 2,
+                name: "Lencería Comestible",
+                price: 80,
+                category: "Lencería Comestible",
+                brand: "RUTH EUNICE",
+                desc: "Innovador y divertido conjunto con elementos de sabores exquisitos. Ideal para momentos inolvidables.",
+                images: ["foto(5).jpeg", "foto(4).jpeg", "foto(9).jpeg"],
+                color: "COMESTIBLE",
+                sizes: ["Única", "S", "M"]
+            },
+            {
+                id: 3,
+                name: "Lencería para Varones",
+                price: 150,
+                category: "Lencería para Varones",
+                brand: "RUTH EUNICE",
+                desc: "Colección exclusiva y atrevida diseñada especialmente para hombres que buscan originalidad y comodidad.",
+                images: ["foto(9).jpeg", "foto(4).jpeg", "foto(5).jpeg"],
+                color: "VARONES",
+                sizes: ["S", "M", "L", "XL"]
+            }
+        ];
+
+        let cart = [];
+        let currentProduct = null;
+        let selectedSize = '';
+        let activeFilter = 'Todas';
+
+        function renderProducts(filter = 'Todas') {
+            activeFilter = filter;
+            const filtered = filter === 'Todas' ? products : products.filter(p => p.category === filter);
+            
+            const htmlContent = filtered.map(p => `
+                <div class="product-card" onclick="openDetail(${p.id})">
+                    <div class="product-img-container">
+                        <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <div class="product-price">${p.price} Bs</div>
+                        <div class="product-tags"><span class="tag">${p.color}</span></div>
+                        <button class="btn-whatsapp-buy" onclick="event.stopPropagation(); openDetail(${p.id})">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('product-grid').innerHTML = htmlContent;
+            if(document.getElementById('product-grid-catalog')) {
+                document.getElementById('product-grid-catalog').innerHTML = htmlContent;
+            }
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.filter-pill').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'Todas' && btn.innerText === 'Ver todo')) {
+                    btn.classList.add('active');
+                }
+            });
+            renderProducts(category);
+        }
+
+        function scrollToCatalog() {
+            document.getElementById('catalog-section-target').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function switchView(viewName) {
+            ['home', 'catalog', 'detail', 'contact'].forEach(v => {
+                document.getElementById('view-' + v).classList.remove('active');
+            });
+            ['home', 'catalog', 'contact'].forEach(l => {
+                const el = document.getElementById('link-' + l);
+                if(el) el.classList.remove('active');
+            });
+
+            document.getElementById('view-' + viewName).classList.add('active');
+            if(document.getElementById('link-' + viewName)) {
+                document.getElementById('link-' + viewName).classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function openDetail(id) {
+            currentProduct = products.find(p => p.id === id);
+            selectedSize = currentProduct.sizes[0];
+
+            const container = document.getElementById('detail-content');
+            container.innerHTML = `
+                <div class="breadcrumb">
+                    <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span>${currentProduct.name}</span>
+                </div>
+                <div class="detail-container">
+                    <div class="detail-gallery">
+                        <img src="${currentProduct.images[0]}" class="main-preview-img" id="main-preview">
+                        <div class="thumbnail-row">
+                            ${currentProduct.images.map((img, idx) => `
+                                <img src="${img}" class="thumb-img ${idx === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="detail-info">
+                        <h1>${currentProduct.name}</h1>
+                        <div class="detail-brand">${currentProduct.brand}</div>
+                        <div class="detail-price-tag">${currentProduct.price} Bs</div>
+                        <div class="detail-desc">${currentProduct.desc}</div>
+                        
+                        <span class="option-label">Color</span>
+                        <div class="color-selector">
+                            <div class="color-badge">${currentProduct.color}</div>
+                        </div>
+
+                        <span class="option-label">Talla</span>
+                        <div class="size-selector">
+                            ${currentProduct.sizes.map((s, idx) => `
+                                <button class="size-btn ${idx === 0 ? 'selected' : ''}" onclick="selectSize('${s}', this)">${s}</button>
+                            `).join('')}
+                        </div>
+
+                        <button class="btn-add-cart" id="btn-add-cart-action" onclick="addToCart()">Añadir al Carrito</button>
+                        <button class="btn-buy-now" onclick="buyNowDirect()">Comprar Ahora</button>
+                    </div>
+                </div>
+            `;
+            switchView('detail');
+        }
+
+        function changeMainImage(src, thumbElement) {
+            document.getElementById('main-preview').src = src;
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
+            thumbElement.classList.add('active-thumb');
+        }
+
+        function selectSize(size, btnElement) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btnElement.classList.add('selected');
+        }
+
+        function addToCart() {
+            const existing = cart.find(item => item.id === currentProduct.id && item.size === selectedSize);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    image: currentProduct.images[0],
+                    color: currentProduct.color,
+                    size: selectedSize,
+                    qty: 1
+                });
+            }
+            updateCartUI();
+
+            const btn = document.getElementById('btn-add-cart-action');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "¡Añadido al Carrito!";
+            btn.style.background = "#e8a5b2";
+            btn.style.color = "white";
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = "white";
+                btn.style.color = "var(--text-dark)";
+            }, 1200);
+        }
+
+        function buyNowDirect() {
+            addToCart();
+            toggleCart();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            const isOpen = drawer.classList.contains('open');
+            if (isOpen) {
+                drawer.classList.remove('open');
+                overlay.style.display = 'none';
+            } else {
+                drawer.classList.add('open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        function updateCartUI() {
+            const countBadge = document.getElementById('cart-count');
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            countBadge.innerText = totalQty;
+
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-light); text-align: center; margin-top: 40px;">Tu carrito está vacío.</p>';
+            } else {
+                container.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-meta">${item.color} | Talla: ${item.size}</div>
+                            <div class="cart-item-price">${item.price} Bs</div>
+                            <div class="cart-item-qty">
+                                <button onclick="changeQty(${index}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeItem(${index})" style="background:none; border:none; cursor:pointer; color:#999;"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-subtotal-price').innerText = subtotal + ' Bs';
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            let message = "Hola, me interesa realizar el siguiente pedido:\n\n";
+            cart.forEach(item => {
+                message += `• *${item.name}* (${item.color}, Talla: ${item.size}) x${item.qty} - ${item.price * item.qty} Bs\n`;
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            message += `\n*Subtotal Total:* ${total} Bs\n¿Me confirman disponibilidad y envío?`;
+            
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Inicializar
+        renderProducts('Todas');
+    </script>
 </body>
 </html>
