@@ -599,6 +599,42 @@
             font-weight: 600;
             color: var(--dark);
         }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            width: fit-content;
+            padding: 2px 6px;
+            background: #fff;
+            margin-top: 4px;
+        }
+        .qty-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--dark);
+            padding: 0 4px;
+        }
+        .qty-num {
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 15px;
+            text-align: center;
+        }
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .remove-item-btn:hover {
+            color: #d9534f;
+        }
         .cart-footer {
             padding: 20px;
             border-top: 1px solid var(--border);
@@ -675,7 +711,7 @@
             </nav>
             <div class="cart-icon" onclick="toggleCart()">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-badge" id="cart-counter">1</span>
+                <span class="cart-badge" id="cart-counter">0</span>
             </div>
         </div>
     </header>
@@ -711,10 +747,10 @@
                         <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">Conjunto Chenoa</h3>
+                        <h3 class="product-title">Conjunto Bruna</h3>
                         <div class="product-price">320 Bs</div>
-                        <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', '320 Bs', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                        <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
@@ -722,10 +758,10 @@
                         <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">Conjunto Chantal</h3>
-                        <div class="product-price">280 Bs</div>
-                        <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span></div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chantal', '280 Bs', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                        <h3 class="product-title">Conjunto Chenoa</h3>
+                        <div class="product-price">320 Bs</div>
+                        <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div class="product-card">
@@ -736,7 +772,7 @@
                         <h3 class="product-title">Conjunto Cameron</h3>
                         <div class="product-price">300 Bs</div>
                         <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', '300 Bs', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -814,10 +850,10 @@
                                 <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
                             </div>
                             <div class="product-info">
-                                <h3 class="product-title">Conjunto Chenoa</h3>
+                                <h3 class="product-title">Conjunto Bruna</h3>
                                 <div class="product-price">320 Bs</div>
-                                <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span><span class="tag">M</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', '320 Bs', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                         <div class="product-card">
@@ -825,10 +861,10 @@
                                 <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
                             </div>
                             <div class="product-info">
-                                <h3 class="product-title">Conjunto Chantal</h3>
-                                <div class="product-price">280 Bs</div>
-                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">NEGRO</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chantal', '280 Bs', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <h3 class="product-title">Conjunto Chenoa</h3>
+                                <div class="product-price">320 Bs</div>
+                                <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                         <div class="product-card">
@@ -839,7 +875,7 @@
                                 <h3 class="product-title">Conjunto Cameron</h3>
                                 <div class="product-price">300 Bs</div>
                                 <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', '300 Bs', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -876,19 +912,19 @@
                     <div class="detail-desc">Sin descripción disponible. Prenda exclusiva de alta calidad para destacar en cualquier ocasión.</div>
 
                     <span class="option-label">Color</span>
-                    <div class="option-box">
+                    <div class="option-box" id="detail-color-text">
                         <i class="fa-solid fa-circle" style="color: var(--primary); font-size: 0.6rem; margin-right: 5px;"></i> AZUL
                     </div>
 
                     <span class="option-label">Talla</span>
-                    <div class="option-box" style="border-color: var(--dark); font-weight: 500;">M</div>
+                    <div class="option-box" id="detail-size-text" style="border-color: var(--dark); font-weight: 500;">M</div>
 
                     <div>
                         <span class="stock-badge">En stock</span>
                     </div>
 
                     <div class="action-buttons">
-                        <button class="btn-add-cart" onclick="addToCartFromDetail()">
+                        <button class="btn-add-cart" id="btn-add-cart-el" onclick="addToCartFromDetail()">
                             <i class="fa-solid fa-bag-shopping"></i> Añadir al Carrito
                         </button>
                         <button class="btn-buy-now" onclick="buyNowFromDetail()">
@@ -928,11 +964,16 @@
     </footer>
 
     <script>
-        // Objeto global del producto actual en vista detalle
+        // Array global del carrito de compras
+        let cart = [];
+
+        // Objeto temporal del producto seleccionado en detalle
         let currentProduct = {
-            name: '',
-            price: '',
-            img: ''
+            name: 'Conjunto Bruna',
+            price: 320,
+            color: 'AZUL',
+            size: 'M',
+            img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80'
         };
 
         function switchView(viewName) {
@@ -953,8 +994,8 @@
             window.scrollTo(0, 0);
         }
 
-        function showProductDetail(name, price, imgUrl) {
-            currentProduct = { name, price, img: imgUrl };
+        function showProductDetail(name, price, color, size, imgUrl) {
+            currentProduct = { name, price, color, size, img: imgUrl };
 
             document.getElementById('view-home').classList.remove('active');
             document.getElementById('view-catalog').classList.remove('active');
@@ -962,8 +1003,10 @@
 
             document.getElementById('detail-title-text').innerText = name;
             document.getElementById('breadcrumb-title').innerText = name;
-            document.getElementById('detail-price-text').innerText = price;
+            document.getElementById('detail-price-text').innerText = price + ' Bs';
             document.getElementById('detail-main-img').src = imgUrl;
+            document.getElementById('detail-color-text').innerHTML = `<i class="fa-solid fa-circle" style="color: var(--primary); font-size: 0.6rem; margin-right: 5px;"></i> ${color}`;
+            document.getElementById('detail-size-text').innerText = size;
 
             window.scrollTo(0, 0);
         }
@@ -974,45 +1017,119 @@
             document.getElementById('detail-main-img').src = element.src;
         }
 
-        // Lógica del Carrito Lateral
         function toggleCart() {
             document.getElementById('cart-drawer').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
         }
 
-        function updateCartUI() {
-            const cartBody = document.getElementById('cart-body-content');
-            cartBody.innerHTML = `
-                <div class="cart-item">
-                    <img src="${currentProduct.img || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80'}" alt="Item" class="cart-item-img">
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${currentProduct.name || 'Conjunto Bruna'}</div>
-                        <div class="cart-item-sub">SHEIN · AZUL · Talla: M</div>
-                        <div class="cart-item-price">${currentProduct.price || '320 Bs'}</div>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('cart-subtotal-price').innerText = currentProduct.price || '320 Bs';
-            document.getElementById('cart-counter').innerText = '1';
+        // Agregar o incrementar producto al carrito
+        function addCurrentProductToCart() {
+            const existingIndex = cart.findIndex(item => 
+                item.name === currentProduct.name && 
+                item.color === currentProduct.color && 
+                item.size === currentProduct.size
+            );
 
-            // Actualizar enlace directo al WhatsApp con la información del producto
-            const textMsg = encodeURIComponent(`Hola, quiero realizar el pedido por WhatsApp:\n- Producto: ${currentProduct.name || 'Conjunto Bruna'}\n- Precio: ${currentProduct.price || '320 Bs'}\n- Color: Azul | Talla: M`);
-            document.getElementById('whatsapp-checkout-btn').href = `https://wa.me/59176247163?text=${textMsg}`;
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    ...currentProduct,
+                    quantity: 1
+                });
+            }
+            updateCartUI();
         }
 
-        function addToCartFromDetail() {
+        // Cambiar cantidad desde los botones + / - en el carrito
+        function changeQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
             updateCartUI();
-            toggleCart(); // Abre la ventana lateral del carrito
+        }
+
+        // Eliminar producto específico del carrito
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartBody = document.getElementById('cart-body-content');
+            let totalItems = 0;
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartBody.innerHTML = `<p style="text-align: center; color: var(--gray); font-size: 0.9rem; margin-top: 40px;">Tu carrito está vacío</p>`;
+            } else {
+                cartBody.innerHTML = '';
+                cart.forEach((item, index) => {
+                    totalItems += item.quantity;
+                    subtotal += item.price * item.quantity;
+
+                    cartBody.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="Item" class="cart-item-img">
+                            <div class="cart-item-info">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-sub">SHEIN · ${item.color} · Talla: ${item.size}</div>
+                                <div class="cart-item-price">${item.price * item.quantity} Bs</div>
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                                    <span class="qty-num">${item.quantity}</span>
+                                    <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="remove-item-btn" onclick="removeItem(${index})"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById('cart-subtotal-price').innerText = subtotal + ' Bs';
+            document.getElementById('cart-counter').innerText = totalItems;
+
+            // Construir mensaje de WhatsApp con todos los productos del carrito
+            let textMsg = `Hola, quiero realizar el siguiente pedido por WhatsApp:\n`;
+            cart.forEach((item, idx) => {
+                textMsg += `\n${idx + 1}. *${item.name}*\n- Cantidad: ${item.quantity}\n- Precio Unitario: ${item.price} Bs\n- Color: ${item.color} | Talla: ${item.size}\n`;
+            });
+            textMsg += `\n*Subtotal Total: ${subtotal} Bs*`;
+
+            document.getElementById('whatsapp-checkout-btn').href = `https://wa.me/59176247163?text=${encodeURIComponent(textMsg)}`;
+        }
+
+        // Efecto temporal en el botón "Añadir al Carrito"
+        function addToCartFromDetail() {
+            addCurrentProductToCart();
+
+            const btn = document.getElementById('btn-add-cart-el');
+            const originalHTML = btn.innerHTML;
+            
+            btn.innerHTML = `<i class="fa-solid fa-check" style="color: #10b981;"></i> ¡Añadido!`;
+            btn.style.borderColor = '#10b981';
+            btn.style.color = '#10b981';
+
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.borderColor = 'var(--dark)';
+                btn.style.color = 'var(--dark)';
+                toggleCart(); // Abre el panel lateral tras un momento
+            }, 700);
         }
 
         function buyNowFromDetail() {
-            updateCartUI();
-            toggleCart(); // Abre la ventana lateral del carrito para elegir comprar por WhatsApp
+            addCurrentProductToCart();
+            toggleCart(); // Abre directamente el carrito
         }
 
-        // Inicializar carrito por defecto con el producto de ejemplo
-        updateCartUI();
+        // Inicializar carrito precargado con ejemplo inicial para que luzca exactamente como tu captura al cargar
+        currentProduct = { name: 'Conjunto Bruna', price: 320, color: 'AZUL', size: 'M', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80' };
+        addCurrentProductToCart();
+        // Cerrar carrito inicialmente para que cargue limpio
+        toggleCart();
     </script>
 </body>
 </html>
