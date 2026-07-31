@@ -106,6 +106,36 @@
             margin: 0 auto;
         }
 
+        /* Vistas: Inicio y Contacto (Estilos básicos) */
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            color: var(--text-light);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn-main {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
         /* Catálogo */
         .catalog-header {
             text-align: center;
@@ -301,6 +331,30 @@
             background-color: var(--primary-dark);
         }
 
+        /* Botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .content-grid {
@@ -321,9 +375,9 @@
                 <img src="logoruth.png" alt="Ruth Eunice Collection">
             </div>
             <ul class="nav-links">
-                <li><a onclick="switchView('home')">Inicio</a></li>
-                <li><a onclick="switchView('catalog')" class="active">Catálogo</a></li>
-                <li><a onclick="switchView('contact')">Contacto</a></li>
+                <li><a onclick="switchView('home')" id="link-home">Inicio</a></li>
+                <li><a onclick="switchView('catalog')" id="link-catalog" class="active">Catálogo</a></li>
+                <li><a onclick="switchView('contact')" id="link-contact">Contacto</a></li>
                 <li>
                     <div class="cart-icon" onclick="switchView('catalog')">
                         <i class="fa-solid fa-bag-shopping"></i>
@@ -334,7 +388,16 @@
         </div>
     </header>
 
-    <!-- ================= VISTA: CATÁLOGO ================= -->
+    <!-- ================= VISTA 1: INICIO ================= -->
+    <div id="view-home" class="view-section">
+        <div class="main-layout hero-section">
+            <h1>Bienvenidos a Ruth Eunice Collection</h1>
+            <p>Descubre la elegancia y las últimas tendencias en moda femenina pensadas para ti.</p>
+            <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo Exclusivo</button>
+        </div>
+    </div>
+
+    <!-- ================= VISTA 2: CATÁLOGO ================= -->
     <div id="view-catalog" class="view-section active">
         <div class="main-layout">
             <div class="catalog-header">
@@ -386,7 +449,7 @@
                                 <h3 class="product-title">Conjunto Bruna</h3>
                                 <div class="product-price">320 Bs</div>
                                 <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'foto(4).jpeg')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Conjunto Bruna', 320)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
 
@@ -399,7 +462,7 @@
                                 <h3 class="product-title">Conjunto Chenoa</h3>
                                 <div class="product-price">320 Bs</div>
                                 <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'foto(5).jpeg')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Conjunto Chenoa', 320)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
 
@@ -412,7 +475,7 @@
                                 <h3 class="product-title">Conjunto Cameron</h3>
                                 <div class="product-price">300 Bs</div>
                                 <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'foto(9).jpeg')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Conjunto Cameron', 300)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
 
@@ -422,12 +485,40 @@
         </div>
     </div>
 
+    <!-- ================= VISTA 3: CONTACTO ================= -->
+    <div id="view-contact" class="view-section">
+        <div class="main-layout hero-section">
+            <h1>Contacto</h1>
+            <p>¿Tienes dudas o necesitas asesoría con tu pedido? Escríbenos directamente a nuestro WhatsApp.</p>
+            <a href="https://wa.me/" target="_blank" class="btn-main"><i class="fa-brands fa-whatsapp"></i> Chatear por WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <script>
         function switchView(viewName) {
-            // Función simple para navegación de vistas
+            // Ocultar todas las vistas
+            document.getElementById('view-home').classList.remove('active');
+            document.getElementById('view-catalog').classList.remove('active');
+            document.getElementById('view-contact').classList.remove('active');
+
+            // Quitar clase active de los links
+            document.getElementById('link-home').classList.remove('active');
+            document.getElementById('link-catalog').classList.remove('active');
+            document.getElementById('link-contact').classList.remove('active');
+
+            // Mostrar la vista seleccionada
+            document.getElementById('view-' + viewName).classList.add('active');
+            document.getElementById('link-' + viewName).classList.add('active');
         }
-        function showProductDetail(name, price, color, size, img) {
-            alert('Producto seleccionado: ' + name);
+
+        function buyOnWhatsApp(productName, price) {
+            const message = `Hola, me interesa el producto *${productName}* de ${price} Bs. ¿Está disponible?`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
 </body>
