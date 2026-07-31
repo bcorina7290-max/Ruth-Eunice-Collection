@@ -106,7 +106,7 @@
             margin: 0 auto;
         }
 
-        /* Vistas: Inicio y Contacto (Estilos básicos) */
+        /* Vistas: Inicio y Contacto */
         .hero-section {
             text-align: center;
             padding: 60px 20px;
@@ -381,7 +381,7 @@
                 <li>
                     <div class="cart-icon" onclick="switchView('catalog')">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="cart-badge">2</span>
+                        <span class="cart-badge">3</span>
                     </div>
                 </li>
             </ul>
@@ -403,11 +403,11 @@
             <div class="catalog-header">
                 <span>EXPLORA NUESTRA TIENDA</span>
                 <h1>Catálogo Exclusivo</h1>
-                <p>Encuentra las últimas tendencias en moda femenina</p>
+                <p>Encuentra piezas únicas y especiales</p>
             </div>
 
             <div class="search-bar-container">
-                <input type="text" class="search-input" placeholder="Buscar prendas, conjuntos, vestidos..." id="search-box">
+                <input type="text" class="search-input" placeholder="Buscar prendas, lencería..." id="search-box">
                 <button class="search-btn">Buscar</button>
             </div>
 
@@ -418,11 +418,9 @@
                         <h3>Categorías</h3>
                         <select class="filter-select">
                             <option>Todas</option>
-                            <option>Blusas</option>
-                            <option>Conjuntos Cortos</option>
-                            <option>Conjuntos Largos</option>
-                            <option>Lencería</option>
-                            <option>Vestidos</option>
+                            <option>Lencería Personalizada</option>
+                            <option>Lencería Comestible</option>
+                            <option>Lencería para Varones</option>
                         </select>
                     </div>
                     <div class="filter-group">
@@ -435,47 +433,47 @@
                     </div>
                 </aside>
 
-                <!-- Grid de Productos (Con tus fotos reales) -->
+                <!-- Grid de Productos -->
                 <div class="products-area">
                     <div class="products-count">Mostrando productos disponibles</div>
                     <div class="products-grid">
                         
-                        <!-- Producto 1 -->
+                        <!-- Producto 1: Lencería personalizada -->
                         <div class="product-card">
                             <div class="product-img-container">
-                                <img src="foto(4).jpeg" alt="Conjunto Bruna" class="product-img">
+                                <img src="foto(4).jpeg" alt="Lencería Personalizada" class="product-img">
                             </div>
                             <div class="product-info">
-                                <h3 class="product-title">Conjunto Bruna</h3>
-                                <div class="product-price">320 Bs</div>
-                                <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
-                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Conjunto Bruna', 320)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <h3 class="product-title">Lencería Personalizada</h3>
+                                <div class="product-price">130 Bs</div>
+                                <div class="product-tags"><span class="tag">PERSONALIZADO</span></div>
+                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Lencería Personalizada', 130)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
 
-                        <!-- Producto 2 -->
+                        <!-- Producto 2: Lencería comestible -->
                         <div class="product-card">
                             <div class="product-img-container">
-                                <img src="foto(5).jpeg" alt="Conjunto Chenoa" class="product-img">
+                                <img src="foto(5).jpeg" alt="Lencería Comestible" class="product-img">
                             </div>
                             <div class="product-info">
-                                <h3 class="product-title">Conjunto Chenoa</h3>
-                                <div class="product-price">320 Bs</div>
-                                <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
-                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Conjunto Chenoa', 320)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <h3 class="product-title">Lencería Comestible</h3>
+                                <div class="product-price">80 Bs</div>
+                                <div class="product-tags"><span class="tag">COMESTIBLE</span></div>
+                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Lencería Comestible', 80)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
 
-                        <!-- Producto 3 -->
+                        <!-- Producto 3: Lencería para varones -->
                         <div class="product-card">
                             <div class="product-img-container">
-                                <img src="foto(9).jpeg" alt="Conjunto Cameron" class="product-img">
+                                <img src="foto(9).jpeg" alt="Lencería para Varones" class="product-img">
                             </div>
                             <div class="product-info">
-                                <h3 class="product-title">Conjunto Cameron</h3>
-                                <div class="product-price">300 Bs</div>
-                                <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
-                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Conjunto Cameron', 300)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                                <h3 class="product-title">Lencería para Varones</h3>
+                                <div class="product-price">150 Bs</div>
+                                <div class="product-tags"><span class="tag">VARONES</span></div>
+                                <button class="btn-whatsapp-buy" onclick="buyOnWhatsApp('Lencería para Varones', 150)">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
 
@@ -501,17 +499,14 @@
 
     <script>
         function switchView(viewName) {
-            // Ocultar todas las vistas
             document.getElementById('view-home').classList.remove('active');
             document.getElementById('view-catalog').classList.remove('active');
             document.getElementById('view-contact').classList.remove('active');
 
-            // Quitar clase active de los links
             document.getElementById('link-home').classList.remove('active');
             document.getElementById('link-catalog').classList.remove('active');
             document.getElementById('link-contact').classList.remove('active');
 
-            // Mostrar la vista seleccionada
             document.getElementById('view-' + viewName).classList.add('active');
             document.getElementById('link-' + viewName).classList.add('active');
         }
