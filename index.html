@@ -3,58 +3,1366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruth Eunice Collection - Catálogo</title>
+    <title>Ruth Eunice Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; }
-        header { background-color: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; }
-        .logo { height: 50px; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .product-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; padding: 15px; text-align: center; }
-        .product-img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; }
-        .product-title { font-size: 18px; margin: 10px 0 5px; }
-        .product-price { font-size: 16px; color: #b12704; font-weight: bold; margin-bottom: 10px; }
-        .btn-whatsapp-buy { background-color: #25d366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; width: 100%; }
-        .btn-whatsapp-buy:hover { background-color: #1ebe5d; }
+        :root {
+            --primary: #5c1d35;
+            --primary-dark: #3a1121;
+            --accent: #d4af37;
+            --dark: #222222;
+            --light: #fffdfd;
+            --gray: #777777;
+            --border: #e6dfd5;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #d47a96;
+            font-weight: 500;
+        }
+        .cart-icon {
+            font-size: 1.1rem;
+            color: var(--dark);
+            position: relative;
+            cursor: pointer;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ffb6c1;
+            color: #333;
+            font-size: 0.65rem;
+            padding: 2px 5px;
+            border-radius: 50%;
+            font-weight: 600;
+        }
+
+        /* VISTAS */
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* --- VISTA INICIO --- */
+        .hero-section {
+            background: linear-gradient(180deg, rgba(255,240,245,0.6) 0%, rgba(255,255,255,1) 100%);
+            padding: 50px 20px 70px;
+            text-align: center;
+        }
+        .location-tag {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .hero-section p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .btn-main {
+            background-color: #4a0d18;
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .btn-main:hover {
+            background-color: var(--primary);
+        }
+
+        .category-pills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0 20px;
+            flex-wrap: wrap;
+        }
+        .pill {
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: white;
+            font-size: 0.85rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .pill:hover, .pill.active {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        /* --- SECCIONES INFERIORES NUEVAS (HOME) --- */
+        .features-section {
+            padding: 60px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-subtitle {
+            font-size: 0.75rem;
+            color: #d47a96;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-top: 5px;
+            margin-bottom: 8px;
+        }
+        .section-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+        .feature-icon-box {
+            width: 60px;
+            height: 60px;
+            background: #fff5f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Sección de Testimonios */
+        .testimonials-section {
+            background: #faf7f2;
+            padding: 60px 20px;
+            margin-top: 20px;
+        }
+        .testimonials-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .stars {
+            color: #ffb800;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        .testimonial-text {
+            font-size: 0.85rem;
+            color: var(--dark);
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .testimonial-author {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        /* Banner de WhatsApp Atencion Personalizada */
+        .whatsapp-banner {
+            background: linear-gradient(135deg, #fff0f3 0%, #fae1e8 100%);
+            padding: 50px 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .whatsapp-banner h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .whatsapp-banner p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        .btn-wa-action {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        .btn-wa-action:hover {
+            background-color: #20ba5a;
+        }
+
+        /* --- VISTA CATÁLOGO CON SIDEBAR --- */
+        .main-layout {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .catalog-header {
+            margin-bottom: 25px;
+        }
+        .catalog-header span {
+            color: #d47a96;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .catalog-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .catalog-header p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .search-bar-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+        .search-input {
+            flex-grow: 1;
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            outline: none;
+            background: white;
+        }
+        .search-btn {
+            background-color: #fce7f0;
+            color: var(--primary);
+            border: none;
+            padding: 0 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .search-btn:hover {
+            background-color: #f5d0e2;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        /* Sidebar de filtros */
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .filter-group {
+            margin-bottom: 22px;
+        }
+        .filter-group h3 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .filter-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            font-size: 0.85rem;
+            outline: none;
+            color: var(--dark);
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 6px;
+            cursor: pointer;
+        }
+        .checkbox-label input {
+            accent-color: var(--primary);
+            width: 15px;
+            height: 15px;
+        }
+        .color-dots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .color-dot:hover {
+            transform: scale(1.1);
+        }
+
+        /* Productos Grid */
+        .products-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .products-count {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+        .product-img-container {
+            height: 310px;
+            width: 100%;
+            background-color: #f9f9f9;
+        }
+        .product-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .product-price {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+        .product-tags {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 0.65rem;
+            background: #f4f0ea;
+            color: var(--dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .btn-whatsapp-buy {
+            margin-top: auto;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 9px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-whatsapp-buy:hover {
+            background-color: var(--primary);
+        }
+
+        /* --- VISTA 3: DETALLE DEL PRODUCTO --- */
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .breadcrumb a {
+            color: var(--dark);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .detail-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .main-detail-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #f9f9f9;
+            border: 1px solid var(--border);
+        }
+        .thumbnail-row {
+            display: flex;
+            gap: 10px;
+        }
+        .thumb-img {
+            width: 80px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .thumb-img.active, .thumb-img:hover {
+            border-color: var(--primary);
+        }
+        .detail-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .detail-brand {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .detail-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .detail-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .option-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .option-box {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 1px solid #ffb6c1;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--dark);
+            background: white;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .stock-badge {
+            display: inline-block;
+            background: #e6f9ed;
+            color: #10b981;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn-add-cart {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--dark);
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        .btn-add-cart:hover {
+            background: #f4f0ea;
+        }
+        .btn-buy-now {
+            background: #ffb6c1;
+            color: var(--dark);
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .btn-buy-now:hover {
+            background: #ff9fb0;
+        }
+
+        /* --- CARRITO LATERAL (DRAWER) --- */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            display: none;
+        }
+        .cart-overlay.active {
+            display: block;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 1001;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-drawer.active {
+            right: 0;
+        }
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        .cart-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        .cart-item-img {
+            width: 65px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        .cart-item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .cart-item-sub {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+        .cart-item-price {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            width: fit-content;
+            padding: 2px 6px;
+            background: #fff;
+            margin-top: 4px;
+        }
+        .qty-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--dark);
+            padding: 0 4px;
+        }
+        .qty-num {
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 15px;
+            text-align: center;
+        }
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .remove-item-btn:hover {
+            color: #d9534f;
+        }
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            background: #fafafa;
+        }
+        .cart-subtotal-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .cart-shipping-note {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        .btn-whatsapp-checkout {
+            display: block;
+            width: 100%;
+            background: #25d366;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+        .btn-whatsapp-checkout:hover {
+            background: #20ba5a;
+        }
+        .btn-continue-shopping {
+            display: block;
+            width: 100%;
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--border);
+            text-align: center;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+        .btn-continue-shopping:hover {
+            background: #f2f2f2;
+        }
+
+        /* Footer general */
+        footer {
+            background-color: #1a1e24;
+            color: #b0b4bc;
+            padding: 50px 20px 20px;
+            margin-top: 0px;
+        }
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-col h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .footer-col p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        .footer-col ul li a {
+            color: #b0b4bc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 20px auto 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #888;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logoruth.png" alt="Logo" class="logo">
-        <h2>Catálogo de Prendas</h2>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logoruth.png" alt="Logo" onclick="switchView('home')">
+            </div>
+            <nav class="nav-links">
+                <a onclick="switchView('home')" id="link-home" class="active">Inicio</a>
+                <a onclick="switchView('catalog')" id="link-catalog">Catálogo</a>
+                <a onclick="switchView('home')">Contacto</a>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="cart-counter">0</span>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="product-grid">
+    <!-- ================= VISTA 1: INICIO ================= -->
+    <div id="view-home" class="view-section active">
+        <section class="hero-section">
+            <div class="location-tag">Santa Cruz · Bolivia</div>
+            <h1>Moda que te hace brillar</h1>
+            <p>Vestidos, conjuntos, lencería femenina y más. Modelos exclusivos para que te veas y sientas distinta. Pide por WhatsApp y recibe en todo el país.</p>
+            <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo</button>
+
+            <div class="category-pills">
+                <div class="pill" onclick="switchView('catalog')">Ver todo</div>
+                <div class="pill" onclick="switchView('catalog')">Blusas</div>
+                <div class="pill" onclick="switchView('catalog')">Conjuntos Cortos</div>
+                <div class="pill" onclick="switchView('catalog')">Conjuntos Largos</div>
+                <div class="pill" onclick="switchView('catalog')">Lenceria</div>
+                <div class="pill" onclick="switchView('catalog')">Vestidos</div>
+            </div>
+        </section>
+
+        <!-- Productos Destacados -->
+        <div class="main-layout" style="margin-top: 20px; margin-bottom: 40px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span style="font-size: 0.75rem; color: #d47a96; font-weight: 600; letter-spacing: 1px;">TEMPORADA ACTUAL</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 5px;">Nuestros Productos</h2>
+                <p style="color: var(--gray); font-size: 0.9rem;">Lo mejor de la temporada seleccionado para ti</p>
+            </div>
             
-            <!-- PRODUCTO 1 -->
-            <div class="product-card" data-category="conjuntos-cortos">
-                <img src="foto(2).jpeg" alt="Conjunto Bruna" class="product-img">
-                <h3 class="product-title">Conjunto Bruna</h3>
-                <div class="product-price">320 Bs</div>
-                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'foto(2).jpeg')">Comprar por WhatsApp</button>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Conjunto Bruna</h3>
+                        <div class="product-price">320 Bs</div>
+                        <div class="product-tags"><span class="tag">AZUL</span><span class="tag">M</span></div>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Bruna', 320, 'AZUL', 'M', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Conjunto Chenoa</h3>
+                        <div class="product-price">320 Bs</div>
+                        <div class="product-tags"><span class="tag">BEIGE</span><span class="tag">S</span></div>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 320, 'BEIGE', 'S', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="Conjunto" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Conjunto Cameron</h3>
+                        <div class="product-price">300 Bs</div>
+                        <div class="product-tags"><span class="tag">GUINDO</span><span class="tag">BEIGE</span></div>
+                        <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Cameron', 300, 'GUINDO', 'M', 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
             </div>
 
-            <!-- PRODUCTO 2 (LENCERÍA) -->
-            <div class="product-card" data-category="lenceria">
-                <img src="foto(3).jpeg" alt="Conjunto Chenoa" class="product-img">
-                <h3 class="product-title">Conjunto Chenoa</h3>
-                <div class="product-price">300 Bs</div>
-                <button class="btn-whatsapp-buy" onclick="showProductDetail('Conjunto Chenoa', 300, 'NEGRO', 'S', 'foto(3).jpeg')">Comprar por WhatsApp</button>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo Completo</button>
             </div>
+        </div>
 
+        <!-- SECCIÓN 1: ¿CÓMO TRABAJAMOS? -->
+        <section class="features-section">
+            <div class="section-header-center">
+                <span class="section-subtitle">NUESTRO COMPROMISO</span>
+                <h2 class="section-title">¿Cómo Trabajamos?</h2>
+                <p class="section-desc">Tu satisfacción es nuestra prioridad</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-box"></i></div>
+                    <h3>Envíos Express</h3>
+                    <p>Envíos a todo Bolivia. Los pedidos se despachan el mismo día de la compra por la flota de tu preferencia.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3>Delivery en Santa Cruz</h3>
+                    <p>Entregas a domicilio las 24 horas dentro de la ciudad de Santa Cruz por Yango.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-credit-card"></i></div>
+                    <h3>Pagos Seguros</h3>
+                    <p>Paga por QR, transferencia bancaria o en efectivo. Rápido y sin complicaciones.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: TESTIMONIOS -->
+        <section class="testimonials-section">
+            <div class="section-header-center" style="margin-bottom: 30px;">
+                <span class="section-subtitle">CLIENTAS FELICES</span>
+                <h2 class="section-title">Lo que dicen nuestras clientas</h2>
+                <p class="section-desc">Compras reales de nuestras clientas</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"El conjunto Bruna me quedó perfecto. La tela es de excelente calidad y llegó súper rápido a Cochabamba."</p>
+                    <div class="testimonial-author">— Marcela R., Cochabamba</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"Excelente atención por WhatsApp, me ayudaron a elegir mi talla exacta y el delivery en Santa Cruz fue inmediato."</p>
+                    <div class="testimonial-author">— Paola V., Santa Cruz</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="testimonial-text">"Los vestidos son hermosos y exclusivos, tal cual se ven en las fotos. ¡100% recomendados!"</p>
+                    <div class="testimonial-author">— Andrea M., La Paz</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER WHATSAPP ATENCIÓN PERSONALIZADA -->
+        <div class="whatsapp-banner">
+            <h3>¿Necesitas asesoría personalizada?</h3>
+            <p>Escríbenos directamente por WhatsApp y te ayudamos a armar tu look ideal o resolver cualquier duda.</p>
+            <a href="https://wa.me/59170000000?text=Hola,%20necesito%20asesoría%20con%20los%20modelos%20de%20Ruth%20Eunice%20Collection" target="_blank" class="btn-wa-action">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chatear con una Asesora
+            </a>
         </div>
     </div>
 
-    <script>
-        function showProductDetail(nombre, precio, color, talle, imagen) {
-            let telefono = "59170000000"; // Cambia esto por tu número de WhatsApp
-            let mensaje = `Hola, quiero comprar el producto *${nombre}* (Precio: ${precio} Bs, Color: ${color}, Talle: ${talle}).`;
-            let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
-        }
-    </script>
+    <!-- ================= VISTA 2: CATÁLOGO ================= -->
+    <div id="view-catalog" class="view-section">
+        <div class="main-layout">
+            <div class="catalog-header">
+                <span>NUESTRA COLECCIÓN</span>
+                <h1>Catálogo Exclusivo</h1>
+                <p>Explora todos nuestros modelos disponibles</p>
+            </div>
 
+            <div class="search-bar-container">
+                <input type="text" class="search-input" id="search-box" placeholder="Buscar vestidos, conjuntos, blusas..." onkeyup="filterCatalog()">
+                <button class="search-btn" onclick="filterCatalog()">Buscar</button>
+            </div>
+
+            <div class="content-grid">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="filter-group">
+                        <h3>Categoría</h3>
+                        <select class="filter-select" id="filter-category" onchange="filterCatalog()">
+                            <option value="all">Todas las categorías</option>
+                            <option value="Blusas">Blusas</option>
+                            <option value="Conjuntos Cortos">Conjuntos Cortos</option>
+                            <option value="Conjuntos Largos">Conjuntos Largos</option>
+                            <option value="Lenceria">Lencería</option>
+                            <option value="Vestidos">Vestidos</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Ordenar por</h3>
+                        <select class="filter-select" id="filter-sort" onchange="filterCatalog()">
+                            <option value="default">Recomendados</option>
+                            <option value="low-high">Precio: Menor a Mayor</option>
+                            <option value="high-low">Precio: Mayor a Menor</option>
+                        </select>
+                    </div>
+                </aside>
+
+                <!-- Área de Productos -->
+                <div class="products-area">
+                    <div class="products-count" id="products-count">Mostrando productos</div>
+                    <div class="products-grid" id="catalog-products-grid">
+                        <!-- Generado dinámicamente por JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= VISTA 3: DETALLE DE PRODUCTO ================= -->
+    <div id="view-detail" class="view-section">
+        <div class="main-layout">
+            <div class="breadcrumb">
+                <a onclick="switchView('home')">Inicio</a> <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i> 
+                <a onclick="switchView('catalog')">Catálogo</a> <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i> 
+                <span id="breadcrumb-title" style="color: var(--dark); font-weight: 500;">Detalle</span>
+            </div>
+
+            <div class="product-detail-container">
+                <div class="detail-gallery">
+                    <img id="detail-main-img" src="" alt="Producto" class="main-detail-img">
+                </div>
+                <div class="detail-info">
+                    <span class="detail-brand">Ruth Eunice Collection</span>
+                    <h1 id="detail-title">Nombre del Producto</h1>
+                    <div class="detail-price" id="detail-price">0 Bs</div>
+                    <div class="stock-badge"><i class="fa-solid fa-check"></i> Stock Disponible</div>
+                    <div class="detail-desc">
+                        Diseño exclusivo elaborado con materiales de alta calidad para brindarte comodidad y elegancia en cualquier ocasión. Corte impecable que resalta tu figura.
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <span class="option-label">Color seleccionado:</span>
+                        <div class="option-box" id="detail-color">--</div>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <span class="option-label">Talla seleccionada:</span>
+                        <div class="option-box" id="detail-size">--</div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-add-cart" onclick="addToCartFromDetail()">
+                            <i class="fa-solid fa-bag-shopping"></i> Añadir al Carrito
+                        </button>
+                        <button class="btn-buy-now" onclick="buyNowFromDetail()">
+                            <i class="fa-brands fa-whatsapp"></i> Comprar Directo por WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CARRITO LATERAL (DRAWER) ================= -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Tu Carrito (<span id="cart-drawer-count">0</span>)</h3>
+            <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cart-items-container">
+            <!-- Items del carrito -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">0 Bs</span>
+            </div>
+            <div class="cart-shipping-note">Envío calculado al coordinar por WhatsApp.</div>
+            <a href="#" id="whatsapp-checkout-btn" target="_blank" class="btn-whatsapp-checkout">
+                <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+            </a>
+            <button class="btn-continue-shopping" onclick="toggleCart()">Seguir comprando</button>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Ruth Eunice Collection</h4>
+                <p>Moda femenina exclusiva. Diseños únicos pensados para realzar tu estilo y elegancia en cada momento.</p>
+                <p><i class="fa-solid fa-location-dot" style="color: #d47a96; margin-right: 8px;"></i> Santa Cruz de la Sierra, Bolivia</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a onclick="switchView('home')">Inicio</a></li>
+                    <li><a onclick="switchView('catalog')">Catálogo Completo</a></li>
+                    <li><a onclick="switchView('home')">¿Cómo Trabajamos?</a></li>
+                    <li><a onclick="switchView('home')">Testimonios</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categorías</h4>
+                <ul>
+                    <li><a onclick="switchView('catalog')">Blusas</a></li>
+                    <li><a onclick="switchView('catalog')">Conjuntos Cortos</a></li>
+                    <li><a onclick="switchView('catalog')">Conjuntos Largos</a></li>
+                    <li><a onclick="switchView('catalog')">Lencería</a></li>
+                    <li><a onclick="switchView('catalog')">Vestidos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Atención al Cliente</h4>
+                <p>Lunes a Sábados: 9:00 - 20:00</p>
+                <p>Envíos seguros a todo Bolivia y delivery en Santa Cruz.</p>
+                <div style="display: flex; gap: 15px; margin-top: 15px; font-size: 1.2rem;">
+                    <a href="https://wa.me/59170000000" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ruth Eunice Collection. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        // Base de datos de productos ampliada para el catálogo
+        const productsDB = [
+            { id: 1, name: "Conjunto Bruna", price: 320, category: "Conjuntos Largos", color: "AZUL", size: "M", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, name: "Conjunto Chenoa", price: 320, category: "Conjuntos Cortos", color: "BEIGE", size: "S", img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, name: "Conjunto Cameron", price: 300, category: "Conjuntos Cortos", color: "GUINDO", size: "M", img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, name: "Vestido Elegance", price: 380, category: "Vestidos", color: "NEGRO", size: "S", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, name: "Blusa Satinada Silk", price: 180, category: "Blusas", color: "BLANCO", size: "M", img: "https://images.unsplash.com/photo-1551803091-e203cbd1d13a?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, name: "Lencería Rose Gold", price: 220, category: "Lenceria", color: "ROSA", size: "S", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80" },
+            { id: 7, name: "Vestido Verano Breeze", price: 340, category: "Vestidos", color: "AMARILLO", size: "M", img: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600&q=80" },
+            { id: 8, name: "Conjunto Urbano Chic", price: 290, category: "Conjuntos Cortos", color: "GRIS", size: "L", img: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        let cart = [];
+        let currentProductDetail = null;
+
+        // Cambiar Vistas
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+            if(viewName === 'home') document.getElementById('link-home').classList.add('active');
+            if(viewName === 'catalog') {
+                document.getElementById('link-catalog').classList.add('active');
+                filterCatalog();
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // Mostrar Detalle de Producto
+        function showProductDetail(name, price, color, size, img) {
+            currentProductDetail = { name, price, color, size, img, qty: 1 };
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('detail-price').innerText = price + ' Bs';
+            document.getElementById('detail-color').innerText = color;
+            document.getElementById('detail-size').innerText = size;
+            document.getElementById('detail-main-img').src = img;
+            document.getElementById('breadcrumb-title').innerText = name;
+            switchView('detail');
+        }
+
+        // Filtrar Catálogo
+        function filterCatalog() {
+            const query = document.getElementById('search-box').value.toLowerCase();
+            const category = document.getElementById('filter-category').value;
+            const sort = document.getElementById('filter-sort').value;
+
+            let filtered = productsDB.filter(p => {
+                const matchesQuery = p.name.toLowerCase().includes(query) || p.color.toLowerCase().includes(query);
+                const matchesCat = (category === 'all' || p.category === category);
+                return matchesQuery && matchesCat;
+            });
+
+            if(sort === 'low-high') filtered.sort((a,b) => a.price - b.price);
+            if(sort === 'high-low') filtered.sort((b,a) => a.price - b.price);
+
+            const grid = document.getElementById('catalog-products-grid');
+            grid.innerHTML = '';
+
+            document.getElementById('products-count').innerText = `Mostrando ${filtered.length} productos`;
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--gray); padding: 40px;">No se encontraron productos.</p>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="${p.img}" alt="${p.name}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${p.name}</h3>
+                            <div class="product-price">${p.price} Bs</div>
+                            <div class="product-tags"><span class="tag">${p.color}</span><span class="tag">${p.size}</span></div>
+                            <button class="btn-whatsapp-buy" onclick="showProductDetail('${p.name}', ${p.price}, '${p.color}', '${p.size}', '${p.img}')">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Funciones del Carrito
+        function toggleCart() {
+            document.getElementById('cart-overlay').classList.toggle('active');
+            document.getElementById('cart-drawer').classList.toggle('active');
+        }
+
+        function addToCart(product) {
+            const existing = cart.find(item => item.name === product.name && item.color === product.color && item.size === product.size);
+            if(existing) {
+                existing.qty += product.qty || 1;
+            } else {
+                cart.push({ ...product, qty: product.qty || 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        function addToCartFromDetail() {
+            if(currentProductDetail) {
+                addToCart(currentProductDetail);
+            }
+        }
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let subtotal = 0;
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                totalCount += item.qty;
+                subtotal += item.price * item.qty;
+
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-sub">Color: ${item.color} | Talla: ${item.size}</div>
+                            <div class="cart-item-price">${item.price} Bs</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                <span class="qty-num">${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeItem(${index})"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cart-counter').innerText = totalCount;
+            document.getElementById('cart-drawer-count').innerText = totalCount;
+            document.getElementById('cart-subtotal').innerText = subtotal + ' Bs';
+
+            // Generar enlace de WhatsApp para el pedido
+            let waText = "Hola,%20quiero%20realizar%20el%20siguiente%20pedido:%0A";
+            cart.forEach(i => {
+                waText += `-%20${i.qty}x%20${i.name}%20(${i.color},%20Talla%20${i.size})%20-%20${i.price * i.qty}%20Bs%0A`;
+            });
+            waText += `%0ASubtotal%20total:%20${subtotal}%20Bs`;
+            document.getElementById('whatsapp-checkout-btn').href = `https://wa.me/59170000000?text=${waText}`;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function buyNowFromDetail() {
+            if(currentProductDetail) {
+                let waText = `Hola,%20quiero%20comprar%20directo:%201x%20${currentProductDetail.name}%20(Color:%20${currentProductDetail.color},%20Talla:%20${currentProductDetail.size})%20-%20${currentProductDetail.price}%20Bs`;
+                window.open(`https://wa.me/59170000000?text=${waText}`, '_blank');
+            }
+        }
+
+        // Inicializar al cargar
+        filterCatalog();
+    </script>
 </body>
 </html>
