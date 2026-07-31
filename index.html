@@ -54,7 +54,7 @@
         }
 
         .logo-container img {
-            height: 52px; /* Logo más grande como pediste */
+            height: 65px; /* Aumentado ligeramente como pediste */
             object-fit: contain;
         }
 
@@ -460,7 +460,7 @@
         }
 
         .footer-brand img {
-            height: 45px;
+            height: 55px; /* Aumentado ligeramente como pediste */
             filter: brightness(0) invert(1);
             margin-bottom: 15px;
         }
@@ -897,7 +897,7 @@
         </div>
     </header>
 
-    <!-- ================= VISTA 1: INICIO (Con todo abajo incluido) ================= -->
+    <!-- ================= VISTA 1: INICIO ================= -->
     <div id="view-home" class="view-section active">
         <div class="home-hero">
             <div class="home-location">Santa Cruz • Bolivia</div>
@@ -1045,15 +1045,14 @@
             <div class="footer-col">
                 <h5>Contáctanos</h5>
                 <p style="font-size: 13px; color: #a0aec0; margin-bottom: 15px; line-height: 1.5;">Hacemos pedidos por WhatsApp. Escríbenos y te asesoramos con tu talla y estilo.</p>
-                <a href="https://wa.me/" target="_blank" class="btn-whatsapp-action" style="font-size: 13px; padding: 10px 20px;"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
             </div>
         </div>
         <div class="footer-bottom">
-            © 2026 Ruth Eunice Collection. Todos los derechos reservados.
+            <p>&copy; 2026 Colección Ruth Eunice. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Panel Lateral del Carrito -->
+    <!-- Carrito Drawer -->
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
     <div class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
@@ -1061,283 +1060,318 @@
             <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="cart-body" id="cart-items-container">
-            <!-- Items del carrito -->
+            <!-- Items de carrito dinámicos -->
         </div>
         <div class="cart-footer">
             <div class="cart-subtotal">
-                <span>Subtotal</span>
-                <span id="cart-subtotal-price">0 Bs</span>
+                <span>Subtotal:</span>
+                <span id="cart-subtotal-price">Bs 0.00</span>
             </div>
-            <div class="cart-note">Envío no incluido — coordinamos la entrega por WhatsApp.</div>
-            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
-            </button>
-            <button class="btn-continue-shopping" onclick="toggleCart()">Continuar comprando</button>
+            <div class="cart-note">Envío y delivery se calculan al coordinar por WhatsApp.</div>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Finalizar Pedido por WhatsApp</button>
+            <button class="btn-continue-shopping" onclick="toggleCart()">Continuar Comprando</button>
         </div>
     </div>
 
     <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/" target="_blank" class="whatsapp-float"><i class="fa-brands fa-whatsapp"></i></a>
 
+    <!-- Script de la Tienda -->
     <script>
         const products = [
             {
                 id: 1,
-                name: "Lencería Personalizada",
-                price: 130,
+                title: "Conjunto Lencería Personalizada con Nombre",
+                price: "Bs 150.00",
+                rawPrice: 150,
                 category: "Lencería Personalizada",
-                brand: "RUTH EUNICE",
-                desc: "Diseño exclusivo hecho a la medida con detalles únicos para sorprender en cualquier ocasión especial.",
-                images: ["foto(4).jpeg", "foto(5).jpeg", "foto(9).jpeg"],
-                color: "PERSONALIZADO",
+                image: "https://images.unsplash.com/photo-1583846783214-7229a91b20ed?auto=format&fit=crop&w=800&q=80",
+                description: "Conjunto elegante de encaje suave con la opción de personalizar las tiras elásticas con el nombre o frase corta de tu elección. Ideal para regalos especiales.",
+                colors: ["Rojo Pasión", "Negro Elegante", "Rosa Pastel"],
                 sizes: ["S", "M", "L"]
             },
             {
                 id: 2,
-                name: "Lencería Comestible",
-                price: 80,
+                title: "Lencería Comestible Edición Especial",
+                price: "Bs 95.00",
+                rawPrice: 95,
                 category: "Lencería Comestible",
-                brand: "RUTH EUNICE",
-                desc: "Innovador y divertido conjunto con elementos de sabores exquisitos. Ideal para momentos inolvidables.",
-                images: ["foto(5).jpeg", "foto(4).jpeg", "foto(9).jpeg"],
-                color: "COMESTIBLE",
-                sizes: ["Única", "S", "M"]
+                image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+                description: "Diseño divertido y completamente seguro elaborado con materiales comestibles sabor frutilla. Sorprende y añade un toque único a tus momentos.",
+                colors: ["Fresa", "Menta", "Vainilla"],
+                sizes: ["Talla Única Ajustable"]
             },
             {
                 id: 3,
-                name: "Lencería para Varones",
-                price: 150,
+                title: "Boxer y Línea Íntima para Varones",
+                price: "Bs 120.00",
+                rawPrice: 120,
                 category: "Lencería para Varones",
-                brand: "RUTH EUNICE",
-                desc: "Colección exclusiva y atrevida diseñada especialmente para hombres que buscan originalidad y comodidad.",
-                images: ["foto(9).jpeg", "foto(4).jpeg", "foto(5).jpeg"],
-                color: "VARONES",
+                image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+                description: "Prenda diseñada especialmente para el confort y estilo masculino con cortes modernos, tela respirable y acabados de primera calidad.",
+                colors: ["Negro", "Azul Marino", "Gris Oscuro"],
                 sizes: ["S", "M", "L", "XL"]
+            },
+            {
+                id: 4,
+                title: "Babydoll de Encaje Fino con Tiras",
+                price: "Bs 180.00",
+                rawPrice: 180,
+                category: "Lencería Personalizada",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+                description: "Babydoll delicado confeccionado en malla elástica y encaje francés. Incluye detalles florales y ajuste cómodo en la espalda.",
+                colors: ["Blanco Nupcial", "Negro", "Vino Tinto"],
+                sizes: ["S", "M", "L"]
+            },
+            {
+                id: 5,
+                title: "Conjunto Atrevido con Detalles Brillantes",
+                price: "Bs 160.00",
+                rawPrice: 160,
+                category: "Lencería Personalizada",
+                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+                description: "Conjunto exclusivo con accesorios sutiles de pedrería y tiras ajustables para resaltar la silueta con elegancia.",
+                colors: ["Negro", "Plateado", "Dorado"],
+                sizes: ["S", "M"]
+            },
+            {
+                id: 6,
+                title: "Lencería Comestible Sabor Chocolate",
+                price: "Bs 95.00",
+                rawPrice: 95,
+                category: "Lencería Comestible",
+                image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80",
+                description: "Clásica y deliciosa presentación con sabor a cacao dulce. El complemento perfecto para ocasiones románticas inolvidables.",
+                colors: ["Chocolate Con Leche", "Chocolate Oscuro"],
+                sizes: ["Talla Única Ajustable"]
             }
         ];
 
         let cart = [];
-        let currentProduct = null;
-        let selectedSize = '';
-        let activeFilter = 'Todas';
+        let currentFilter = 'Todas';
 
-        function renderProducts(filter = 'Todas') {
-            activeFilter = filter;
-            const filtered = filter === 'Todas' ? products : products.filter(p => p.category === filter);
-            
-            const htmlContent = filtered.map(p => `
+        function renderProducts(filter = 'Todas', containerId = 'product-grid') {
+            const grid = document.getElementById(containerId);
+            if (!grid) return;
+
+            const filtered = filter === 'Todas' 
+                ? products 
+                : products.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
                     <div class="product-img-container">
-                        <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+                        <img src="${p.image}" alt="${p.title}" class="product-img">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">${p.name}</h3>
-                        <div class="product-price">${p.price} Bs</div>
-                        <div class="product-tags"><span class="tag">${p.color}</span></div>
-                        <button class="btn-whatsapp-buy" onclick="event.stopPropagation(); openDetail(${p.id})">Ver Detalles <i class="fa-solid fa-arrow-right"></i></button>
+                        <div class="product-tags">
+                            <span class="tag">${p.category}</span>
+                        </div>
+                        <h3 class="product-title">${p.title}</h3>
+                        <div class="product-price">${p.price}</div>
+                        <button class="btn-whatsapp-buy" onclick="event.stopPropagation(); openDetail(${p.id})">
+                            <i class="fa-solid fa-eye"></i> Ver Detalles
+                        </button>
                     </div>
                 </div>
             `).join('');
-
-            document.getElementById('product-grid').innerHTML = htmlContent;
-            if(document.getElementById('product-grid-catalog')) {
-                document.getElementById('product-grid-catalog').innerHTML = htmlContent;
-            }
         }
 
         function filterCategory(category) {
-            document.querySelectorAll('.filter-pill').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'Todas' && btn.innerText === 'Ver todo')) {
-                    btn.classList.add('active');
+            currentFilter = category;
+            document.querySelectorAll('.filter-pill').forEach(pill => {
+                if(pill.textContent.includes(category) || (category === 'Todas' && pill.textContent.includes('Ver todo'))) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
                 }
             });
-            renderProducts(category);
-        }
-
-        function scrollToCatalog() {
-            document.getElementById('catalog-section-target').scrollIntoView({ behavior: 'smooth' });
+            renderProducts(category, 'product-grid');
         }
 
         function switchView(viewName) {
-            ['home', 'catalog', 'detail', 'contact'].forEach(v => {
-                document.getElementById('view-' + v).classList.remove('active');
-            });
-            ['home', 'catalog', 'contact'].forEach(l => {
-                const el = document.getElementById('link-' + l);
-                if(el) el.classList.remove('active');
-            });
-
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById('view-' + viewName).classList.add('active');
-            if(document.getElementById('link-' + viewName)) {
-                document.getElementById('link-' + viewName).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if(viewName === 'home') document.getElementById('link-home').classList.add('active');
+            if(viewName === 'catalog') {
+                document.getElementById('link-catalog').classList.add('active');
+                renderProducts('Todas', 'product-grid-catalog');
             }
-            window.scrollTo(0, 0);
+            if(viewName === 'contact') document.getElementById('link-contact').classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function openDetail(id) {
-            currentProduct = products.find(p => p.id === id);
-            selectedSize = currentProduct.sizes[0];
+        function scrollToCatalog() {
+            const catalogSec = document.getElementById('catalog-section-target');
+            catalogSec.scrollIntoView({ behavior: 'smooth' });
+        }
 
-            const container = document.getElementById('detail-content');
-            container.innerHTML = `
+        let selectedColor = '';
+        let selectedSize = '';
+
+        function openDetail(id) {
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+
+            selectedColor = product.colors[0];
+            selectedSize = product.sizes[0];
+
+            const detailContainer = document.getElementById('detail-content');
+            detailContainer.innerHTML = `
                 <div class="breadcrumb">
-                    <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span>${currentProduct.name}</span>
+                    <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span>${product.title}</span>
                 </div>
                 <div class="detail-container">
                     <div class="detail-gallery">
-                        <img src="${currentProduct.images[0]}" class="main-preview-img" id="main-preview">
-                        <div class="thumbnail-row">
-                            ${currentProduct.images.map((img, idx) => `
-                                <img src="${img}" class="thumb-img ${idx === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">
-                            `).join('')}
-                        </div>
+                        <img src="${product.image}" alt="${product.title}" class="main-preview-img" id="main-preview">
                     </div>
                     <div class="detail-info">
-                        <h1>${currentProduct.name}</h1>
-                        <div class="detail-brand">${currentProduct.brand}</div>
-                        <div class="detail-price-tag">${currentProduct.price} Bs</div>
-                        <div class="detail-desc">${currentProduct.desc}</div>
+                        <div class="detail-brand">RUTH EUNICE COLLECTION</div>
+                        <h1>${product.title}</h1>
+                        <div class="detail-price-tag">${product.price}</div>
+                        <p class="detail-desc">${product.description}</p>
                         
-                        <span class="option-label">Color</span>
-                        <div class="color-selector">
-                            <div class="color-badge">${currentProduct.color}</div>
+                        <span class="option-label">Color:</span>
+                        <div class="color-selector" id="color-options">
+                            ${product.colors.map((c, i) => `<div class="color-badge ${i===0?'selected':''}" onclick="selectColor(this, '${c}')">${c}</div>`).join('')}
                         </div>
 
-                        <span class="option-label">Talla</span>
-                        <div class="size-selector">
-                            ${currentProduct.sizes.map((s, idx) => `
-                                <button class="size-btn ${idx === 0 ? 'selected' : ''}" onclick="selectSize('${s}', this)">${s}</button>
-                            `).join('')}
+                        <span class="option-label">Talla:</span>
+                        <div class="size-selector" id="size-options">
+                            ${product.sizes.map((s, i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this, '${s}')">${s}</button>`).join('')}
                         </div>
 
-                        <button class="btn-add-cart" id="btn-add-cart-action" onclick="addToCart()">Añadir al Carrito</button>
-                        <button class="btn-buy-now" onclick="buyNowDirect()">Comprar Ahora</button>
+                        <button class="btn-add-cart" onclick="addToCart(${product.id})"><i class="fa-solid fa-bag-shopping"></i> Agregar al Carrito</button>
+                        <button class="btn-buy-now" onclick="buyNow(${product.id})"><i class="fa-brands fa-whatsapp"></i> Comprar Directo por WhatsApp</button>
                     </div>
                 </div>
             `;
+
             switchView('detail');
         }
 
-        function changeMainImage(src, thumbElement) {
-            document.getElementById('main-preview').src = src;
-            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
-            thumbElement.classList.add('active-thumb');
+        function selectColor(el, color) {
+            document.querySelectorAll('.color-badge').forEach(b => b.style.borderColor = 'var(--border)');
+            el.style.borderColor = 'var(--text-dark)';
+            selectedColor = color;
         }
 
-        function selectSize(size, btnElement) {
-            selectedSize = size;
+        function selectSize(el, size) {
             document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-            btnElement.classList.add('selected');
-        }
-
-        function addToCart() {
-            const existing = cart.find(item => item.id === currentProduct.id && item.size === selectedSize);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({
-                    id: currentProduct.id,
-                    name: currentProduct.name,
-                    price: currentProduct.price,
-                    image: currentProduct.images[0],
-                    color: currentProduct.color,
-                    size: selectedSize,
-                    qty: 1
-                });
-            }
-            updateCartUI();
-
-            const btn = document.getElementById('btn-add-cart-action');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "¡Añadido al Carrito!";
-            btn.style.background = "#e8a5b2";
-            btn.style.color = "white";
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = "white";
-                btn.style.color = "var(--text-dark)";
-            }, 1200);
-        }
-
-        function buyNowDirect() {
-            addToCart();
-            toggleCart();
+            el.classList.add('selected');
+            selectedSize = size;
         }
 
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             const overlay = document.getElementById('cart-overlay');
             const isOpen = drawer.classList.contains('open');
-            if (isOpen) {
+
+            if(isOpen) {
                 drawer.classList.remove('open');
                 overlay.style.display = 'none';
             } else {
                 drawer.classList.add('open');
                 overlay.style.display = 'block';
+                renderCartItems();
             }
         }
 
-        function updateCartUI() {
-            const countBadge = document.getElementById('cart-count');
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            countBadge.innerText = totalQty;
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const cartItem = {
+                ...product,
+                color: selectedColor,
+                size: selectedSize,
+                cartId: `${id}-${selectedColor}-${selectedSize}`,
+                quantity: 1
+            };
 
-            const container = document.getElementById('cart-items-container');
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-light); text-align: center; margin-top: 40px;">Tu carrito está vacío.</p>';
+            const existing = cart.find(item => item.cartId === cartItem.cartId);
+            if(existing) {
+                existing.quantity += 1;
             } else {
-                container.innerHTML = cart.map((item, index) => `
+                cart.push(cartItem);
+            }
+
+            updateCartBadge();
+            toggleCart();
+        }
+
+        function updateCartBadge() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalCount;
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            if(cart.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: var(--text-light); margin-top: 40px;">Tu carrito está vacío.</p>`;
+                document.getElementById('cart-subtotal-price').textContent = 'Bs 0.00';
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map(item => {
+                subtotal += item.rawPrice * item.quantity;
+                return `
                     <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}">
+                        <img src="${item.image}" alt="${item.title}">
                         <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-meta">${item.color} | Talla: ${item.size}</div>
-                            <div class="cart-item-price">${item.price} Bs</div>
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-meta">Color: ${item.color} | Talla: ${item.size}</div>
+                            <div class="cart-item-price">${item.price}</div>
                             <div class="cart-item-qty">
-                                <button onclick="changeQty(${index}, -1)">-</button>
-                                <span>${item.qty}</span>
-                                <button onclick="changeQty(${index}, 1)">+</button>
+                                <button onclick="changeQty('${item.cartId}', -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="changeQty('${item.cartId}', 1)">+</button>
                             </div>
                         </div>
-                        <button onclick="removeItem(${index})" style="background:none; border:none; cursor:pointer; color:#999;"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
-                `).join('');
-            }
+                `;
+            }).join('');
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            document.getElementById('cart-subtotal-price').innerText = subtotal + ' Bs';
+            document.getElementById('cart-subtotal-price').textContent = `Bs ${subtotal.toFixed(2)}`;
         }
 
-        function changeQty(index, delta) {
-            cart[index].qty += delta;
-            if (cart[index].qty <= 0) {
-                cart.splice(index, 1);
+        function changeQty(cartId, delta) {
+            const item = cart.find(i => i.cartId === cartId);
+            if(item) {
+                item.quantity += delta;
+                if(item.quantity <= 0) {
+                    cart = cart.filter(i => i.cartId !== cartId);
+                }
             }
-            updateCartUI();
-        }
-
-        function removeItem(index) {
-            cart.splice(index, 1);
-            updateCartUI();
+            updateCartBadge();
+            renderCartItems();
         }
 
         function checkoutWhatsApp() {
-            if (cart.length === 0) return;
-            let message = "Hola, me interesa realizar el siguiente pedido:\n\n";
+            if(cart.length === 0) return;
+            let message = "Hola Ruth Eunice Collection, deseo realizar el siguiente pedido:%0A%0A";
+            let total = 0;
+
             cart.forEach(item => {
-                message += `• *${item.name}* (${item.color}, Talla: ${item.size}) x${item.qty} - ${item.price * item.qty} Bs\n`;
+                let itemTotal = item.rawPrice * item.quantity;
+                total += itemTotal;
+                message += `- *${item.title}* %0A  Cantidad: ${item.quantity} | Talla: ${item.size} | Color: ${item.color} %0A  Subtotal: Bs ${itemTotal.toFixed(2)}%0A%0A`;
             });
-            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            message += `\n*Subtotal Total:* ${total} Bs\n¿Me confirman disponibilidad y envío?`;
-            
-            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+
+            message += `*Total a pagar: Bs ${total.toFixed(2)}*%0A%0AQuedo atento/a para coordinar el pago y envío.`;
+            window.open(`https://wa.me/?text=${message}`, '_blank');
         }
 
-        // Inicializar
-        renderProducts('Todas');
+        function buyNow(id) {
+            const product = products.find(p => p.id === id);
+            let message = `Hola Ruth Eunice Collection, deseo comprar directamente este producto:%0A%0A*${product.title}*%0A- Talla: ${selectedSize}%0A- Color: ${selectedColor}%0A- Precio: ${product.price}%0A%0A¿Me confirmas disponibilidad para coordinar el pago y envío?`;
+            window.open(`https://wa.me/?text=${message}`, '_blank');
+        }
+
+        // Inicializar catálogo al cargar
+        renderProducts('Todas', 'product-grid');
     </script>
 </body>
 </html>
