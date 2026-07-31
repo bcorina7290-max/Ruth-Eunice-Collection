@@ -93,7 +93,6 @@
         /* General Layout */
         .view-section {
             display: none;
-            padding: 40px 20px;
             min-height: 80vh;
         }
 
@@ -104,140 +103,113 @@
         .main-layout {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Vistas: Inicio y Contacto */
-        .hero-section {
+        /* Nuevo diseño de la Página Principal (Inicio) estilo referencia */
+        .home-hero {
+            background: linear-gradient(180deg, rgba(232, 165, 178, 0.15) 0%, rgba(253, 251, 251, 1) 100%);
             text-align: center;
-            padding: 60px 20px;
+            padding: 70px 20px 50px;
         }
 
-        .hero-section h1 {
+        .home-location {
+            font-size: 13px;
+            font-weight: 700;
+            color: #5c2a38;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .home-hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
+            font-size: 46px;
+            color: var(--text-dark);
             margin-bottom: 15px;
-        }
-
-        .hero-section p {
-            color: var(--text-light);
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .btn-main {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        /* Catálogo */
-        .catalog-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .catalog-header span {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: var(--primary-dark);
             font-weight: 700;
         }
 
-        .catalog-header h1 {
+        .home-hero p {
+            color: var(--text-light);
+            font-size: 16px;
+            max-width: 650px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .btn-hero-catalog {
+            background-color: #4a2832;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-hero-catalog:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Filtros rápidos horizontales estilo referencia */
+        .quick-filters-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 25px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .filter-pill {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-pill:hover, .filter-pill.active {
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            background: #fff8f9;
+        }
+
+        /* Sección de Catálogo general */
+        .catalog-section {
+            padding: 30px 20px 60px;
+        }
+
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .catalog-header span {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .catalog-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin: 5px 0 10px;
+            font-size: 32px;
+            margin: 5px 0 8px;
         }
 
         .catalog-header p {
-            color: var(--text-light);
-            font-size: 15px;
-        }
-
-        .search-bar-container {
-            display: flex;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            overflow: hidden;
-            background: var(--white);
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 15px 25px;
-            border: none;
-            outline: none;
-            font-size: 15px;
-        }
-
-        .search-btn {
-            background-color: #fce8ec;
-            border: none;
-            padding: 0 30px;
-            color: #b05c6d;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .search-btn:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 30px;
-        }
-
-        .sidebar {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            height: fit-content;
-        }
-
-        .filter-group {
-            margin-bottom: 25px;
-        }
-
-        .filter-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .filter-group h3 {
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-
-        .filter-select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--white);
-            font-size: 14px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .products-area {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .products-count {
             color: var(--text-light);
             font-size: 14px;
         }
@@ -246,6 +218,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-card {
@@ -336,7 +310,11 @@
         .breadcrumb {
             font-size: 13px;
             color: var(--text-light);
-            margin-bottom: 25px;
+            margin: 30px 0 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
         }
 
         .breadcrumb a {
@@ -353,6 +331,8 @@
             padding: 30px;
             border-radius: 16px;
             border: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto 50px;
         }
 
         .detail-gallery {
@@ -436,12 +416,6 @@
             font-size: 13px;
             font-weight: 600;
             background: white;
-            cursor: pointer;
-        }
-
-        .color-badge.selected {
-            border-color: var(--primary-dark);
-            box-shadow: 0 0 0 1px var(--primary-dark);
         }
 
         .size-selector {
@@ -693,8 +667,7 @@
         }
 
         @media (max-width: 768px) {
-            .content-grid { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
+            .home-hero h1 { font-size: 34px; }
             .detail-container { grid-template-columns: 1fr; }
             .cart-drawer { width: 100%; right: -100%; }
         }
@@ -709,8 +682,8 @@
                 <img src="logoruth.png" alt="Ruth Eunice Collection">
             </div>
             <ul class="nav-links">
-                <li><a onclick="switchView('home')" id="link-home">Inicio</a></li>
-                <li><a onclick="switchView('catalog')" id="link-catalog" class="active">Catálogo</a></li>
+                <li><a onclick="switchView('home')" id="link-home" class="active">Inicio</a></li>
+                <li><a onclick="switchView('catalog')" id="link-catalog">Catálogo</a></li>
                 <li><a onclick="switchView('contact')" id="link-contact">Contacto</a></li>
                 <li>
                     <div class="cart-icon" onclick="toggleCart()">
@@ -722,48 +695,44 @@
         </div>
     </header>
 
-    <!-- ================= VISTA 1: INICIO ================= -->
-    <div id="view-home" class="view-section">
-        <div class="main-layout hero-section">
-            <h1>Bienvenidos a Ruth Eunice Collection</h1>
-            <p>Descubre la elegancia y las últimas tendencias en moda íntima pensadas para ti.</p>
-            <button class="btn-main" onclick="switchView('catalog')">Ver Catálogo Exclusivo</button>
+    <!-- ================= VISTA 1: INICIO (Con el nuevo diseño solicitado) ================= -->
+    <div id="view-home" class="view-section active">
+        <div class="home-hero">
+            <div class="home-location">Santa Cruz • Bolivia</div>
+            <h1>Moda que te hace brillar</h1>
+            <p>Lencería personalizada, comestible, para varones y más. Modelos exclusivos para que te veas y sientas distinta. Pide por WhatsApp y recibe en todo el país.</p>
+            <button class="btn-hero-catalog" onclick="scrollToCatalog()">Ver Catálogo</button>
+        </div>
+
+        <div class="quick-filters-container">
+            <button class="filter-pill active" onclick="filterCategory('Todas')">Ver todo</button>
+            <button class="filter-pill" onclick="filterCategory('Lencería Personalizada')">Lencería Personalizada</button>
+            <button class="filter-pill" onclick="filterCategory('Lencería Comestible')">Lencería Comestible</button>
+            <button class="filter-pill" onclick="filterCategory('Lencería para Varones')">Lencería para Varones</button>
+        </div>
+
+        <div class="catalog-section" id="catalog-section-target">
+            <div class="catalog-header">
+                <span>Temporada Actual</span>
+                <h2>Nuestros Productos</h2>
+                <p>Lo mejor de la temporada seleccionado para ti</p>
+            </div>
+            <div class="products-grid" id="product-grid">
+                <!-- Generado por JS -->
+            </div>
         </div>
     </div>
 
-    <!-- ================= VISTA 2: CATÁLOGO ================= -->
-    <div id="view-catalog" class="view-section active">
-        <div class="main-layout">
+    <!-- ================= VISTA 2: CATÁLOGO DIRECTO ================= -->
+    <div id="view-catalog" class="view-section">
+        <div class="main-layout" style="padding-top: 40px; padding-bottom: 60px;">
             <div class="catalog-header">
-                <span>EXPLORA NUESTRA TIENDA</span>
-                <h1>Catálogo Exclusivo</h1>
+                <span>Explora Nuestra Tienda</span>
+                <h2>Catálogo Exclusivo</h2>
                 <p>Encuentra piezas únicas y especiales</p>
             </div>
-
-            <div class="search-bar-container">
-                <input type="text" class="search-input" placeholder="Buscar prendas, lencería..." id="search-box">
-                <button class="search-btn">Buscar</button>
-            </div>
-
-            <div class="content-grid">
-                <aside class="sidebar">
-                    <div class="filter-group">
-                        <h3>Categorías</h3>
-                        <select class="filter-select">
-                            <option>Todas</option>
-                            <option>Lencería Personalizada</option>
-                            <option>Lencería Comestible</option>
-                            <option>Lencería para Varones</option>
-                        </select>
-                    </div>
-                </aside>
-
-                <div class="products-area">
-                    <div class="products-count">Mostrando productos disponibles</div>
-                    <div class="products-grid" id="product-grid">
-                        <!-- Generado por JS -->
-                    </div>
-                </div>
+            <div class="products-grid" id="product-grid-catalog">
+                <!-- Generado por JS -->
             </div>
         </div>
     </div>
@@ -777,10 +746,10 @@
 
     <!-- ================= VISTA 4: CONTACTO ================= -->
     <div id="view-contact" class="view-section">
-        <div class="main-layout hero-section">
-            <h1>Contacto</h1>
-            <p>¿Tienes dudas o necesitas asesoría con tu pedido? Escríbenos directamente a nuestro WhatsApp.</p>
-            <a href="https://wa.me/" target="_blank" class="btn-main"><i class="fa-brands fa-whatsapp"></i> Chatear por WhatsApp</a>
+        <div class="main-layout" style="text-align: center; padding: 80px 20px;">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 38px; margin-bottom: 15px;">Contacto</h1>
+            <p style="color: var(--text-light); font-size: 16px; margin-bottom: 30px;">¿Tienes dudas o necesitas asesoría con tu pedido? Escríbenos directamente a nuestro WhatsApp.</p>
+            <a href="https://wa.me/" target="_blank" class="btn-hero-catalog"><i class="fa-brands fa-whatsapp"></i> Chatear por WhatsApp</a>
         </div>
     </div>
 
@@ -852,10 +821,13 @@
         let cart = [];
         let currentProduct = null;
         let selectedSize = '';
+        let activeFilter = 'Todas';
 
-        function renderCatalog() {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = products.map(p => `
+        function renderProducts(filter = 'Todas') {
+            activeFilter = filter;
+            const filtered = filter === 'Todas' ? products : products.filter(p => p.category === filter);
+            
+            const htmlContent = filtered.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
                     <div class="product-img-container">
                         <img src="${p.images[0]}" alt="${p.name}" class="product-img">
@@ -868,6 +840,25 @@
                     </div>
                 </div>
             `).join('');
+
+            document.getElementById('product-grid').innerHTML = htmlContent;
+            if(document.getElementById('product-grid-catalog')) {
+                document.getElementById('product-grid-catalog').innerHTML = htmlContent;
+            }
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.filter-pill').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'Todas' && btn.innerText === 'Ver todo')) {
+                    btn.classList.add('active');
+                }
+            });
+            renderProducts(category);
+        }
+
+        function scrollToCatalog() {
+            document.getElementById('catalog-section-target').scrollIntoView({ behavior: 'smooth' });
         }
 
         function switchView(viewName) {
@@ -893,7 +884,7 @@
             const container = document.getElementById('detail-content');
             container.innerHTML = `
                 <div class="breadcrumb">
-                    <a onclick="switchView('catalog')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span>${currentProduct.name}</span>
+                    <a onclick="switchView('home')">Inicio</a> / <a onclick="switchView('catalog')">Catálogo</a> / <span>${currentProduct.name}</span>
                 </div>
                 <div class="detail-container">
                     <div class="detail-gallery">
@@ -912,11 +903,11 @@
                         
                         <span class="option-label">Color</span>
                         <div class="color-selector">
-                            <div class="color-badge selected">${currentProduct.color}</div>
+                            <div class="color-badge">${currentProduct.color}</div>
                         </div>
 
                         <span class="option-label">Talla</span>
-                        <div class="size-selector" id="size-selector-container">
+                        <div class="size-selector">
                             ${currentProduct.sizes.map((s, idx) => `
                                 <button class="size-btn ${idx === 0 ? 'selected' : ''}" onclick="selectSize('${s}', this)">${s}</button>
                             `).join('')}
@@ -959,7 +950,6 @@
             }
             updateCartUI();
 
-            // Efecto temporal "¡Añadido!"
             const btn = document.getElementById('btn-add-cart-action');
             const originalText = btn.innerHTML;
             btn.innerHTML = "¡Añadido al Carrito!";
@@ -1046,8 +1036,8 @@
             window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Inicializar catálogo al cargar
-        renderCatalog();
+        // Inicializar
+        renderProducts('Todas');
     </script>
 </body>
 </html>
