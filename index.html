@@ -550,13 +550,26 @@
             gap: 15px;
         }
 
-        .main-preview-img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            border-radius: 12px;
-            background: #f9f9f9;
-        }
+        .image-container{
+    position:relative;
+    overflow:hidden;
+    border-radius:12px;
+    cursor:zoom-in;
+}
+
+.main-preview-img{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+    display:block;
+    transition:transform .15s ease;
+    transform-origin:center center;
+    background:#f9f9f9;
+}
+
+.image-container:hover .main-preview-img{
+    transform:scale(2);
+}
 
         .thumbnail-row {
             display: flex;
@@ -1424,7 +1437,16 @@
                 </div>
                 <div class="detail-container">
                     <div class="detail-gallery">
-                        <img src="${currentProduct.images[0]}" class="main-preview-img" id="main-preview">
+                        <div class="image-container">
+    <img
+        src="${currentProduct.images[0]}"
+        class="main-preview-img"
+        id="main-preview"
+        onclick="openImageModal()"
+        onmousemove="zoomImage(event)"
+        onmouseleave="resetZoom()"
+    >
+</div>
                         <div class="thumbnail-row">
                             ${currentProduct.images.map((img, idx) => `
                                 <img src="${img}" class="thumb-img ${idx === 0 ? 'active-thumb' : ''}" onclick="changeMainImage('${img}', this)">
@@ -1572,8 +1594,79 @@
             window.open(`https://wa.me/59176247163?text=${encodeURIComponent(message)}`, '_blank');
         }
 
+        function zoomImage(e){
+
+const img=e.target;
+
+const rect=img.getBoundingClientRect();
+
+const x=((e.clientX-rect.left)/rect.width)*100;
+
+const y=((e.clientY-rect.top)/rect.height)*100;
+
+img.style.transformOrigin=x+"% "+y+"%";
+
+}
+
+function resetZoom(){
+
+document.getElementById("main-preview").style.transformOrigin="center";
+
+}
+
+function openImageModal(){
+
+const img=document.getElementById("main-preview");
+
+document.getElementById("modalImage").src=img.src;
+
+document.getElementById("imageModal").style.display="flex";
+
+}
+
+function closeImageModal(){
+
+document.getElementById("imageModal").style.display="none";
+
+}
+        
         // Inicializar
         renderProducts('Todas');
     </script>
+    <div id="imageModal" style="
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+z-index:9999;
+justify-content:center;
+align-items:center;
+cursor:zoom-out;
+">
+
+<span
+onclick="closeImageModal()"
+style="
+position:absolute;
+top:25px;
+right:35px;
+font-size:45px;
+color:white;
+cursor:pointer;
+font-weight:bold;
+">&times;</span>
+
+<img
+id="modalImage"
+style="
+max-width:95%;
+max-height:95%;
+border-radius:10px;
+">
+</div>
+    
 </body>
 </html>
