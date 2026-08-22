@@ -1637,7 +1637,33 @@ function openImageModal(){
     document.getElementById("imageModal").style.display = "flex";
 
 }
+function modalNextImage(event){
 
+    event.stopPropagation();
+
+    modalImageIndex++;
+
+    if(modalImageIndex >= currentProduct.images.length){
+        modalImageIndex = 0;
+    }
+
+    document.getElementById("modalImage").src =
+        currentProduct.images[modalImageIndex];
+}
+
+function modalPrevImage(event){
+
+    event.stopPropagation();
+
+    modalImageIndex--;
+
+    if(modalImageIndex < 0){
+        modalImageIndex = currentProduct.images.length - 1;
+    }
+
+    document.getElementById("modalImage").src =
+        currentProduct.images[modalImageIndex];
+}
 function closeImageModal(){
 
 document.getElementById("imageModal").style.display="none";
