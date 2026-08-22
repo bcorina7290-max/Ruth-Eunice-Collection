@@ -1466,6 +1466,44 @@
             }
         }
 
+        function searchProducts() {
+
+    const searchText = document
+        .getElementById('product-search')
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(searchText)
+    );
+
+    const htmlContent = filtered.map(p => `
+        <div class="product-card" onclick="openDetail(${p.id})">
+            <div class="product-img-container">
+                <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+            </div>
+
+            <div class="product-info">
+                <h3 class="product-title">${p.name}</h3>
+                <div class="product-price">${p.price} Bs</div>
+
+                <div class="product-tags">
+                    <span class="tag">${p.color}</span>
+                </div>
+
+                <button class="btn-whatsapp-buy"
+                    onclick="event.stopPropagation(); openDetail(${p.id})">
+                    Ver Detalles
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('product-grid-catalog').innerHTML =
+        htmlContent || '<p style="text-align:center;">No encontramos productos con ese nombre.</p>';
+}
         function filterCategory(category) {
             document.querySelectorAll('.filter-pill').forEach(btn => {
                 btn.classList.remove('active');
