@@ -230,36 +230,51 @@
             font-size: 14px;
         }
         .catalog-search {
-    max-width: 520px;
+    max-width: 650px;
     margin: 0 auto 30px;
-    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.catalog-search i {
+.catalog-search-box {
+    position: relative;
+    flex: 1;
+}
+
+.catalog-search-box i {
     position: absolute;
-    left: 18px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    color: #4c0a0b;
-    font-size: 15px;
+    color: #9a9a9a;
+    font-size: 16px;
 }
 
-.catalog-search input {
+.catalog-search-box input {
     width: 100%;
-    padding: 14px 18px 14px 45px;
-    border: 1px solid #e5e5e5;
+    padding: 15px 20px 15px 50px;
+    border: 1.5px solid #e8a5b2;
     border-radius: 30px;
     background: white;
     font-size: 14px;
     outline: none;
-    transition: all 0.3s ease;
 }
 
-.catalog-search input:focus {
-    border-color: #4c0a0b;
-    box-shadow: 0 0 0 3px rgba(76,10,11,0.08);
+.catalog-search-box input:focus {
+    border-color: #d48e9c;
 }
 
+.catalog-search-button {
+    border: none;
+    background: #e8a5b2;
+    color: #4c0a0b;
+    padding: 15px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1069,13 +1084,19 @@
                 <h2>Catálogo Exclusivo</h2>
                 <p>Encuentra piezas únicas y especiales</p>
             </div>
-            <div class="catalog-search">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input
-        type="text"
-        id="product-search"
-        placeholder="Buscar producto..."
-    >
+         <div class="catalog-search">
+    <div class="catalog-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+            type="text"
+            id="product-search"
+            placeholder="Buscar por nombre..."
+        >
+    </div>
+
+    <button class="catalog-search-button">
+        Buscar
+    </button>
 </div>
             <div class="products-grid" id="product-grid-catalog">
                 <!-- Generado por JS -->
