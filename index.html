@@ -229,6 +229,36 @@
             color: var(--text-light);
             font-size: 14px;
         }
+        .catalog-search {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.catalog-search i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4c0a0b;
+    font-size: 15px;
+}
+
+.catalog-search input {
+    width: 100%;
+    padding: 14px 18px 14px 45px;
+    border: 1px solid #e5e5e5;
+    border-radius: 30px;
+    background: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.catalog-search input:focus {
+    border-color: #4c0a0b;
+    box-shadow: 0 0 0 3px rgba(76,10,11,0.08);
+}
 
         .products-grid {
             display: grid;
