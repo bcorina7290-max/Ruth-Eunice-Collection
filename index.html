@@ -1531,6 +1531,7 @@
             if(document.getElementById('link-' + viewName)) {
                 document.getElementById('link-' + viewName).classList.add('active');
             }
+            history.pushState({ view: viewName }, '', '#' + viewName);
             window.scrollTo(0, 0);
         }
 
