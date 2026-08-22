@@ -1778,6 +1778,28 @@ document.getElementById("imageModal").style.display="none";
 
 }
         
+window.addEventListener('popstate', function(event) {
+
+    const viewName = location.hash.replace('#', '') || 'catalog';
+
+    ['home', 'catalog', 'detail', 'contact'].forEach(v => {
+        document.getElementById('view-' + v).classList.remove('active');
+    });
+
+    ['home', 'catalog', 'contact'].forEach(l => {
+        const el = document.getElementById('link-' + l);
+        if(el) el.classList.remove('active');
+    });
+
+    document.getElementById('view-' + viewName).classList.add('active');
+
+    if(document.getElementById('link-' + viewName)) {
+        document.getElementById('link-' + viewName).classList.add('active');
+    }
+
+    window.scrollTo(0, 0);
+});
+        
         // Inicializar
         renderProducts('Todas');
         switchView('catalog');
