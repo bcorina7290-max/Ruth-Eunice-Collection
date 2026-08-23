@@ -1470,6 +1470,21 @@
     }
 
     console.log('Productos de Supabase:', data);
+            
+            data.forEach(p => {
+    products.push({
+        id: p.id,
+        name: p.nombre,
+        price: p.precio,
+        category: p.categoria,
+        brand: "RUTH EUNICE",
+        desc: p.descripcion || "",
+        images: p.imagenes ? [p.imagenes] : [],
+        color: p.colores || "",
+        sizes: p.tallas ? p.tallas.split('') : []
+    });
+});
+            renderProducts('Todas');
 }
         
         const products = [
