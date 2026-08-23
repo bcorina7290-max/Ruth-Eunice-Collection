@@ -1010,6 +1010,7 @@
     font-weight: normal;
 }
     </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -1453,6 +1454,24 @@
     
 
     <script>
+        const SUPABASE_URL = 'https://tzjrtectblnxuivwnpiy.supabase.co/rest/v1/';
+        const SUPABASE_KEY = 'sb_publishable_aHCXKbAyX8azJHMRZWy08g__LykySHj';
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function cargarProductosSupabase() {
+    const { data, error } = await supabaseClient
+        .from('productos')
+        .select('*');
+
+    if (error) {
+        console.error('Error leyendo productos de Supabase:', error);
+        return;
+    }
+
+    console.log('Productos de Supabase:', data);
+}
+        
         const products = [
             {
                 id: 1,
@@ -1858,6 +1877,7 @@ window.addEventListener('popstate', function(event) {
 });
         
         // Inicializar
+        cargarProductosSupabase();
         renderProducts('Todas');
         switchView('catalog');
     </script>
