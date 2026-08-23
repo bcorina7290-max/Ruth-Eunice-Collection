@@ -1454,6 +1454,9 @@
     
 
     <script>
+        
+        const TIENDA_ACTIVA = true;
+        
         const SUPABASE_URL = 'https://tzjrtectblnxuivwnpiy.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_aHCXKbAyX8azJHMRZWy08g__LykySHj';
 
@@ -1891,10 +1894,46 @@ window.addEventListener('popstate', function(event) {
     window.scrollTo(0, 0);
 });
         
+
+        if (!TIENDA_ACTIVA) {
+    document.body.innerHTML = `
+        <div style="
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding:30px;
+            background:#faf7f7;
+            color:#4c0a0b;
+        ">
+            <div>
+                <h1 style="
+                    font-family:'Wondar Quason', serif;
+                    font-size:42px;
+                    font-weight:normal;
+                    margin-bottom:15px;
+                ">
+                    Ruth Eunice Collection
+                </h1>
+
+                <p style="
+                    font-size:16px;
+                    color:#777;
+                ">
+                    Catálogo temporalmente no disponible.
+                </p>
+            </div>
+        </div>
+    `;
+}
+        
         // Inicializar
-        cargarProductosSupabase();
-        renderProducts('Todas');
-        switchView('catalog');
+if (TIENDA_ACTIVA) {
+    cargarProductosSupabase();
+    renderProducts('Todas');
+    switchView('catalog');
+}
     </script>
     <div id="imageModal" style="
 display:none;
