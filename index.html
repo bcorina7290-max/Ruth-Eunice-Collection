@@ -179,6 +179,22 @@
         }
 
         /* Filtros rápidos horizontales */
+
+        .home-video-section {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px 10px;
+}
+
+.home-video {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    background: #000;
+}
         .quick-filters-container {
             display: flex;
             justify-content: center;
@@ -1042,6 +1058,14 @@
             <p>Lencería personalizada, comestible, para varones y más. Modelos exclusivos para que te veas y sientas distinta. Pide por WhatsApp y recibe en todo el país.</p>
             <button class="btn-hero-catalog" onclick="scrollToCatalog()">Ver Catálogo</button>
         </div>
+        
+        <!-- Video de presentación -->
+<div class="home-video-section">
+    <video class="home-video" controls playsinline preload="metadata">
+        <source src="video-inicio.mp4" type="video/mp4">
+        Tu navegador no admite videos.
+    </video>
+</div>
 
         <div class="quick-filters-container">
             <button class="filter-pill active" onclick="filterCategory('Todas')">Ver todo</button>
