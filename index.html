@@ -1461,7 +1461,7 @@
 
         async function cargarProductosSupabase() {
     const { data, error } = await supabaseClient
-        .from('productos')
+        .from('products')
         .select('*');
 
     if (error) {
