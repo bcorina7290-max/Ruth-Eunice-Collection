@@ -1550,6 +1550,15 @@
 
         </div>
 
+        <!-- ===== PRODUCTOS EXISTENTES ===== -->
+<div class="admin-form" id="admin-products-list" style="margin-top:30px;">
+    <h3 style="margin-bottom:20px;">Productos publicados</h3>
+
+    <div id="admin-products-container">
+        <p style="color:#777;">Cargando productos...</p>
+    </div>
+</div>
+
     </div>
 </div>
     
@@ -1646,13 +1655,17 @@ async function actualizarPanelAdmin() {
 
     const loginBox = document.getElementById('admin-login-box');
     const formulario = document.getElementById('admin-product-form');
+    const listaProductos = document.getElementById('admin-products-list');
 
     if (session) {
         loginBox.style.display = 'none';
         formulario.style.display = 'block';
+        listaProductos.style.display = 'block';
+        cargarProductosAdmin();
     } else {
         loginBox.style.display = 'block';
         formulario.style.display = 'none';
+        listaProductos.style.display = 'none';
     }
 }
         async function publicarProducto() {
@@ -1663,8 +1676,9 @@ async function actualizarPanelAdmin() {
     const categoria = document.getElementById('admin-category').value.trim();
     const tallas = document.getElementById('admin-sizes').value.trim();
     const colores = document.getElementById('admin-colors').value.trim();
+            const editingId = document.getElementById('admin-product-form').dataset.editingId;
 
-    if (!nombre || !precio || files.length === 0) {
+    if (!nombre || !precio || (!editingId && files.length === 0)) {
         alert('Por favor completa nombre, precio y al menos una foto.');
         return;
     }
@@ -1693,17 +1707,37 @@ async function actualizarPanelAdmin() {
         urls.push(publicUrlData.publicUrl);
     }
 
-    const { error: insertError } = await supabaseClient
+    let insertError;
+
+const datosProducto = {
+    nombre: nombre,
+    precio: Number(precio),
+    descripcion: descripcion,
+    categoria: categoria,
+    tallas: tallas,
+    colores: colores
+};
+
+if (urls.length > 0) {
+    datosProducto.imagenes = urls.join('|');
+}
+
+if (editingId) {
+    const { error } = await supabaseClient
         .from('products')
-        .insert([{
-            nombre: nombre,
-            precio: Number(precio),
-            descripcion: descripcion,
-            categoria: categoria,
-            tallas: tallas,
-            colores: colores,
-            imagenes: urls.join('|')
-        }]);
+        .update(datosProducto)
+        .eq('id', editingId);
+
+    insertError = error;
+} else {
+    datosProducto.imagenes = urls.join('|');
+
+    const { error } = await supabaseClient
+        .from('products')
+        .insert([datosProducto]);
+
+    insertError = error;
+}
 
     if (insertError) {
         console.error(insertError);
@@ -1711,7 +1745,7 @@ async function actualizarPanelAdmin() {
         return;
     }
 
-    alert('Producto publicado correctamente');
+    alert(editingId ? 'Producto actualizado correctamente' : 'Producto publicado correctamente');
 
     document.getElementById('admin-images').value = '';
     document.getElementById('admin-name').value = '';
@@ -1720,6 +1754,11 @@ async function actualizarPanelAdmin() {
     document.getElementById('admin-category').value = '';
     document.getElementById('admin-sizes').value = '';
     document.getElementById('admin-colors').value = '';
+
+            delete document.getElementById('admin-product-form').dataset.editingId;
+
+const boton = document.querySelector('#admin-product-form .admin-publish-btn');
+boton.textContent = 'Publicar producto';
 
     location.reload();
 }
@@ -1751,6 +1790,105 @@ async function actualizarPanelAdmin() {
             renderProducts('Todas');
 }
         
+        
+        async function cargarProductosAdmin() {
+    const container = document.getElementById('admin-products-container');
+
+    if (!container) return;
+
+    const { data, error } = await supabaseClient
+        .from('products')
+        .select('*')
+        .order('id', { ascending: false });
+
+    if (error) {
+        console.error(error);
+        container.innerHTML = '<p style="color:#b00020;">Error al cargar productos.</p>';
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        container.innerHTML = '<p style="color:#777;">Todavía no hay productos publicados.</p>';
+        return;
+    }
+
+    container.innerHTML = data.map(p => {
+        const fotos = p.imagenes ? p.imagenes.split('|') : [];
+        const fotoPrincipal = fotos[0] || '';
+
+        return `
+            <div class="admin-product-item" data-id="${p.id}">
+                <img src="${fotoPrincipal}" alt="${p.nombre || 'Producto'}">
+
+                <div class="admin-product-item-info">
+                    <strong>${p.nombre || 'Sin nombre'}</strong>
+                    <span>${p.precio || 0} Bs</span>
+                </div>
+
+                <div class="admin-product-actions">
+                    <button onclick="editarProductoAdmin(${p.id})">
+                        Editar
+                    </button>
+
+                    <button onclick="eliminarProductoAdmin(${p.id})">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+        
+        
+        async function editarProductoAdmin(id) {
+    const { data, error } = await supabaseClient
+        .from('products')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    if (error) {
+        console.error('Error cargando producto:', error);
+        alert('No se pudo cargar el producto para editar.');
+        return;
+    }
+
+    document.getElementById('admin-name').value = data.nombre || '';
+    document.getElementById('admin-price').value = data.precio || '';
+    document.getElementById('admin-description').value = data.descripcion || '';
+    document.getElementById('admin-category').value = data.categoria || '';
+    document.getElementById('admin-sizes').value = data.tallas || '';
+    document.getElementById('admin-colors').value = data.colores || '';
+
+    document.getElementById('admin-product-form').dataset.editingId = id;
+
+    const boton = document.querySelector('#admin-product-form .admin-publish-btn');
+    boton.textContent = 'Guardar cambios';
+
+    window.scrollTo({
+        top: document.getElementById('admin-product-form').offsetTop - 20,
+        behavior: 'smooth'
+    });
+}
+        async function eliminarProductoAdmin(id) {
+    const confirmar = confirm('¿Seguro que quieres eliminar este producto?');
+
+    if (!confirmar) return;
+
+    const { error } = await supabaseClient
+        .from('products')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error eliminando producto:', error);
+        alert('No se pudo eliminar el producto.');
+        return;
+    }
+
+    alert('Producto eliminado correctamente.');
+    location.reload();
+}
         const products = [
             {
                 id: 1,
