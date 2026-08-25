@@ -1521,7 +1521,7 @@
     <p id="admin-login-message" style="margin-top:15px; font-size:13px;"></p>
 
 </div>
-        <div class="admin-form">
+        <div class="admin-form" id="admin-product-form" style="display:none;">
 
             <label>Fotos del producto</label>
             <input type="file" id="admin-images" accept="image/*" multiple>
@@ -1615,6 +1615,46 @@
 
 
 
+
+        async function iniciarSesionAdmin() {
+    const email = document.getElementById('admin-email').value.trim();
+    const password = document.getElementById('admin-password').value;
+    const mensaje = document.getElementById('admin-login-message');
+
+    if (!email || !password) {
+        mensaje.textContent = 'Completa correo y contraseña.';
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) {
+        console.error(error);
+        mensaje.textContent = 'Correo o contraseña incorrectos.';
+        return;
+    }
+
+    mensaje.textContent = 'Sesión iniciada correctamente.';
+    actualizarPanelAdmin();
+}
+
+async function actualizarPanelAdmin() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    const loginBox = document.getElementById('admin-login-box');
+    const formulario = document.getElementById('admin-product-form');
+
+    if (session) {
+        loginBox.style.display = 'none';
+        formulario.style.display = 'block';
+    } else {
+        loginBox.style.display = 'block';
+        formulario.style.display = 'none';
+    }
+}
         async function publicarProducto() {
     const files = document.getElementById('admin-images').files;
     const nombre = document.getElementById('admin-name').value.trim();
@@ -2153,6 +2193,7 @@ window.addEventListener('popstate', function(event) {
 if (TIENDA_ACTIVA) {
     cargarProductosSupabase();
     renderProducts('Todas');
+    actualizarPanelAdmin();
 
     const initialView = location.hash.replace('#', '') || 'catalog';
 
