@@ -1116,6 +1116,45 @@
         height: 80px;
     }
 }
+    
+    /* Fotos actuales al editar un producto */
+#admin-current-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0 18px;
+}
+
+.admin-current-image {
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+.admin-current-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.admin-current-image button {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    background: #700b0b;
+    color: white;
+    font-size: 17px;
+    line-height: 24px;
+    padding: 0;
+    cursor: pointer;
+}
+    
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -1552,6 +1591,8 @@
             <label>Fotos del producto</label>
             <input type="file" id="admin-images" accept="image/*" multiple>
 
+            <div id="admin-current-images"></div>
+
             <label>Nombre del producto</label>
             <input type="text" id="admin-name" placeholder="Ej: Conjunto Ruth">
 
@@ -1744,7 +1785,11 @@ const datosProducto = {
     colores: colores
 };
 
-if (urls.length > 0) {
+if (editingId) {
+    const contenedorFotos = document.getElementById('admin-current-images');
+    const fotosActuales = JSON.parse(contenedorFotos.dataset.images || '[]');
+    datosProducto.imagenes = [...fotosActuales, ...urls].join('|');
+} else {
     datosProducto.imagenes = urls.join('|');
 }
 
@@ -1780,6 +1825,9 @@ if (editingId) {
     document.getElementById('admin-category').value = '';
     document.getElementById('admin-sizes').value = '';
     document.getElementById('admin-colors').value = '';
+
+            document.getElementById('admin-current-images').innerHTML = '';
+document.getElementById('admin-current-images').dataset.images = '[]';
 
             delete document.getElementById('admin-product-form').dataset.editingId;
 
@@ -1886,7 +1934,20 @@ boton.textContent = 'Publicar producto';
     document.getElementById('admin-sizes').value = data.tallas || '';
     document.getElementById('admin-colors').value = data.colores || '';
 
-    document.getElementById('admin-product-form').dataset.editingId = id;
+    
+            const contenedorFotos = document.getElementById('admin-current-images');
+const fotosActuales = data.imagenes ? data.imagenes.split('|') : [];
+
+contenedorFotos.innerHTML = fotosActuales.map((url, index) => `
+    <div class="admin-current-image">
+        <img src="${url}" alt="Foto ${index + 1}">
+        <button type="button" onclick="eliminarFotoActual(${index})">×</button>
+    </div>
+`).join('');
+
+contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
+            
+            document.getElementById('admin-product-form').dataset.editingId = id;
 
     const boton = document.querySelector('#admin-product-form .admin-publish-btn');
     boton.textContent = 'Guardar cambios';
@@ -1896,6 +1957,24 @@ boton.textContent = 'Publicar producto';
         behavior: 'smooth'
     });
 }
+        
+
+        function eliminarFotoActual(index) {
+    const contenedorFotos = document.getElementById('admin-current-images');
+    let fotos = JSON.parse(contenedorFotos.dataset.images || '[]');
+
+    fotos.splice(index, 1);
+
+    contenedorFotos.dataset.images = JSON.stringify(fotos);
+
+    contenedorFotos.innerHTML = fotos.map((url, i) => `
+        <div class="admin-current-image">
+            <img src="${url}" alt="Foto ${i + 1}">
+            <button type="button" onclick="eliminarFotoActual(${i})">×</button>
+        </div>
+    `).join('');
+}
+        
         async function eliminarProductoAdmin(id) {
     const confirmar = confirm('¿Seguro que quieres eliminar este producto?');
 
