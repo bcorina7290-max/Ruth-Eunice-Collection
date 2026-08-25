@@ -1502,6 +1502,25 @@
             <p>Completa los datos y publica un nuevo producto en el catálogo.</p>
         </div>
 
+        
+        <!-- ===== LOGIN ADMIN ===== -->
+<div id="admin-login-box" class="admin-form" style="margin-bottom: 30px;">
+
+    <h3 style="margin-bottom: 20px;">Iniciar sesión</h3>
+
+    <label>Correo</label>
+    <input type="email" id="admin-email" placeholder="Correo de administrador">
+
+    <label>Contraseña</label>
+    <input type="password" id="admin-password" placeholder="Contraseña">
+
+    <button class="admin-publish-btn" onclick="iniciarSesionAdmin()">
+        Iniciar sesión
+    </button>
+
+    <p id="admin-login-message" style="margin-top:15px; font-size:13px;"></p>
+
+</div>
         <div class="admin-form">
 
             <label>Fotos del producto</label>
@@ -1525,9 +1544,9 @@
             <label>Colores</label>
             <input type="text" id="admin-colors" placeholder="Ej: Negro, Rojo">
 
-            <button class="admin-publish-btn">
-                Publicar producto
-            </button>
+            <button class="admin-publish-btn" onclick="publicarProducto()">
+    Publicar producto
+</button>
 
         </div>
 
@@ -1594,6 +1613,76 @@
 
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+
+
+        async function publicarProducto() {
+    const files = document.getElementById('admin-images').files;
+    const nombre = document.getElementById('admin-name').value.trim();
+    const precio = document.getElementById('admin-price').value.trim();
+    const descripcion = document.getElementById('admin-description').value.trim();
+    const categoria = document.getElementById('admin-category').value.trim();
+    const tallas = document.getElementById('admin-sizes').value.trim();
+    const colores = document.getElementById('admin-colors').value.trim();
+
+    if (!nombre || !precio || files.length === 0) {
+        alert('Por favor completa nombre, precio y al menos una foto.');
+        return;
+    }
+
+    const urls = [];
+
+    for (const file of files) {
+        const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '-' + file.name;
+
+        const { error: uploadError } = await supabaseClient
+            .storage
+            .from('productos')
+            .upload(fileName, file);
+
+        if (uploadError) {
+            console.error(uploadError);
+            alert('Hubo un error al subir una de las fotos.');
+            return;
+        }
+
+        const { data: publicUrlData } = supabaseClient
+            .storage
+            .from('productos')
+            .getPublicUrl(fileName);
+
+        urls.push(publicUrlData.publicUrl);
+    }
+
+    const { error: insertError } = await supabaseClient
+        .from('products')
+        .insert([{
+            nombre: nombre,
+            precio: Number(precio),
+            descripcion: descripcion,
+            categoria: categoria,
+            tallas: tallas,
+            colores: colores,
+            imagenes: urls.join('|')
+        }]);
+
+    if (insertError) {
+        console.error(insertError);
+        alert('Las fotos subieron, pero hubo un error al guardar el producto.');
+        return;
+    }
+
+    alert('Producto publicado correctamente');
+
+    document.getElementById('admin-images').value = '';
+    document.getElementById('admin-name').value = '';
+    document.getElementById('admin-price').value = '';
+    document.getElementById('admin-description').value = '';
+    document.getElementById('admin-category').value = '';
+    document.getElementById('admin-sizes').value = '';
+    document.getElementById('admin-colors').value = '';
+
+    location.reload();
+}
         async function cargarProductosSupabase() {
     const { data, error } = await supabaseClient
         .from('products')
@@ -1614,7 +1703,7 @@
         category: p.categoria,
         brand: "RUTH EUNICE",
         desc: p.descripcion || "",
-        images: p.imagenes ? [p.imagenes] : [],
+        images: p.imagenes ? p.imagenes.split('|') : [],
         color: p.colores || "",
         sizes: p.tallas ? p.tallas.split('') : []
     });
