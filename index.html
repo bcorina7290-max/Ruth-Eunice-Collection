@@ -1090,6 +1090,32 @@
     font-family: 'Wondar Quason', serif;
     font-weight: normal;
 }
+    
+    
+    /* Miniaturas de productos en el panel de administración */
+.admin-product-item img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.admin-product-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .admin-product-item img {
+        width: 80px;
+        height: 80px;
+    }
+}
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
