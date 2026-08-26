@@ -2006,8 +2006,9 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
         function renderProducts(filter = 'Todas') {
             activeFilter = filter;
             const filtered = filter === 'Todas' ? products : products.filter(p => p.category === filter);
+const homeProducts = filtered.slice(0, 8);
             
-            const htmlContent = filtered.map(p => `
+            const htmlContentHome = homeProducts.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
                     <div class="product-img-container">
                         <img src="${p.images[0]}" alt="${p.name}" class="product-img">
@@ -2021,10 +2022,27 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
                 </div>
             `).join('');
 
-            document.getElementById('product-grid').innerHTML = htmlContent;
-            if(document.getElementById('product-grid-catalog')) {
-                document.getElementById('product-grid-catalog').innerHTML = htmlContent;
-            }
+            const htmlContent = filtered.map(p => `
+    <div class="product-card" onclick="openDetail(${p.id})">
+        <div class="product-img-container">
+            <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">${p.name}</h3>
+            <div class="product-price">${p.price} Bs</div>
+            <div class="product-tags"><span class="tag">${p.color}</span></div>
+            <button class="btn-whatsapp-buy" onclick="event.stopPropagation(); openDetail(${p.id})">
+                Ver Detalles <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+`).join('');
+
+            document.getElementById('product-grid').innerHTML = htmlContentHome;
+
+if(document.getElementById('product-grid-catalog')) {
+    document.getElementById('product-grid-catalog').innerHTML = htmlContent;
+}
         }
 
         function searchProducts() {
