@@ -327,6 +327,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+            position: relative;
 }
 
         .product-img {
@@ -335,6 +336,30 @@
             object-fit: cover;
             object-position: top center;
         }
+        .product-img-main,
+.product-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.45s ease;
+}
+
+.product-img-main {
+    opacity: 1;
+}
+
+.product-img-hover {
+    opacity: 0;
+}
+
+.product-img-container:hover .product-img-main {
+    opacity: 0;
+}
+
+.product-img-container:hover .product-img-hover {
+    opacity: 1;
+}
+        
 
         .product-info {
             padding: 20px;
@@ -2053,10 +2078,9 @@ const homeProducts = filtered.slice(0, 8);
             const htmlContentHome = homeProducts.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
                     <div class="product-img-container">
-                        <img src="${p.images[0]}" alt="${p.name}" class="product-img"
-     onmouseenter="this.src='${p.images[1] || p.images[0]}'"
-     onmouseleave="this.src='${p.images[0]}'">
-                    </div>
+    <img src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
+    <img src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
+</div>
                     <div class="product-info">
                         <h3 class="product-title">${p.name}</h3>
                         <div class="product-price">${p.price} Bs</div>
@@ -2069,7 +2093,9 @@ const homeProducts = filtered.slice(0, 8);
             const htmlContent = filtered.map(p => `
     <div class="product-card" onclick="openDetail(${p.id})">
         <div class="product-img-container">
-            <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+            <img src="${p.images[0]}" alt="${p.name}" class="product-img"
+     onmouseenter="this.src='${p.images[1] || p.images[0]}'"
+     onmouseleave="this.src='${p.images[0]}'">
         </div>
         <div class="product-info">
             <h3 class="product-title">${p.name}</h3>
