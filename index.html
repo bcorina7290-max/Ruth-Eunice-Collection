@@ -2093,10 +2093,9 @@ const homeProducts = filtered.slice(0, 8);
             const htmlContent = filtered.map(p => `
     <div class="product-card" onclick="openDetail(${p.id})">
         <div class="product-img-container">
-            <img src="${p.images[0]}" alt="${p.name}" class="product-img"
-     onmouseenter="this.src='${p.images[1] || p.images[0]}'"
-     onmouseleave="this.src='${p.images[0]}'">
-        </div>
+    <img src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
+    <img src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
+</div>
         <div class="product-info">
             <h3 class="product-title">${p.name}</h3>
             <div class="product-price">${p.price} Bs</div>
