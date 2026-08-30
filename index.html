@@ -1900,6 +1900,23 @@ if (editingId) {
 } else {
     datosProducto.imagenes = urls.join('|');
 
+    const { data: ultimoProducto, error: ordenError } = await supabaseClient
+        .from('products')
+        .select('orden')
+        .order('orden', { ascending: false })
+        .limit(1);
+
+    if (ordenError) {
+        console.error(ordenError);
+        alert('No se pudo calcular la posición del producto.');
+        return;
+    }
+
+    datosProducto.orden =
+        ultimoProducto && ultimoProducto.length > 0
+            ? (ultimoProducto[0].orden || 0) + 1
+            : 1;
+
     const { error } = await supabaseClient
         .from('products')
         .insert([datosProducto]);
