@@ -1968,13 +1968,16 @@ boton.textContent = 'Publicar producto';
                 </div>
 
                 <div class="admin-product-actions">
-    <button onclick="moverProductoAdmin(${p.id}, 'subir')">
-        ⬆ Subir
-    </button>
-
-    <button onclick="moverProductoAdmin(${p.id}, 'bajar')">
-        ⬇ Bajar
-    </button>
+    <div class="admin-order-control">
+    <label>Posición:</label>
+    <input 
+        type="number" 
+        min="1"
+        value="${p.orden || 1}"
+        onchange="cambiarPosicionAdmin(${p.id}, this.value)"
+        style="width:70px; padding:8px; text-align:center;"
+    >
+</div>
 
     <button onclick="editarProductoAdmin(${p.id})">
         Editar
@@ -1991,7 +1994,11 @@ boton.textContent = 'Publicar producto';
         
         
         
-        async function moverProductoAdmin(id, direccion) {
+        async function cambiarPosicionAdmin(id, nuevaPosicion) {
+    nuevaPosicion = parseInt(nuevaPosicion);
+
+    if (!nuevaPosicion || nuevaPosicion < 1) return;
+
     const { data: productos, error } = await supabaseClient
         .from('products')
         .select('id, orden')
@@ -1999,45 +2006,52 @@ boton.textContent = 'Publicar producto';
 
     if (error || !productos) {
         console.error(error);
-        alert('No se pudo cambiar el orden.');
+        alert('No se pudo cambiar la posición.');
         return;
     }
 
-    const indice = productos.findIndex(p => p.id === id);
+    const productoActual = productos.find(p => p.id === id);
+    if (!productoActual) return;
 
-    if (indice === -1) return;
+    const posicionAnterior = productoActual.orden;
 
-    const otroIndice = direccion === 'subir' ? indice - 1 : indice + 1;
+    if (nuevaPosicion > productos.length) {
+        nuevaPosicion = productos.length;
+    }
 
-    if (otroIndice < 0 || otroIndice >= productos.length) return;
+    if (nuevaPosicion === posicionAnterior) return;
 
-    const actual = productos[indice];
-    const otro = productos[otroIndice];
+    if (nuevaPosicion < posicionAnterior) {
 
-    const ordenActual = actual.orden;
-    const ordenOtro = otro.orden;
+        const afectados = productos.filter(
+            p => p.orden >= nuevaPosicion && p.orden < posicionAnterior
+        );
 
-    const { error: error1 } = await supabaseClient
+        for (const p of afectados) {
+            await supabaseClient
+                .from('products')
+                .update({ orden: p.orden + 1 })
+                .eq('id', p.id);
+        }
+
+    } else {
+
+        const afectados = productos.filter(
+            p => p.orden > posicionAnterior && p.orden <= nuevaPosicion
+        );
+
+        for (const p of afectados) {
+            await supabaseClient
+                .from('products')
+                .update({ orden: p.orden - 1 })
+                .eq('id', p.id);
+        }
+    }
+
+    await supabaseClient
         .from('products')
-        .update({ orden: ordenOtro })
-        .eq('id', actual.id);
-
-    if (error1) {
-        console.error(error1);
-        alert('No se pudo cambiar el orden.');
-        return;
-    }
-
-    const { error: error2 } = await supabaseClient
-        .from('products')
-        .update({ orden: ordenActual })
-        .eq('id', otro.id);
-
-    if (error2) {
-        console.error(error2);
-        alert('No se pudo cambiar el orden.');
-        return;
-    }
+        .update({ orden: nuevaPosicion })
+        .eq('id', id);
 
     await cargarProductosAdmin();
 }
