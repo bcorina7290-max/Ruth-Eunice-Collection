@@ -1906,7 +1906,8 @@ boton.textContent = 'Publicar producto';
         async function cargarProductosSupabase() {
     const { data, error } = await supabaseClient
         .from('products')
-        .select('*');
+.select('*')
+.order('orden', { ascending: true });
 
     if (error) {
         console.error('Error leyendo productos de Supabase:', error);
