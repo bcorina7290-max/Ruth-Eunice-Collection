@@ -2223,7 +2223,7 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
         function renderProducts(filter = 'Todas') {
             activeFilter = filter;
             const filtered = filter === 'Todas' ? products : products.filter(p => p.category === filter);
-const homeProducts = filtered.slice(0, 8);
+const homeProducts = products.slice(0, 8);
             
             const htmlContentHome = homeProducts.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
