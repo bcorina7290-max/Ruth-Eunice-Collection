@@ -1218,6 +1218,25 @@
     padding: 0;
     cursor: pointer;
 }
+
+        #view-catalog .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 28px 0 32px;
+}
+
+#view-catalog .filter-pill {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    #view-catalog .category-filters {
+        gap: 10px;
+        margin: 24px 0 28px;
+    }
+}
     
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
