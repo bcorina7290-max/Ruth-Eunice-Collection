@@ -1852,13 +1852,34 @@ async function actualizarPanelAdmin() {
 
     let insertError;
 
+            let nuevoOrden = 0;
+
+if (!editingId) {
+    const { data: ultimoProducto, error: ordenError } = await supabaseClient
+        .from('products')
+        .select('orden')
+        .order('orden', { ascending: false })
+        .limit(1);
+
+    if (ordenError) {
+        console.error(ordenError);
+        alert('No se pudo calcular la posición del producto.');
+        return;
+    }
+
+    nuevoOrden = ultimoProducto && ultimoProducto.length > 0
+        ? (ultimoProducto[0].orden || 0) + 1
+        : 1;
+}
+
 const datosProducto = {
     nombre: nombre,
     precio: Number(precio),
     descripcion: descripcion,
     categoria: categoria,
     tallas: tallas,
-    colores: colores
+    colores: colores,
+    ...(editingId ? {} : { orden: nuevoOrden })
 };
 
 if (editingId) {
