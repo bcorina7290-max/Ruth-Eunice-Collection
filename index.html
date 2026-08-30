@@ -2166,8 +2166,21 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
         
         async function eliminarProductoAdmin(id) {
     const confirmar = confirm('¿Seguro que quieres eliminar este producto?');
-
     if (!confirmar) return;
+
+    const { data: producto, error: errorBuscar } = await supabaseClient
+        .from('products')
+        .select('orden')
+        .eq('id', id)
+        .single();
+
+    if (errorBuscar || !producto) {
+        console.error(errorBuscar);
+        alert('No se pudo obtener la posición del producto.');
+        return;
+    }
+
+    const ordenEliminado = producto.orden;
 
     const { error } = await supabaseClient
         .from('products')
@@ -2178,6 +2191,21 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
         console.error('Error eliminando producto:', error);
         alert('No se pudo eliminar el producto.');
         return;
+    }
+
+    const { data: productosPosteriores, error: errorPosteriores } = await supabaseClient
+        .from('products')
+        .select('id, orden')
+        .gt('orden', ordenEliminado)
+        .order('orden', { ascending: true });
+
+    if (!errorPosteriores && productosPosteriores) {
+        for (const p of productosPosteriores) {
+            await supabaseClient
+                .from('products')
+                .update({ orden: p.orden - 1 })
+                .eq('id', p.id);
+        }
     }
 
     alert('Producto eliminado correctamente.');
