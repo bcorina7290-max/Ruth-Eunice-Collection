@@ -1184,15 +1184,34 @@
     /* Fotos actuales al editar un producto */
 #admin-current-images {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 12px;
     margin: 12px 0 18px;
+    overflow-x: auto;
+    padding: 10px 4px 14px;
+    align-items: center;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 .admin-current-image {
     position: relative;
     width: 90px;
     height: 90px;
+    flex: 0 0 90px;
+}
+
+        .foto-principal-label {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .admin-current-image img {
@@ -1240,6 +1259,7 @@
     
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 </head>
 <body>
 
@@ -2158,11 +2178,13 @@ const fotosActuales = data.imagenes ? data.imagenes.split('|') : [];
 contenedorFotos.innerHTML = fotosActuales.map((url, index) => `
     <div class="admin-current-image">
         <img src="${url}" alt="Foto ${index + 1}">
+        ${index === 0 ? '<span class="foto-principal-label">Principal</span>' : ''}
         <button type="button" onclick="eliminarFotoActual(${index})">×</button>
     </div>
 `).join('');
 
 contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
+            activarOrdenFotos();
             
             document.getElementById('admin-product-form').dataset.editingId = id;
 
@@ -2185,11 +2207,64 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
     contenedorFotos.dataset.images = JSON.stringify(fotos);
 
     contenedorFotos.innerHTML = fotos.map((url, i) => `
-        <div class="admin-current-image">
+    <div class="admin-current-image">
+        <img src="${url}" alt="Foto ${i + 1}">
+        ${i === 0 ? '<span class="foto-principal-label">Principal</span>' : ''}
+        <button type="button" onclick="eliminarFotoActual(${i})">×</button>
+    </div>
+`).join('');
+}
+
+        function moverFotoActual(desde, hasta) {
+    const contenedorFotos = document.getElementById('admin-current-images');
+    let fotos = JSON.parse(contenedorFotos.dataset.images || '[]');
+
+    const [fotoMovida] = fotos.splice(desde, 1);
+    fotos.splice(hasta, 0, fotoMovida);
+
+    contenedorFotos.dataset.images = JSON.stringify(fotos);
+
+    contenedorFotos.innerHTML = fotos.map((url, i) => `
+        <div class="admin-current-image" draggable="true"
+             ondragstart="event.dataTransfer.setData('text/plain', ${i})"
+             ondragover="event.preventDefault()"
+             ondrop="moverFotoActual(parseInt(event.dataTransfer.getData('text/plain')), ${i})">
             <img src="${url}" alt="Foto ${i + 1}">
+            ${i === 0 ? '<span class="foto-principal-label">Principal</span>' : ''}
             <button type="button" onclick="eliminarFotoActual(${i})">×</button>
         </div>
     `).join('');
+}
+        function activarOrdenFotos() {
+    const contenedorFotos = document.getElementById('admin-current-images');
+
+    if (!contenedorFotos || contenedorFotos.sortableActivado) return;
+
+    Sortable.create(contenedorFotos, {
+        animation: 180,
+        delay: 150,
+        delayOnTouchOnly: true,
+        touchStartThreshold: 5,
+
+        onEnd: function(evt) {
+    let fotos = JSON.parse(contenedorFotos.dataset.images || '[]');
+
+    const [fotoMovida] = fotos.splice(evt.oldIndex, 1);
+    fotos.splice(evt.newIndex, 0, fotoMovida);
+
+    contenedorFotos.dataset.images = JSON.stringify(fotos);
+
+    contenedorFotos.innerHTML = fotos.map((url, i) => `
+        <div class="admin-current-image">
+            <img src="${url}" alt="Foto ${i + 1}">
+            ${i === 0 ? '<span class="foto-principal-label">Principal</span>' : ''}
+            <button type="button" onclick="eliminarFotoActual(${i})">×</button>
+        </div>
+    `).join('');
+}
+    });
+
+    contenedorFotos.sortableActivado = true;
 }
         
         async function eliminarProductoAdmin(id) {
