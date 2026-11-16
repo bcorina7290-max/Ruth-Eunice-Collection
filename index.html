@@ -2331,8 +2331,8 @@ const homeProducts = products.slice(0, 8);
             const htmlContentHome = homeProducts.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
                     <div class="product-img-container">
-    <img src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
-    <img src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
+   <img loading="lazy" src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
+    <img loading="lazy" src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
 </div>
                     <div class="product-info">
                         <h3 class="product-title">${p.name}</h3>
@@ -2346,8 +2346,8 @@ const homeProducts = products.slice(0, 8);
             const htmlContent = filtered.map(p => `
     <div class="product-card" onclick="openDetail(${p.id})">
         <div class="product-img-container">
-    <img src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
-    <img src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
+    <img loading="lazy" src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
+    <img loading="lazy" src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
 </div>
         <div class="product-info">
             <h3 class="product-title">${p.name}</h3>
