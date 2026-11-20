@@ -2683,7 +2683,7 @@ function changeMainImage(src, thumbElement) {
     img.style.transition = 'opacity 0.16s ease, transform 0.16s ease, filter 0.16s ease';
     img.style.opacity = '0.45';
     img.style.transform = 'translateX(-45px)';
-    img.style.filter = 'brightness(1.5)';
+    img.style.filter = 'brightness(1.08)';
 
     img._transitionTimer = setTimeout(() => {
         img.src = src;
@@ -2691,7 +2691,7 @@ function changeMainImage(src, thumbElement) {
         img.style.transition = 'none';
         img.style.opacity = '0.45';
         img.style.transform = 'translateX(45px)';
-        img.style.filter = 'brightness(1.5)';
+        img.style.filter = 'brightness(1.08)';
 
         void img.offsetWidth;
 
