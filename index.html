@@ -2359,9 +2359,10 @@ const homeProducts = products.slice(0, 8);
                 </div>
             `).join('');
 
-            const startIndex = (currentPage - 1) * productsPerPage;
+            const isMobile = window.innerWidth <= 768;
+const startIndex = (currentPage - 1) * productsPerPage;
 const endIndex = startIndex + productsPerPage;
-const paginatedProducts = filtered.slice(startIndex, endIndex);
+const paginatedProducts = isMobile ? filtered : filtered.slice(startIndex, endIndex);
 
 const htmlContent = paginatedProducts.map(p => `
     <div class="product-card" onclick="openDetail(${p.id})">
@@ -2398,6 +2399,7 @@ if (!paginationContainer) {
     const totalPages = Math.ceil(filtered.length / productsPerPage);
 
 paginationContainer.innerHTML = '';
+    paginationContainer.style.display = isMobile ? 'none' : 'flex';
 
 if (totalPages > 1) {
     const paginationButtons = [];
