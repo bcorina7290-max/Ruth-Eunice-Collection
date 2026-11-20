@@ -2557,13 +2557,14 @@ function changeSearchPage(page) {
 }
 
         function filterCategory(category) {
+            switchView('catalog');
             document.querySelectorAll('.filter-pill').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'Todas' && btn.innerText === 'Ver todo')) {
                     btn.classList.add('active');
                 }
             });
-            switchView('catalog');
+            
             currentPage = 1;
 renderProducts(category);
         }
