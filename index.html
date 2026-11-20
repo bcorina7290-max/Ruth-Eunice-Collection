@@ -1411,7 +1411,7 @@
         >
     </div>
 
-    <button class="catalog-search-button" onclick="searchProducts()">
+    <button class="catalog-search-button" onclick="currentPage = 1; searchProducts()"
     Buscar
 </button>
 </div>
@@ -1427,6 +1427,8 @@
             <div class="products-grid" id="product-grid-catalog">
                 <!-- Generado por JS -->
             </div>
+            
+            <div id="catalog-pagination"></div>
         </div>
     </div>
 
@@ -2323,6 +2325,10 @@ contenedorFotos.dataset.images = JSON.stringify(fotosActuales);
         let selectedSize = '';
         let activeFilter = 'Todas';
 
+        let currentPage = 1;
+const productsPerPage = 12;
+let catalogSearchText = '';
+
         function renderProducts(filter = 'Todas') {
             activeFilter = filter;
             const filtered = filter === 'Todas' ? products : products.filter(p => p.category === filter);
@@ -2343,7 +2349,11 @@ const homeProducts = products.slice(0, 8);
                 </div>
             `).join('');
 
-            const htmlContent = filtered.map(p => `
+            const startIndex = (currentPage - 1) * productsPerPage;
+const endIndex = startIndex + productsPerPage;
+const paginatedProducts = filtered.slice(startIndex, endIndex);
+
+const htmlContent = paginatedProducts.map(p => `
     <div class="product-card" onclick="openDetail(${p.id})">
         <div class="product-img-container">
     <img loading="lazy" src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
@@ -2364,9 +2374,77 @@ const homeProducts = products.slice(0, 8);
 
 if(document.getElementById('product-grid-catalog')) {
     document.getElementById('product-grid-catalog').innerHTML = htmlContent;
+    let paginationContainer = document.getElementById('catalog-pagination');
+
+if (!paginationContainer) {
+    paginationContainer = document.createElement('div');
+    paginationContainer.id = 'catalog-pagination';
+    paginationContainer.style.cssText =
+        'display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:35px 0;';
+
+    document.getElementById('product-grid-catalog')
+        .insertAdjacentElement('afterend', paginationContainer);
+}
+    const totalPages = Math.ceil(filtered.length / productsPerPage);
+
+paginationContainer.innerHTML = '';
+
+if (totalPages > 1) {
+    const paginationButtons = [];
+
+    paginationButtons.push(`
+        <button onclick="changeCatalogPage(${currentPage - 1})"
+            ${currentPage === 1 ? 'disabled' : ''}>
+            Anterior
+        </button>
+    `);
+
+    for (let page = 1; page <= totalPages; page++) {
+        paginationButtons.push(`
+            <button onclick="changeCatalogPage(${page})"
+                style="${page === currentPage
+                    ? 'background:#e9a8b8;color:white;border-color:#e9a8b8;'
+                    : ''}">
+                ${page}
+            </button>
+        `);
+    }
+
+    paginationButtons.push(`
+        <button onclick="changeCatalogPage(${currentPage + 1})"
+            ${currentPage === totalPages ? 'disabled' : ''}>
+            Siguiente
+        </button>
+    `);
+
+    paginationContainer.innerHTML = paginationButtons.join('');
+
+    paginationContainer.querySelectorAll('button').forEach(button => {
+        button.style.padding = '10px 16px';
+        button.style.borderRadius = '25px';
+        button.style.border = '1px solid #e9a8b8';
+        button.style.cursor = button.disabled ? 'default' : 'pointer';
+        button.style.fontFamily = 'inherit';
+    });
+}
 }
         }
 
+        function changeCatalogPage(page) {
+    const totalPages = Math.ceil(
+        products.filter(p =>
+            activeFilter === 'Todas' || p.category === activeFilter
+        ).length / productsPerPage
+    );
+
+    if (page < 1 || page > totalPages) return;
+
+    currentPage = page;
+    renderProducts(activeFilter);
+
+    document.getElementById('view-catalog')
+        .scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
         function searchProducts() {
 
     const searchText = document
@@ -2379,10 +2457,13 @@ if(document.getElementById('product-grid-catalog')) {
         product.name.toLowerCase().includes(searchText)
     );
 
-    const htmlContent = filtered.map(p => `
+    
+            const startIndex = (currentPage - 1) * productsPerPage;
+const visibleProducts = filtered.slice(startIndex, startIndex + productsPerPage);
+const htmlContent = visibleProducts.map(p => `
         <div class="product-card" onclick="openDetail(${p.id})">
             <div class="product-img-container">
-                <img src="${p.images[0]}" alt="${p.name}" class="product-img">
+                <img loading="lazy" decoding="async" src="${p.images[0]}" alt="${p.name}" class="product-img">
             </div>
 
             <div class="product-info">
@@ -2404,7 +2485,65 @@ if(document.getElementById('product-grid-catalog')) {
 
     document.getElementById('product-grid-catalog').innerHTML =
         htmlContent || '<p style="text-align:center;">No encontramos productos con ese nombre.</p>';
+            const paginationContainer = document.getElementById('catalog-pagination');
+
+if (paginationContainer) {
+    const totalPages = Math.ceil(filtered.length / productsPerPage);
+
+    paginationContainer.innerHTML = '';
+
+    if (totalPages > 1) {
+        const buttons = [];
+
+        buttons.push(`<button onclick="changeSearchPage(${currentPage - 1})"
+            ${currentPage === 1 ? 'disabled' : ''}>Anterior</button>`);
+
+        for (let page = 1; page <= totalPages; page++) {
+            buttons.push(`<button onclick="changeSearchPage(${page})"
+                style="${page === currentPage ? 'background:#e9a8b8;color:white;border-color:#e9a8b8;' : ''}">
+                ${page}</button>`);
+        }
+
+        buttons.push(`<button onclick="changeSearchPage(${currentPage + 1})"
+            ${currentPage === totalPages ? 'disabled' : ''}>Siguiente</button>`);
+
+        paginationContainer.innerHTML = buttons.join('');
+
+        paginationContainer.style.cssText =
+            'display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:35px 0;';
+
+        paginationContainer.querySelectorAll('button').forEach(button => {
+            button.style.padding = '10px 16px';
+            button.style.borderRadius = '25px';
+            button.style.border = '1px solid #e9a8b8';
+            button.style.cursor = button.disabled ? 'default' : 'pointer';
+            button.style.fontFamily = 'inherit';
+        });
+    }
 }
+}
+        
+        
+function changeSearchPage(page) {
+    const searchText = document.getElementById('product-search').value
+        .toLowerCase()
+        .trim();
+
+    const totalResults = products.filter(p =>
+        p.name.toLowerCase().includes(searchText)
+    ).length;
+
+    const totalPages = Math.ceil(totalResults / productsPerPage);
+
+    if (page < 1 || page > totalPages) return;
+
+    currentPage = page;
+    searchProducts();
+
+    document.getElementById('view-catalog')
+        .scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
         function filterCategory(category) {
             document.querySelectorAll('.filter-pill').forEach(btn => {
                 btn.classList.remove('active');
