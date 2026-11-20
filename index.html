@@ -2570,6 +2570,16 @@ renderProducts(category);
             });
 
             document.getElementById('view-' + viewName).classList.add('active');
+            if (viewName === 'catalog') {
+    document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.trim().toLowerCase() === 'ver todo') {
+            btn.classList.add('active');
+        }
+    });
+    currentPage = 1;
+    renderProducts('Todas');
+}
             if(document.getElementById('link-' + viewName)) {
                 document.getElementById('link-' + viewName).classList.add('active');
             }
