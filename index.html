@@ -2776,16 +2776,26 @@ function changeMainImage(src, thumbElement) {
             }
             updateCartUI();
 
-            const btn = document.getElementById('btn-add-cart-action');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "¡Añadido al Carrito!";
-            btn.style.background = "#e8a5b2";
-            btn.style.color = "white";
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = "white";
-                btn.style.color = "var(--text-dark)";
-            }, 1200);
+            
+const btn = document.getElementById('btn-add-cart-action');
+const originalText = btn.innerHTML;
+
+btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+btn.style.background = '#28a745';
+btn.style.color = 'white';
+btn.style.borderColor = '#28a745';
+btn.style.borderRadius = '50%';
+btn.style.fontSize = '24px';
+
+setTimeout(() => {
+    btn.innerHTML = originalText;
+    btn.style.background = 'white';
+    btn.style.color = 'var(--text-dark)';
+    btn.style.borderColor = '#b5b5b5';
+    btn.style.borderRadius = '50%';
+    btn.style.fontSize = '20px';
+}, 1200);
+
         }
 
         
