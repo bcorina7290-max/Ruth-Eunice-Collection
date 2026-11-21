@@ -1908,6 +1908,52 @@ async function actualizarPanelAdmin() {
         listaProductos.style.display = 'none';
     }
 }
+        
+        async function optimizarImagen(file) {
+    if (!file.type.startsWith('image/')) {
+        throw new Error('El archivo no es una imagen válida');
+    }
+
+    const imagen = await createImageBitmap(file);
+    const canvas = document.createElement('canvas');
+
+    const maxWidth = 1600;
+    const maxHeight = 2000;
+
+    const escala = Math.min(
+        1,
+        maxWidth / imagen.width,
+        maxHeight / imagen.height
+    );
+
+    canvas.width = Math.round(imagen.width * escala);
+    canvas.height = Math.round(imagen.height * escala);
+
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(imagen, 0, 0, canvas.width, canvas.height);
+
+    imagen.close();
+
+    const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob(
+            resultado => resultado ? resolve(resultado) : reject(new Error('Error al optimizar imagen')),
+            'image/webp',
+            0.88
+        );
+    });
+
+    if (blob.type !== 'image/webp') {
+        throw new Error('Este navegador no admite conversión a WebP');
+    }
+
+    return new File(
+        [blob],
+        file.name.replace(/\.[^.]+$/, '') + '.webp',
+        { type: 'image/webp' }
+    );
+}
         async function publicarProducto() {
     const files = document.getElementById('admin-images').files;
     const nombre = document.getElementById('admin-name').value.trim();
@@ -1926,12 +1972,13 @@ async function actualizarPanelAdmin() {
     const urls = [];
 
     for (const file of files) {
-        const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '-' + file.name;
+        const optimizedFile = await optimizarImagen(file);
+        const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '-' + optimizedFile.name;
 
         const { error: uploadError } = await supabaseClient
             .storage
             .from('productos')
-            .upload(fileName, file);
+            .upload(fileName, optimizedFile, { contentType: 'image/webp' });
 
         if (uploadError) {
             console.error(uploadError);
