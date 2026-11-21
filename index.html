@@ -2680,7 +2680,7 @@ function changeMainImage(src, thumbElement) {
     void img.offsetWidth;
 
     // Desvanecido blanco y desplazamiento suave
-    img.style.transition = 'opacity 0.20s ease, transform 0.20s ease, filter 0.20s ease';
+    img.style.transition = 'opacity 0.20s linear, transform 0.20s linear, filter 0.20s linear';
     img.style.opacity = '0.85';
     img.style.transform = 'translateX(-45px)';
     img.style.filter = 'brightness(1)';
@@ -2695,7 +2695,7 @@ function changeMainImage(src, thumbElement) {
 
         void img.offsetWidth;
 
-        img.style.transition = 'opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease';
+        img.style.transition = 'opacity 0.28s linear, transform 0.28s linear, filter 0.28s linear';
         img.style.opacity = '1';
         img.style.transform = 'translateX(0)';
         img.style.filter = 'brightness(1)';
