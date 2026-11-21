@@ -2788,10 +2788,23 @@ function changeMainImage(src, thumbElement) {
             }, 1200);
         }
 
-        function buyNowDirect() {
-            addToCart();
-            toggleCart();
-        }
+        
+function buyNowDirect() {
+    if (!currentProduct) return;
+
+    const mensaje = `Hola, me interesa comprar este producto:
+
+*${currentProduct.name}*
+Precio: ${currentProduct.price} Bs
+Color: ${currentProduct.color || 'Por confirmar'}
+Talla: ${selectedSize || 'Por confirmar'}
+
+¿Me confirma disponibilidad y envío?`;
+
+    const url = `https://wa.me/59162484324?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
 
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
