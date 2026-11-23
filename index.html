@@ -2115,7 +2115,7 @@ boton.textContent = 'Publicar producto';
         category: p.categoria,
         brand: "RUTH EUNICE",
         desc: p.descripcion || "",
-        images: p.imagenes ? p.imagenes.split('|') : [],
+        images: p.imagenes ? p.imagenes.split('|').map(url => optimizarUrlImagen(url, 900)) : [],
         color: p.colores || "",
         sizes: p.tallas ? p.tallas.split('') : []
     });
@@ -2750,7 +2750,22 @@ renderProducts(category);
             switchView('detail');
         }
 
-        
+
+
+        function optimizarUrlImagen(url, ancho = 900) {
+    if (!url || !url.includes('/storage/v1/object/public/')) {
+        return url;
+    }
+
+    const nuevaUrl = url.replace(
+        '/storage/v1/object/public/',
+        '/storage/v1/render/image/public/'
+    );
+
+    const separador = nuevaUrl.includes('?') ? '&' : '?';
+
+    return nuevaUrl + separador + 'width=' + ancho + '&quality=80';
+}
 function changeMainImage(src, thumbElement) {
     const img = document.getElementById('main-preview');
     if (!img) return;
@@ -2781,7 +2796,7 @@ function changeMainImage(src, thumbElement) {
     img.style.filter = 'brightness(1)';
 
     img._transitionTimer = setTimeout(() => {
-        img.src = src;
+        img.src = optimizarUrlImagen(src, 900);
 
         img.style.transition = 'none';
         img.style.opacity = '0.85';
@@ -3163,3 +3178,4 @@ document.addEventListener('dragstart', function(e) {
 
 </body>
 </html>
+
