@@ -2764,7 +2764,7 @@ renderProducts(category);
 
     const separador = nuevaUrl.includes('?') ? '&' : '?';
 
-    return nuevaUrl + separador + 'width=' + ancho + '&quality=80';
+    return nuevaUrl + separador + 'width=' + ancho + '&quality=80&resize=contain';
 }
 function changeMainImage(src, thumbElement) {
     const img = document.getElementById('main-preview');
