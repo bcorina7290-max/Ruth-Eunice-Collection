@@ -2431,8 +2431,8 @@ const homeProducts = products.slice(0, 8);
             const htmlContentHome = homeProducts.map(p => `
                 <div class="product-card" onclick="openDetail(${p.id})">
                     <div class="product-img-container">
-   <img loading="lazy" src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
-    <img loading="lazy" src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
+   <img loading="lazy" src="${optimizarUrlImagen(p.images[0], 900)}" alt="${p.name}" class="product-img product-img-main">
+    <img loading="lazy" src="${optimizarUrlImagen(p.images[1] || p.images[0], 900)}" alt="${p.name}" class="product-img product-img-hover">
 </div>
                     <div class="product-info">
                         <h3 class="product-title">${p.name}</h3>
@@ -2451,8 +2451,8 @@ const paginatedProducts = isMobile ? filtered : filtered.slice(startIndex, endIn
 const htmlContent = paginatedProducts.map(p => `
     <div class="product-card" onclick="openDetail(${p.id})">
         <div class="product-img-container">
-    <img loading="lazy" src="${p.images[0]}" alt="${p.name}" class="product-img product-img-main">
-    <img loading="lazy" src="${p.images[1] || p.images[0]}" alt="${p.name}" class="product-img product-img-hover">
+    <img loading="lazy" src="${optimizarUrlImagen(p.images[0], 900)}" alt="${p.name}" class="product-img product-img-main">
+    <img loading="lazy" src="${optimizarUrlImagen(p.images[1] || p.images[0], 900)}" alt="${p.name}" class="product-img product-img-hover">
 </div>
         <div class="product-info">
             <h3 class="product-title">${p.name}</h3>
