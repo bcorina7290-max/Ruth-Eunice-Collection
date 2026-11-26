@@ -1954,6 +1954,70 @@ const maxHeight = 2000;
         { type: 'image/webp' }
     );
 }
+
+        async function probarOptimizacion() {
+    const { data: { session }, error: authError } =
+        await supabaseClient.auth.getSession();
+
+    if (authError || !session) {
+        alert('Primero inicia sesión como administrador');
+        return;
+    }
+
+    const { data: producto, error } = await supabaseClient
+        .from('products')
+        .select('id, nombre, imagenes')
+        .eq('id', 3)
+        .single();
+
+    if (error) throw error;
+
+    const urls = producto.imagenes.split('|');
+    const resultados = [];
+
+    for (const url of urls) {
+        const respuesta = await fetch(url.trim());
+
+        if (!respuesta.ok) {
+            throw new Error('No se pudo descargar la imagen');
+        }
+
+        const blob = await respuesta.blob();
+        const archivo = new File([blob], 'foto-original', {
+            type: blob.type
+        });
+
+        const optimizada = await optimizarImagen(archivo);
+
+        const nombre = 'prueba-900-' +
+            crypto.randomUUID() + '.webp';
+
+        const { error: uploadError } = await supabaseClient
+            .storage
+            .from('productos')
+            .upload(nombre, optimizada, {
+                contentType: 'image/webp',
+                upsert: false
+            });
+
+        if (uploadError) throw uploadError;
+
+        const { data } = supabaseClient
+            .storage
+            .from('productos')
+            .getPublicUrl(nombre);
+
+        resultados.push({
+            original: url,
+            optimizada: data.publicUrl,
+            antesKB: (blob.size / 1024).toFixed(2),
+            despuesKB: (optimizada.size / 1024).toFixed(2)
+        });
+    }
+
+    console.table(resultados);
+    return resultados;
+}
         async function publicarProducto() {
     const files = document.getElementById('admin-images').files;
     const nombre = document.getElementById('admin-name').value.trim();
