@@ -1917,8 +1917,8 @@ async function actualizarPanelAdmin() {
     const imagen = await createImageBitmap(file);
     const canvas = document.createElement('canvas');
 
-    const maxWidth = 1600;
-    const maxHeight = 2000;
+    const maxWidth = 900;
+const maxHeight = 2000;
 
     const escala = Math.min(
         1,
@@ -1940,7 +1940,7 @@ async function actualizarPanelAdmin() {
         canvas.toBlob(
             resultado => resultado ? resolve(resultado) : reject(new Error('Error al optimizar imagen')),
             'image/webp',
-            0.88
+            0.80
         );
     });
 
