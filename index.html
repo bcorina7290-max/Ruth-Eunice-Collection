@@ -1955,7 +1955,7 @@ const maxHeight = 2000;
     );
 }
 
-        async function probarOptimizacion() {
+        async function probarOptimizacion(idProducto = 3) {
     const { data: { session }, error: authError } =
         await supabaseClient.auth.getSession();
 
@@ -1967,7 +1967,7 @@ const maxHeight = 2000;
     const { data: producto, error } = await supabaseClient
         .from('products')
         .select('id, nombre, imagenes')
-        .eq('id', 3)
+        .eq('id', idProducto)
         .single();
 
     if (error) throw error;
