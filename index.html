@@ -2817,19 +2817,7 @@ renderProducts(category);
 
 
         function optimizarUrlImagen(url, ancho = 900) {
-            if (url && /\.webp$/i.test(url.split('?')[0])) return url;
-    if (!url || !url.includes('/storage/v1/object/public/')) {
-        return url;
-    }
-
-    const nuevaUrl = url.replace(
-        '/storage/v1/object/public/',
-        '/storage/v1/render/image/public/'
-    );
-
-    const separador = nuevaUrl.includes('?') ? '&' : '?';
-
-    return nuevaUrl + separador + 'width=' + ancho + '&quality=80&resize=contain';
+    return url;
 }
 function changeMainImage(src, thumbElement) {
     const img = document.getElementById('main-preview');
