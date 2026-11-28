@@ -372,8 +372,44 @@
         
 
         .product-info {
-            padding: 20px;
-        }
+    padding: 20px;
+    position: relative;
+}
+
+.quick-cart-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #f5b3ce;
+    color: #492536;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-cart-btn:hover {
+    background: #ed91b5;
+    transform: scale(1.05);
+}
+
+.quick-cart-plus {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.product-info .product-title {
+    padding-right: 45px;
+}
 
         .product-title {
             font-size: 17px;
@@ -2499,6 +2535,10 @@ const homeProducts = products.slice(0, 8);
     <img loading="lazy" src="${optimizarUrlImagen(p.images[1] || p.images[0], 900)}" alt="${p.name}" class="product-img product-img-hover">
 </div>
                     <div class="product-info">
+                    <button type="button" class="quick-cart-btn" aria-label="Añadir al carrito" onclick="event.stopPropagation(); quickAddToCart(${p.id}, this)">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span class="quick-cart-plus">+</span>
+</button>
                         <h3 class="product-title">${p.name}</h3>
                         <div class="product-price">${p.price} Bs</div>
                         <div class="product-tags"><span class="tag">${p.color}</span></div>
@@ -2519,6 +2559,10 @@ const htmlContent = paginatedProducts.map(p => `
     <img loading="lazy" src="${optimizarUrlImagen(p.images[1] || p.images[0], 900)}" alt="${p.name}" class="product-img product-img-hover">
 </div>
         <div class="product-info">
+        <button type="button" class="quick-cart-btn" aria-label="Añadir al carrito" onclick="event.stopPropagation(); quickAddToCart(${p.id}, this)">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span class="quick-cart-plus">+</span>
+</button>
             <h3 class="product-title">${p.name}</h3>
             <div class="product-price">${p.price} Bs</div>
             <div class="product-tags"><span class="tag">${p.color}</span></div>
@@ -2627,6 +2671,10 @@ const htmlContent = visibleProducts.map(p => `
             </div>
 
             <div class="product-info">
+            <button type="button" class="quick-cart-btn" aria-label="Añadir al carrito" onclick="event.stopPropagation(); quickAddToCart(${p.id}, this)">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span class="quick-cart-plus">+</span>
+</button>
                 <h3 class="product-title">${p.name}</h3>
                 <div class="product-price">${p.price} Bs</div>
 
@@ -2874,6 +2922,51 @@ function changeMainImage(src, thumbElement) {
             btnElement.classList.add('selected');
         }
 
+        function quickAddToCart(id, btn) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+
+    if (product.sizes && product.sizes.length > 1) {
+        openDetail(id);
+        return;
+    }
+
+    const size = product.sizes?.[0] || '';
+    const existing = cart.find(item =>
+        item.id === id && item.size === size
+    );
+
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.images[0],
+            color: product.color,
+            size: size,
+            qty: 1
+        });
+    }
+
+    updateCartUI();
+
+    const originalHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+    btn.style.background = '#28a745';
+    btn.style.color = 'white';
+
+    setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+    }, 1200);
+}
+
+        
         function addToCart() {
             const existing = cart.find(item => item.id === currentProduct.id && item.size === selectedSize);
             if (existing) {
